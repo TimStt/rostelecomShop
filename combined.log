@@ -1347,3 +1347,18 @@
 {"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T14:33:21.143Z"}
 {"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T14:33:37.585Z"}
 {"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T14:39:42.880Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T16:23:30.223Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-09T16:23:30.249Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T16:23:30.699Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T16:26:43.981Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T16:30:48.953Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T16:39:16.354Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-09T16:39:16.453Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T16:39:16.545Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T16:50:57.297Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-09T16:50:57.386Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T16:50:57.555Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T16:51:03.509Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T17:15:48.567Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-09T17:15:48.687Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T17:15:48.795Z"}

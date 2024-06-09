@@ -1,22 +1,4 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/" }],
-  "framework": "nextjs",
-  "functions": {
-    "pages/**/*": {
-      "memory": 3008,
-      "maxDuration": 20
-    },
-    "pages/catalog/index.tsx": {
-      "memory": 3008,
-      "maxDuration": 24
-    },
-    "pages/catalog/[category]/index.tsx": {
-      "memory": 3008,
-      "maxDuration": 24
-    },
-    "pages/catalog/[category]/[id_product]/index.tsx": {
-      "memory": 3008,
-      "maxDuration": 24
-    }
-  }
+  "framework": "nextjs"
 }
