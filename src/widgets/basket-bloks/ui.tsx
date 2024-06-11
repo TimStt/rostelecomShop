@@ -8,12 +8,18 @@ import cls from "classnames";
 import { useBasketByAuth } from "@/shared/lib/auth/utils/useBasketByAuth";
 import { IBasketGoods } from "@/shared/config/types/goods";
 import EmptyPageContent from "@/shared/ui/empty-page-content/ui";
+import Head from "next/head";
 
 const BasketBloks = () => {
   const { goods } = useBasketByAuth();
 
   return (
     <>
+      {" "}
+      <Head>
+        <title>Корзина ({goods?.length || 0}) | Rostelecom Shop</title>
+        <meta name="description" content="Корзина" />
+      </Head>
       {!!goods.length ? (
         <section className={cls(style.root, "container")}>
           <HeaderBasket />

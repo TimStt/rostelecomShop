@@ -567,3 +567,5 @@
 {"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T16:51:03.509Z"}
 {"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T17:15:48.567Z"}
 {"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-09T17:15:48.795Z"}
+{"items":[{"category":"clothes","clientId":"nmck514txh","color":"yellow","count":1,"image":"/hero-section/t-shirt_orange.png","inStock":false,"name":"Tasty Soft Soap","price":8057,"productId":"66648317085d1bd479a01041","quantityStock":42,"size":"m","totalPrice":8057}],"level":"error","message":"reqBody","timestamp":"2024-06-11T15:33:59.504Z"}
+{"items":[{"category":"clothes","clientId":"nmck514txh","color":"yellow","count":1,"image":"/hero-section/t-shirt_orange.png","inStock":false,"name":"Tasty Soft Soap","price":8057,"productId":"66648317085d1bd479a01041","quantityStock":42,"size":"m","totalPrice":8057}],"level":"error","message":"reqBody","timestamp":"2024-06-11T15:34:00.516Z"}
