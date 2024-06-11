@@ -12,18 +12,21 @@ import { getGoodsSave } from "@/widgets/new-and-hits-goods/store/slice";
 import { NewAndHitsGoods } from "@/widgets/new-and-hits-goods/ui";
 import axios from "axios";
 import { GetServerSideProps, GetStaticProps, NextPage } from "next";
+
 import { useRouter } from "next/router";
 import React, { use, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 const Main: NextPage = () => {
   return (
-    <TransitionWrapper>
-      <HeroSection />
-      <Category />
-      <NewAndHitsGoods />
-      <LiveBrend />
-    </TransitionWrapper>
+    <>
+      <TransitionWrapper>
+        <HeroSection />
+        <Category />
+        <NewAndHitsGoods />
+        <LiveBrend />
+      </TransitionWrapper>
+    </>
   );
 };
 
