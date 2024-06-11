@@ -21,7 +21,9 @@ const CatalogPage = () => {
         <title>Каталог {ruCategory || "товаров"} | Rostelecom Shop</title>
         <meta
           name="description"
-          content={`Каталог ${ruCategory || "товаров"}`}
+          content={`Каталог ${
+            ruCategory || "товаров"
+          } магазина Rostelecom Shop. Купить качественную одежду, аксессуары, канцелярию и сувениры по низким ценам от личного бренда Rostelecom. Купить хиты и новинки от личного бренда Rostelecom`}
         />
       </Head>
       <CatalogMain />
