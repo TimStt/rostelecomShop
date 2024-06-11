@@ -12,7 +12,7 @@ export const updateCountBasket = async ({
   try {
     setSpinner(true);
     const { data } = await apiInstance.patch(
-      `/api/basket/counter?id=${id}`,
+      `/api/basket/update_count?id=${id}`,
 
       { count },
       {
