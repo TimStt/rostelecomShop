@@ -32,6 +32,7 @@
     "next-sitemap": "^4.2.3",
     "nextjs-progressbar": "^0.0.16",
     "nodemailer": "^6.9.13",
+    "plural-ru": "^2.0.2",
     "react": "^18",
     "react-content-loader": "^7.0.0",
     "react-countup": "^6.5.3",

@@ -19,7 +19,7 @@ import { wrapper } from "@/shared/stores/store";
 import { CatalogMain } from "@/widgets/catalog-main";
 import { IfilterState } from "@/shared/config/types/filters";
 
-export default CatalogMain;
+export default CatalogPage;
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps(({ dispatch, getState }) => async (context) => {
