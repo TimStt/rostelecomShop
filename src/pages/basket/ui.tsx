@@ -1,2 +1,2 @@
-import { BasketBloks } from "@/widgets/basket-bloks";
-export default BasketBloks;
+import { BasketBlocks } from "@/widgets/basket-blocks";
+export default BasketBlocks;

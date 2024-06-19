@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import style from "./login-auth.module.scss";
-import { useFormAuth } from "@/shared/api/useFormAuth";
+import { useFormAuth } from "@/shared/utils/useFormAuth";
 import { SubmitHandler } from "react-hook-form";
 
 import { signInThunk } from "../../../../shared/stores/auth";

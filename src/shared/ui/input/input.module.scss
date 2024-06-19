@@ -2,11 +2,12 @@
 
 .root {
   --colorError: var(--color-red);
+  --sizeIcon: 27px;
   @include flex-column;
   gap: 5px;
   .field {
     // --colorBorderInput: var(--color-gray-1);
-    --sizeIcon: 27px;
+
     --defoultInputFontColor: var(--color-white-opacity90);
     --defoultInputFontWeight: 400;
     --placeholderFontColor: var(--color-white-opacity60);
@@ -49,6 +50,10 @@
       padding-right: calc(var(--sizeIcon) + 2%);
     }
 
+    &.hasIconFound {
+      padding-left: calc(var(--sizeIcon) + 2%);
+    }
+
     // &.isError {
     //   border: 1px solid var(--colorError);
     // }
@@ -60,10 +65,10 @@
   --textColorPlaceholder: var(--color-white-opacity66);
   --textColorPlaceholderFocus: var(--color-light-violet);
 
-  .placeholder {
+  &__placeholder {
     position: absolute;
     color: var(--color-dark-33);
-    left: 10px;
+    left: 5%;
     // pointer-events: none;
     cursor: text;
     transition-duration: var(--duration);
@@ -78,6 +83,35 @@
       color: var(--textColorPlaceholderFocus);
       font-size: 13px;
       top: 20%;
+    }
+
+    &.isTextarea {
+      top: 15%;
+      left: 2%;
+
+      &.isFocus {
+        top: 6%;
+      }
+    }
+
+    &.hasIconFound {
+      left: calc(var(--sizeIcon) + 2%);
+    }
+  }
+
+  &__found {
+    position: absolute;
+    left: 1%;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: var(--sizeIcon);
+    height: var(--sizeIcon);
+    fill: var(--color-white-opacity66);
+    transition-property: fill;
+    transition-duration: var(--duration);
+
+    &.isActive {
+      fill: var(--color-light-violet);
     }
   }
 
@@ -114,6 +148,7 @@
       display: block;
       width: var(--sizeIcon);
       height: var(--sizeIcon);
+      fill: transparent;
 
       stroke: var(--color-gray-light);
     }

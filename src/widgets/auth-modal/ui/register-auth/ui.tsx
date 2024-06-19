@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFormAuth } from "@/shared/api/useFormAuth";
+import { useFormAuth } from "@/shared/utils/useFormAuth";
 import style from "./register-auth.module.scss";
 import { SubmitHandler } from "react-hook-form";
 import cls from "classnames";

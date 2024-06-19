@@ -1,1 +1,1 @@
-export { userSlice, selectUser, setUser } from "./slice";
+export { userSlice, selectUser, setUser, getUserGeolacation } from "./slice";

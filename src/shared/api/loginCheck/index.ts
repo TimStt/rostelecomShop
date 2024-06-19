@@ -1,12 +1,11 @@
 import { apiInstance } from "@/shared/config/api/apiinstance";
+import { IConfigAxiosAuth } from "@/shared/config/api/apiinstance/ui";
 
 export const loginCheck = async (token: string) => {
   try {
     const { data } = await apiInstance.get("/api/user/checkLogin", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+      needsAuth: true,
+    } as IConfigAxiosAuth);
 
     // if (data.error) {
     //   await handleJwtError({

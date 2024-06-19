@@ -39,5 +39,5 @@ export interface SpritesMap {
     | "yandex"
     | "github"
     | "vk2";
-  payment: "spb" | "mir-pay";
+  payment: "spb" | "mir-pay" | "sber-pay";
 }

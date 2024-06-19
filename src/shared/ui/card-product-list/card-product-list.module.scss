@@ -1,0 +1,129 @@
+@import "../../other-style/mixins";
+@import "../../other-style/adaptive";
+
+.root {
+  --bgImage: var(--gradient-circle);
+
+  @include flex-center-beetwen;
+  width: 100%;
+
+  &__image {
+    object-fit: contain;
+    background: var(--bgImage);
+    padding: 10px;
+  }
+
+  &__main-text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--color-gray-10);
+  }
+
+  &__title {
+    font-weight: 700;
+
+    color: var(--color-gray-10);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+    width: 100%;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  &__imgAndTitle {
+    @include flex-gap(40px);
+    align-items: center;
+  }
+
+  &__priceOne {
+    @include flex-column;
+    gap: 4px;
+
+    &__price {
+      text-align: right;
+
+      font-weight: 500;
+      color: var(--color-gray-light);
+    }
+
+    &__sub {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: var(--color-gray-6);
+    }
+  }
+
+  &__counter {
+    @include flex-center-beetwen;
+    max-width: 160px;
+    height: 48px;
+    padding-inline: 16px;
+    border-radius: 24px;
+    width: 100%;
+    background-color: var(--color-white-opacity6);
+
+    &__quantity {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--color-white-opacity90);
+    }
+    button {
+      @include inline-flex-center;
+      @include square(24px);
+      cursor: pointer;
+    }
+
+    svg {
+      fill: var(--color-white-opacity40);
+    }
+
+    &__minus {
+      width: 12px;
+      height: 1.5px;
+    }
+
+    &__plus {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &__priceFull {
+    font-weight: 500;
+    color: var(--color-gray-light);
+  }
+
+  &__delete {
+    @include inline-flex-center;
+    @include square(35px);
+    border-radius: 50%;
+    --duration: 0.2s;
+    cursor: pointer;
+    &:hover {
+      svg {
+        fill: var(--color-red);
+      }
+    }
+    @include hover-btn(
+      var(--color-white-opacity10),
+      var(--color-white-opacity40)
+    );
+
+    svg {
+      transition-duration: var(--duration);
+      transition-property: fill;
+      fill: var(--color-gray-light);
+      width: 15.99px;
+      height: 18px;
+    }
+  }
+}
+
+.root + .root {
+  padding-block: 20px;
+}

@@ -1,0 +1,146 @@
+@import "../../../../shared/other-style/mixins";
+@import "../../../../shared/other-style/mixins";
+
+.root {
+  width: 100%;
+  padding: 16px;
+
+  margin-bottom: 40px;
+
+  &__tabs {
+    margin-bottom: 24px;
+  }
+
+  &__inner {
+    padding: 24px;
+    border-bottom: 1px solid var(--color-black-2);
+  }
+
+  &__tabs {
+    width: 100%;
+    display: flex;
+    margin-bottom: 24px;
+
+    button {
+      flex: 1;
+      width: 100%;
+      height: 64px;
+      @include inline-flex-center;
+      transition-duration: var(--duration);
+      transition-property: border-bottom color;
+      color: var(--color-white-opacity90);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      border-bottom: 2px solid var(--color-black-2);
+
+      &.isActive {
+        border-bottom: 2px solid var(--color-light-violet);
+        color: var(--color-light-violet);
+      }
+    }
+  }
+
+  &__content {
+    @include flex-gap(23px);
+    gap: 16px;
+  }
+
+  &__selfDelivery {
+    min-height: 274px;
+    opacity: 0;
+    @include flex-gap(23px);
+
+    @media screen and (max-width: 1000px) {
+      flex-direction: column;
+    }
+
+    &__searching {
+      flex: 1;
+    }
+
+    &__map {
+      position: relative;
+      height: auto;
+
+      width: 100%;
+      flex: 1;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+
+      @media screen and (max-width: 1000px) {
+        height: 300px;
+        width: 100%;
+        flex: none;
+      }
+    }
+
+    &__list {
+      @include flex-column;
+      gap: 15px;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      height: 100%;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        /* плашка-бегунок */
+        width: 109px;
+        height: 10px;
+        border-radius: 10px;
+        transition-property: background;
+        transition-duration: var(--duration);
+        background-color: var(--color-light-violet);
+        &:hover {
+          background: var(--color-violet);
+        }
+      }
+      &::-webkit-scrollbar-track {
+        /* фон */
+
+        background-color: transparent; /* фон */
+      }
+    }
+
+    &__text {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      margin-bottom: 12px;
+    }
+  }
+
+  &__courierDelivery {
+    @include flex-column;
+    align-items: center;
+    gap: 14px;
+    min-height: 274px;
+
+    strong {
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    span {
+      font-size: 16px;
+      font-weight: 400;
+
+      color: var(--color-gray-10);
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, {
   forwardRef,
+  useId,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -8,7 +9,7 @@ import React, {
 } from "react";
 import style from "./input.module.scss";
 
-import type { HTMLInputTypeAttribute } from "react";
+import type { ElementType, HTMLInputTypeAttribute } from "react";
 
 import { IInput } from "./types";
 import cls from "classnames";
@@ -27,19 +28,17 @@ export const Input = forwardRef<HTMLInputElement, IInput>(
       placeholder,
       variant = "input-form",
       onFocusInput,
-
+      hasIconFound = false,
+      as,
       ...props
     },
     ref
   ) => {
-    const localref = useRef<HTMLInputElement>(null);
     const [isFocus, setFocus] = useState<boolean>(false);
     const [isType, setType] = useState<HTMLInputTypeAttribute>(type);
-
-    const randomKey = useMemo(
-      () => Math.random().toString(36).substring(2),
-      []
-    );
+    const DEFOULT_ELEMENT: ElementType = "input";
+    const Element = as || DEFOULT_ELEMENT;
+    const randomKey = useId();
 
     const toggleViewPassword = () => {
       setType(isType === "password" ? "text" : "password");
@@ -54,18 +53,23 @@ export const Input = forwardRef<HTMLInputElement, IInput>(
       <div className={cls(style.root, className)}>
         <div className={style.root__input}>
           <label
-            className={cls(style.placeholder, { [style.isFocus]: isFocus })}
+            className={cls(style.root__placeholder, {
+              [style.isFocus]: isFocus,
+              [style.hasIconFound]: hasIconFound,
+              [style.isTextarea]: as === "textarea",
+            })}
             htmlFor={`input-${randomKey}`}
           >
             {placeholder}
           </label>
-          <input
+          <Element
             className={cls(
               "input-reset",
               style.field,
               {
                 [style.isError]: hasError,
                 [style.hasPassword]: togglePassword,
+                [style.hasIconFound]: hasIconFound,
               },
               style[variant],
               { [style.hasIcon]: onClear || togglePassword }
@@ -111,16 +115,26 @@ export const Input = forwardRef<HTMLInputElement, IInput>(
               </span>
             </button>
           )}
+          {hasIconFound && (
+            <Icon
+              className={cls(style.root__found, {
+                [style.isActive]: isFocus,
+              })}
+              name="goods/found"
+            />
+          )}
         </div>
-        <span
-          className={cls(style.root__error, {
-            [style.isVisible]: hasError,
-          })}
-          id={`${randomKey}-error`}
-          role="alert"
-        >
-          {error}
-        </span>
+        {hasError && (
+          <span
+            className={cls(style.root__error, {
+              [style.isVisible]: hasError,
+            })}
+            id={`${randomKey}-error`}
+            role="alert"
+          >
+            {error}
+          </span>
+        )}
       </div>
     );
   }

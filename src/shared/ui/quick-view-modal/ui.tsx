@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { MutableRefObject, useCallback, useEffect, useRef } from "react";
 import Modal from "../modal";
 import { IQuickViewModalProps } from "./types";
 import style from "./quick-view-modal.module.scss";
@@ -44,7 +44,7 @@ const QuickViewModal = () => {
   const product = useSelector(selectCurrentProductAddBusketState);
   const isOpenModal = useSelector(selectModalQuickState);
   const { currentBasketItem } = useBasketAction();
-
+  const refWrapper = useRef() as MutableRefObject<HTMLDivElement>;
   const dispatch = useDispatch();
 
   const openSizesTable = () => {
@@ -55,24 +55,24 @@ const QuickViewModal = () => {
   const refModal = useRef<HTMLDialogElement>(null);
 
   const pathname = usePathname();
-  const closeModal = useCallback(
-    () => dispatch(toggleModalQuik(false)),
-    [dispatch]
-  );
+  const closeModal = useCallback(() => {
+    dispatch(toggleModalQuik(false));
+    setTimeout(() => refModal.current?.close(), 1000);
+  }, [dispatch]);
 
   useEffect(() => {
     !!isOpenModal
       ? refModal.current?.showModal()
-      : refModal.current?.close() && dispatch(setSelectedSize(""));
+      : dispatch(setSelectedSize(""));
   }, [closeModal, dispatch, isOpenModal, refModal]);
 
-  useWatch(refModal, closeModal);
+  useWatch(refWrapper, closeModal, isOpenModal);
   useScrollHidden(isOpenModal);
 
   if (product)
     return (
       <ModalMotion className={style.root} ref={refModal} state={isOpenModal}>
-        <div className={style.root__wrapper}>
+        <div className={style.root__wrapper} ref={refWrapper}>
           {product?.images.length > 1 ? (
             <SliderQuickModal
               images={product.images}

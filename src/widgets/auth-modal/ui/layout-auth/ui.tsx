@@ -13,7 +13,7 @@ import { toggleStateModal } from "@/shared/stores/auth-modal";
 import cls from "classnames";
 import toast, { Toaster } from "react-hot-toast";
 import { selectOpenModal } from "@/shared/stores/auth-modal/slice";
-import { useFormAuth } from "@/shared/api/useFormAuth";
+import { useFormAuth } from "@/shared/utils/useFormAuth";
 
 const LayoutAuth: React.FC<IAuthLayout> = ({
   children,

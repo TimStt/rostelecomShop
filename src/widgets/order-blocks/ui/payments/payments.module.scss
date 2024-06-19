@@ -1,0 +1,33 @@
+@import "../../../../shared/other-style/mixins";
+@import "../../../../shared/other-style/mixins";
+.root {
+  &__inner {
+    padding: 24px;
+    border-bottom: 1px solid var(--color-black-2);
+  }
+  &__tabs {
+    margin-bottom: 24px;
+  }
+
+  &__block {
+    min-height: 224px;
+    height: 100%;
+    @include flex-column;
+
+    gap: 24px;
+    &__text {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--color-gray-10);
+
+      a {
+        color: var(--color-light-violet);
+      }
+    }
+  }
+
+  &__checkbox-group {
+    @include flex-column;
+    gap: 16px;
+  }
+}

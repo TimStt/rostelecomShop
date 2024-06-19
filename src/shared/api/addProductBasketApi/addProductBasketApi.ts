@@ -1,4 +1,5 @@
 import { apiInstance } from "@/shared/config/api/apiinstance";
+import { IConfigAxiosAuth } from "@/shared/config/api/apiinstance/ui";
 import { IBasketAdd, IBasketGoods } from "@/shared/config/types/goods";
 // import { handleJwtError } from "@/shared/lib/auth/utils/handleJwtError/error";
 import toast from "react-hot-toast";
@@ -22,10 +23,8 @@ export const addProductBasketApi = async ({
         },
       },
       {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
+        needsAuth: true,
+      } as IConfigAxiosAuth
     );
 
     // if (data.error) {

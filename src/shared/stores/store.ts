@@ -43,6 +43,7 @@ import { menuModalSlice } from "@/shared/stores/menu-catalog-modal";
 import { m } from "framer-motion";
 import { currentProductAddBusketSlice } from "./current-product-add-busket";
 import { popupShareSlice } from "@/widgets/product-card-page/ui/popup-/store";
+import { orderSlice } from "./order";
 
 // ...
 
@@ -74,6 +75,7 @@ const reducer = combineReducers({
   menuModal: menuModalSlice.reducer,
   currentProductAddBusket: currentProductAddBusketSlice.reducer,
   popupShare: popupShareSlice.reducer,
+  order: orderSlice.reducer,
 });
 
 // const parsisReducer = persistReducer(parsistConfig, reducer);
@@ -98,9 +100,7 @@ export const makeStore = () => {
     devTools: process.env.NODE_ENV !== "production",
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, PAUSE, REHYDRATE, PERSIST, PURGE, REGISTER],
-        },
+        serializableCheck: false,
       }),
   });
   return store;

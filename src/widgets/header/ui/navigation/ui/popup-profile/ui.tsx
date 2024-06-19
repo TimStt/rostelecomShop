@@ -12,7 +12,7 @@ import Link from "next/link";
 
 import { selectUser } from "@/shared/stores/user";
 import { paths } from "@/shared/routing";
-import { useLogout } from "@/shared/api/useLogout";
+import { useLogout } from "@/shared/utils/useLogout";
 import { useWatch } from "@/shared/lib/modal";
 import { selectStatesPopups, togglePopups } from "../../store";
 import { useImageProfile } from "@/shared/lib/auth/utils/useImageProfile";
@@ -24,7 +24,7 @@ import { useTriggerLoginCheck } from "@/shared/lib/auth/utils/useTriggerLoginChe
 import { useUserAuth } from "@/shared/lib/auth/utils/isUserAuth";
 
 const PopupProfile = ({ classname }: { classname: string }) => {
-  const user = useSelector(selectUser);
+  const { user } = useSelector(selectUser);
   const handleLogout = useLogout();
   const dispatch = useDispatch();
   const { src, alt } = useImageProfile();

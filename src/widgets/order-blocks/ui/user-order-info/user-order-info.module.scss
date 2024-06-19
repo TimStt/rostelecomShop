@@ -1,0 +1,46 @@
+@import "../../../../shared/other-style/mixins";
+@import "../../../../shared/other-style/mixins";
+
+.root {
+  &__text {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: var(--color-gray-10);
+  }
+  &__titleBlock {
+    margin-bottom: 37px;
+  }
+
+  &__inner {
+    padding: 24px;
+    border-bottom: 1px solid var(--color-black-2);
+  }
+
+  &__inner {
+    &__form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      gap: 32px 28px;
+    }
+    &__input {
+      input,
+      textarea {
+        border-radius: 24px;
+        padding: 20px 20px 10px !important;
+      }
+
+      textarea {
+        @include px-to-rem(height, 150);
+      }
+
+      &:last-child {
+        grid-column: span 2;
+
+        input {
+          height: 96px;
+        }
+      }
+    }
+  }
+}

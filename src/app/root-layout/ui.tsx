@@ -10,6 +10,7 @@ import { QuickViewModal } from "@/shared/ui/quick-view-modal";
 import { CookieAlert } from "@/widgets/cookie-alert";
 import { useWatchByCookie } from "@/shared/utils/useWatchByCookie";
 import { PopupShare } from "@/widgets/product-card-page/ui/popup-";
+import { MapModal } from "@/widgets/order-blocks/ui/map-modal";
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isClient, setClient] = useState(false);

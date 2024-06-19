@@ -1,10 +1,17 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
-const TransitionWrapper = ({ children }: { children: React.ReactNode }) => {
+const TransitionWrapper = ({
+  children,
+  classname,
+}: {
+  children: React.ReactNode;
+  classname: string;
+}) => {
   const { asPath } = useRouter();
   return (
     <motion.div
+      className={classname}
       initial={{ opacity: 0, width: "100%" }}
       animate={{ opacity: 1, width: "100%" }}
       exit={{ opacity: 0, width: "100%" }}

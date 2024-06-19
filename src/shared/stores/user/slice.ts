@@ -1,13 +1,31 @@
-import { createSlice, PayloadAction, Selector } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  PayloadAction,
+  Selector,
+} from "@reduxjs/toolkit";
 import { IUser } from "@/shared/config/types/user/types";
 import { loginCheckThunk } from "../auth/slice";
+import {
+  IGetGeolocationUser,
+  IUserGeolacation,
+} from "@/shared/config/types/geo";
+import { getUserGeolacationApi } from "@/shared/api/get-geolacation-user-api";
 
-interface RootState {
+export const getUserGeolacation = createAsyncThunk(
+  "user/getUserGeolacation",
+  async ({ lat, lon }: IGetGeolocationUser) =>
+    await getUserGeolacationApi({ lat, lon })
+);
+
+interface IRootState {
   user: IUser | null;
+  userGeolacation: IUserGeolacation | null;
 }
 
-const initialState: RootState = {
+const initialState: IRootState = {
   user: null,
+  userGeolacation: null,
 };
 
 export const userSlice = createSlice({
@@ -23,10 +41,14 @@ export const userSlice = createSlice({
     builder.addCase(loginCheckThunk.fulfilled, (state, action) => {
       state.user = action.payload;
     });
+    builder.addCase(getUserGeolacation.fulfilled, (state, action) => {
+      if (!action.payload) return;
+      state.userGeolacation = action.payload;
+    });
   },
 });
-export const selectUser: Selector<RootState, IUser | null> = (state) =>
-  state.user;
+export const selectUser = (state: RootState) => state.user;
+
 export const { setUser } = userSlice.actions;
 
 export default userSlice.reducer;

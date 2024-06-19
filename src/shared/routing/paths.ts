@@ -51,6 +51,7 @@ export const translateWords = {
   favourites: "Избранное",
   customers: "Клиенты",
   blog: "Блог",
+  order: "Оформление заказа",
   t_shirt: "Футболки",
   long_sleeves: "Лонг-сливы",
   hoodie: "Худи",
@@ -62,4 +63,18 @@ export const translateWords = {
   promotional_souvenirs: "Промо-сувениры",
   pen: "Ручки",
   notebook: "Тетради",
+};
+
+export const translateColors = {
+  black: "Чёрный",
+  white: "Белый",
+  red: "Красный",
+  blue: "Синий",
+  green: "Зеленый",
+  yellow: "Жёлтый",
+  orange: "Оранжевый",
+  brown: "Коричневый",
+  pink: "Розовый",
+  purple: "Фиолетовый",
+  gray: "Серый",
 };

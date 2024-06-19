@@ -1,0 +1,78 @@
+@import "../../../../shared/other-style/mixins";
+.root {
+  @include flex-gap(12px);
+  align-items: center;
+
+  --sizeCheckBox: 22px;
+  &::before {
+    content: "";
+    @include inline-flex-center;
+    transition-duration: var(--duration);
+    transition-property: border-color background-color;
+    width: var(--sizeCheckBox);
+    height: var(--sizeCheckBox);
+    flex-shrink: 0;
+    flex-grow: 0;
+    border-radius: 50%;
+    border: 2px solid var(--color-white-opacity25);
+
+    pointer-events: painted;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  &.isChecked::before {
+    border: 7px solid var(--color-light-violet);
+    background-color: var(--color-white);
+  }
+  &:not(.isChecked):hover::before {
+    border-color: var(--color-violet);
+  }
+  &__checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    width: var(--sizeCheckBox);
+    height: var(--sizeCheckBox);
+    margin: 0;
+  }
+
+  &__block {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    max-width: 314px;
+    width: 100%;
+    background-color: var(--color-white-opacity6);
+    border-radius: 24px;
+    height: 48px;
+    padding: 4px 20px;
+
+    svg {
+      &.mir-pay {
+        width: 39.96px;
+        height: 11.2px;
+      }
+
+      &.sber-pay {
+        width: 42px;
+        height: 20px;
+      }
+      &.spb {
+        width: 40px;
+        height: 20px;
+      }
+    }
+
+    &.hasIcon {
+      gap: 13px;
+    }
+
+    span {
+      user-select: none;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--color-white-opacity90);
+    }
+  }
+}

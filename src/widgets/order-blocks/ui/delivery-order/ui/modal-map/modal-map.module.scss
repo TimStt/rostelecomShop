@@ -1,0 +1,10 @@
+@import "../../../../shared/other-style/mixins";
+@import "../../../../shared/other-style/mixins";
+
+.root {
+  width: 100%;
+  padding: 16px;
+
+  background-color: var(--color-gray-4);
+  max-height: 280px;
+}

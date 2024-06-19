@@ -1,4 +1,5 @@
 import { apiInstance } from "@/shared/config/api/apiinstance";
+import { IConfigAxiosAuth } from "@/shared/config/api/apiinstance/ui";
 import {
   IBasketAdd,
   IBasketGoods,
@@ -18,10 +19,8 @@ export const replaceProductBasket = async ({
         items: basketProduct,
       },
       {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
+        needsAuth: true,
+      } as IConfigAxiosAuth
     );
 
     // if (data.error) {

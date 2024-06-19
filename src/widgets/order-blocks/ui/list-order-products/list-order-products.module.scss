@@ -1,0 +1,55 @@
+@import "../../../../shared/other-style/mixins";
+@import "../../../../shared/other-style/mixins";
+
+.root {
+  margin-bottom: 40px;
+  &__inner {
+    padding-inline: 24px;
+    border-bottom: 1px solid var(--color-black-2);
+  }
+
+  &__keys {
+    @include flex-center-beetwen;
+    padding-block: 24px;
+
+    span {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: var(--color-gray-6);
+    }
+  }
+
+  &__spinner {
+    position: relative !important;
+    inset: 0;
+    margin-block: 50px;
+  }
+
+  &__list {
+    border-top: 1px solid var(--color-black-2);
+    counter-reset: item;
+
+    li {
+      counter-increment: item;
+
+      @include flex-gap(100px);
+      align-items: center;
+
+      &::before {
+        content: counter(item) ".";
+
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+
+        @include fluid-text(16, 14);
+        color: var(--color-gray-light);
+      }
+    }
+  }
+
+  &__card {
+    padding-block: 24px;
+  }
+}
