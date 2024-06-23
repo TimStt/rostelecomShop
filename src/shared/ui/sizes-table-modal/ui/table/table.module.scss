@@ -44,4 +44,14 @@
       text-align: center;
     }
   }
+
+  &__favoriteIcon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    fill: var(--color-red);
+    width: 18px;
+    height: 18px;
+  }
 }

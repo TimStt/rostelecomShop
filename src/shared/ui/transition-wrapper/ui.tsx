@@ -6,7 +6,7 @@ const TransitionWrapper = ({
   classname,
 }: {
   children: React.ReactNode;
-  classname: string;
+  classname?: string;
 }) => {
   const { asPath } = useRouter();
   return (

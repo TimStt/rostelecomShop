@@ -116,16 +116,16 @@ const Payments = () => {
             <form className={style["root__checkbox-group"]}>
               <CheckboxOrder
                 checked={statesTypePay.cashOnOffice || false}
-                text={"QR-код"}
+                text={"Наличными в офисе или пвз"}
                 onChange={() =>
                   onChangeCheckbox("cashOnOffice", "cashOnOffice")
                 }
-                value={"spb"}
+                value={"cashOnOffice"}
                 disabled={statesTypePay.cashOnOffice}
               />
               <CheckboxOrder
                 checked={statesTypePay.cardOnOffice || false}
-                text={"SberPay"}
+                text={"Картой в офисе или пвз"}
                 onChange={() =>
                   onChangeCheckbox("cardOnOffice", "cardOnOffice")
                 }

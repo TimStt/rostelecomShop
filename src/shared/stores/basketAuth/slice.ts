@@ -2,21 +2,23 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import {
   IBasketAdd,
-  IBasketDelete,
+  IProductDeleteOnBd,
   IBasketGoods,
-  IBasketReplace,
+  IProductReplaceAuth,
   IBasketState,
   IBasketUpdateCount,
 } from "@/shared/config/types/goods";
 import { getProductBasket } from "@/shared/api/getProductBasket";
 import { addProductBasketApi } from "@/shared/api/addProductBasketApi";
-import { replaceProductBasket } from "@/shared/api/replaceProductBasketAuth/replaceProductBasket";
+
 import { summirizeArray } from "@/shared/utils/summirizeArray";
 import { updateCountBasket } from "@/shared/api/updateCountBasket";
 // import { handleJwtError } from "@/shared/lib/auth/utils/handleJwtError/error";
 import { deleteProductApi } from "@/shared/api/deleteProductApi/deleteProductApi";
-import { setItemLocalStorage } from "@/shared/utils/setItemLocalStorage";
+
 import { deleteProductByLS } from "@/shared/utils/deleteProductByLS/deleteProductByLS";
+
+import { replaceProductsAuth } from "@/shared/api/replace-product-auth";
 
 export const getProductsThunk = createAsyncThunk(
   "basketAuth/getProducts",
@@ -32,8 +34,15 @@ export const addProductsThunk = createAsyncThunk(
 
 export const replaceProductsThunk = createAsyncThunk(
   "basketAuth/replaceProducts",
-  async ({ basketProduct, jwt }: IBasketReplace, { dispatch }) => {
-    const res = await replaceProductBasket({ basketProduct, jwt });
+  async ({
+    productsReplace,
+  }: {
+    productsReplace: IProductReplaceAuth["productsReplace"];
+  }) => {
+    const res = await replaceProductsAuth({
+      productsReplace,
+      collection: "basket",
+    });
 
     return res?.items;
   }
@@ -41,8 +50,8 @@ export const replaceProductsThunk = createAsyncThunk(
 
 export const deleteProductsThunk = createAsyncThunk(
   "basketAuth/deleteProducts",
-  async ({ id, jwt, setSpinner }: IBasketDelete, { dispatch }) => {
-    const res = await deleteProductApi({ id, jwt, setSpinner });
+  async ({ id, setSpinner }: IProductDeleteOnBd) => {
+    const res = await deleteProductApi({ id, setSpinner });
 
     return res;
   }

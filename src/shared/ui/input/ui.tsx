@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, {
   forwardRef,
+  useEffect,
   useId,
   useImperativeHandle,
   useMemo,
@@ -14,6 +15,7 @@ import type { ElementType, HTMLInputTypeAttribute } from "react";
 import { IInput } from "./types";
 import cls from "classnames";
 import Icon from "../icon";
+import { useController } from "react-hook-form";
 
 export const Input = forwardRef<HTMLInputElement, IInput>(
   (
@@ -23,13 +25,17 @@ export const Input = forwardRef<HTMLInputElement, IInput>(
       togglePassword,
       hasError,
       onClear,
+      onChange,
       onBlur,
+      value,
       type = "text",
       placeholder,
       variant = "input-form",
       onFocusInput,
       hasIconFound = false,
       as,
+      hasCounterSymbol,
+      maxLength,
       ...props
     },
     ref
@@ -39,6 +45,16 @@ export const Input = forwardRef<HTMLInputElement, IInput>(
     const DEFOULT_ELEMENT: ElementType = "input";
     const Element = as || DEFOULT_ELEMENT;
     const randomKey = useId();
+
+    const [isCountSymbol, setCountSymbol] = useState<number>(0);
+
+    useEffect(() => {
+      if (!hasCounterSymbol || !maxLength) return;
+      const countSymbol = (value as string).length;
+      if (countSymbol <= maxLength && countSymbol !== isCountSymbol) {
+        setCountSymbol(countSymbol);
+      }
+    }, [hasCounterSymbol, isCountSymbol, maxLength, value]);
 
     const toggleViewPassword = () => {
       setType(isType === "password" ? "text" : "password");
@@ -78,9 +94,12 @@ export const Input = forwardRef<HTMLInputElement, IInput>(
             aria-describedby={`${randomKey}-error`}
             onBlur={handlerFocused}
             type={isType}
+            onChange={onChange}
+            value={value}
             ref={ref}
             {...props}
             onFocus={() => setFocus(true)}
+            maxLength={maxLength}
           />
           {onClear && (
             <button
@@ -115,6 +134,7 @@ export const Input = forwardRef<HTMLInputElement, IInput>(
               </span>
             </button>
           )}
+
           {hasIconFound && (
             <Icon
               className={cls(style.root__found, {
@@ -124,6 +144,16 @@ export const Input = forwardRef<HTMLInputElement, IInput>(
             />
           )}
         </div>
+
+        {hasCounterSymbol && (
+          <span
+            className={cls(style.root__counter, {
+              [style.isMax]: isCountSymbol === maxLength,
+            })}
+          >
+            {isCountSymbol}/{maxLength}
+          </span>
+        )}
         {hasError && (
           <span
             className={cls(style.root__error, {

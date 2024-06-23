@@ -37,9 +37,15 @@ export interface IStateOrderSlice {
   loadListGeoDataOffice: boolean;
   chooseOfficeAddress: Partial<IRostelecomOfficeByCityData> | null;
   chooseAddressCourier: Partial<IRostelecomOfficeByCityData> | null;
+  dataCourierAddress: IRostelecomOfficeByCityData | null;
   loadingOfficeGeoData: boolean;
   isMapModalOpen: boolean;
   showCourierAddressData: boolean;
+  loadingGeolacationData: boolean;
+  showCourierAddress: boolean;
+  userOrderInfo: IUIInfoUserOrder;
+  isValidOrderInfo: boolean;
+  scrollToRequeredBlock: boolean;
 }
 export type typeOfKeyNotGeo = Exclude<keyof IStateOrderSlice, "officeGeoData">;
 
@@ -113,4 +119,12 @@ export interface IUIEmptyPage {
   hasImage?: boolean;
   srcImage?: string;
   backgroundText: string;
+}
+
+export interface IUIInfoUserOrder {
+  name?: string;
+  lastname?: string;
+  phone?: string;
+  email?: string;
+  orderComment?: string;
 }

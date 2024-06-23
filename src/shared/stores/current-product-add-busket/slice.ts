@@ -32,7 +32,7 @@ export const currentProductAddBusketSlice = createSlice({
 
 export const { setCurrentProduct } = currentProductAddBusketSlice.actions;
 
-export const selectCurrentProductAddBusketState = (state: RootState) =>
+export const selectCurrentProductState = (state: RootState) =>
   state.currentProductAddBusket.product;
 
 export default currentProductAddBusketSlice.reducer;

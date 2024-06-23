@@ -91,22 +91,31 @@
     }
   }
 
-  button {
+  &__link {
     @include square(32px);
     border-radius: 50%;
     @include inline-flex-center;
     background-color: var(--color-main);
-  }
 
-  svg {
-    display: block;
+    &.hasInFavorites svg {
+      fill: var(--color-red);
+      width: 18px;
+      height: 18px;
+    }
+    svg {
+      display: block;
 
-    width: 24px;
-    height: 24px;
-    fill: var(--color-gray-light);
+      width: 24px;
+      height: 24px;
+      fill: var(--color-gray-light);
 
-    &:hover {
-      fill: var(--color-emerald);
+      &:hover {
+        fill: var(--color-emerald);
+      }
+    }
+
+    &[disabled] {
+      pointer-events: none;
     }
   }
 }

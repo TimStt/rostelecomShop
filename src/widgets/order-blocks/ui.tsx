@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import style from "./order-blocks.module.scss";
 import cls from "classnames";
@@ -19,11 +19,49 @@ import { UserOrderInfo } from "./ui/user-order-info";
 import { MapModal } from "./ui/map-modal";
 import { useSelector } from "react-redux";
 import { selectOpenMapModal } from "@/shared/stores/order";
+import {
+  selectIsStatesDeliveryTub,
+  selectIsStatesTabPayment,
+  selectScrollToRequeredBlock,
+} from "@/shared/stores/order/slice";
+import toast from "react-hot-toast";
 
 const OrderBlocks = () => {
   const { goods } = useBasketByAuth();
+  const statesTabPay = useSelector(selectIsStatesTabPayment);
+  const stateTabDelivery = useSelector(selectIsStatesDeliveryTub);
+  const shouldScrollToDelivery = useRef(true);
+  const [isFisrtRender, setIsFisrtRender] = React.useState(true);
+  const stateScrollToRequeredBlock = useSelector(selectScrollToRequeredBlock);
 
-  const isOpenModalMap = useSelector(selectOpenMapModal);
+  const refBlockDelivery = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (isFisrtRender) {
+      shouldScrollToDelivery.current = false;
+      setIsFisrtRender(false);
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (isFisrtRender) {
+      return;
+    }
+
+    shouldScrollToDelivery.current = true;
+
+    window.scrollTo({
+      top:
+        (refBlockDelivery.current?.getBoundingClientRect().top as number) +
+        window.scrollY +
+        -50,
+      behavior: "smooth",
+    });
+
+    toast.error("Нужно указать адрес доставки");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stateScrollToRequeredBlock]);
 
   return (
     <>
@@ -38,11 +76,20 @@ const OrderBlocks = () => {
         <div className={style.root__content}>
           <div className={style.root__placement}>
             <ListOrderProducts goods={goods} />
-            <DeliveryOrder />
+            <DeliveryOrder ref={refBlockDelivery} />
             <Payments />
             <UserOrderInfo />
           </div>
-          <PayView countPoducts={goods.length} isOrder={true} />
+          <PayView
+            countPoducts={goods.length}
+            isOrder={true}
+            typePay={statesTabPay.cash ? "Наличные" : "Онлайн"}
+            nameDelivery={
+              stateTabDelivery.selfDelivery
+                ? "Самовывоз (беслпатно)"
+                : "Доставка курьером"
+            }
+          />
         </div>
       </section>
       <MapModal />

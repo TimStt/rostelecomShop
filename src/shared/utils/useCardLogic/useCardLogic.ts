@@ -27,6 +27,10 @@ export const useCardLogic = (product: IGoods) => {
     addProductBasketBySizeTable();
   };
 
+  const addFavorites = () => {
+    dispatch(setCurrentProduct(product));
+  };
+
   return {
     isHasProductInBasket,
     clickAddBasket,

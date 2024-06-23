@@ -83,7 +83,7 @@ export const handleResultClearing = (
 ) => {
   searchMarkersManager.clear();
 
-  if (!!userGeolacation?.features) {
+  if (!!userGeolacation?.features?.properties?.city) {
     handleSelectPickUpAddress &&
       handleSelectPickUpAddress(userGeolacation.features[0].properties.city);
 
@@ -94,7 +94,8 @@ export const handleResultClearing = (
       ])
       .zoomTo(10);
   } else {
-    map.setCenter(JSON.parse([37.617644, 55.755819])).zoomTo(10);
+    handleSelectPickUpAddress("Москва");
+    map.setCenter([37.617644, 55.755819]).zoomTo(10);
   }
 
   document.querySelector(".map-marker")?.remove();

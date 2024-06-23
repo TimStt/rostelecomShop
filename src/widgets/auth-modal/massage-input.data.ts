@@ -3,4 +3,7 @@ export enum massageInputData {
   invalidPassword = "Неверный пароль",
   invalidName = "Некорректное имя",
   requiredInput = "Обязательное поле",
+  invalidNumber = "Не правильный номер",
+  invalidLastName = "Некорректая фамилия",
+  invalidMaxLenght = "Максимальная длина 255 символов",
 }

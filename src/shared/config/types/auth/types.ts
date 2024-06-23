@@ -1,6 +1,12 @@
-import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
+import {
+  Control,
+  FieldErrors,
+  UseFormRegister,
+  UseFormTrigger,
+} from "react-hook-form";
 import { IUser } from "../user/types";
 import { NextApiRequest } from "next";
+import { IUIInfoUserOrder } from "../ui";
 
 export interface IAuthState {
   isOAuth: boolean;
@@ -25,6 +31,15 @@ export interface IInputForm {
   register: UseFormRegister<IUser>;
   errors: FieldErrors<IUser>;
   control: Control<IUser, any>;
+  classname?: string;
+}
+
+export interface IInputFormOrder {
+  register: UseFormRegister<IUIInfoUserOrder>;
+  errors: FieldErrors<IUIInfoUserOrder>;
+  control: Control<IUIInfoUserOrder, any>;
+  classname?: string;
+  trigger: UseFormTrigger<IUIInfoUserOrder>;
 }
 
 export interface IExtendedNextApiRequest extends NextApiRequest {

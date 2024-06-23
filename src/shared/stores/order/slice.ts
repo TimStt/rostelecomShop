@@ -1,5 +1,7 @@
+import { getGeolacationApi } from "@/shared/api/get-geolacation-user-api";
 import { getRostelecomOfficeByCity } from "@/shared/api/get-rostelecom-office-by-city";
 import {
+  IGetGeolocationUser,
   IGetRostelecomOfficeByCity,
   IRostelecomOfficeByCityData,
 } from "@/shared/config/types/geo";
@@ -8,16 +10,24 @@ import {
   IStatesDeliveryTub,
   IStatesTabPayment,
   IStatesTypePayment,
+  IUIInfoUserOrder,
   typeOfKeyNotGeo,
 } from "@/shared/config/types/ui";
 import { setItemLocalStorage } from "@/shared/utils/setItemLocalStorage";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { set } from "mongoose";
 import getStorage from "redux-persist/es/storage/getStorage";
 
 export const getOfficeByCity = createAsyncThunk(
   "order/getOfficeByCity",
   async ({ city, lang }: IGetRostelecomOfficeByCity) =>
     await getRostelecomOfficeByCity({ city, lang })
+);
+
+export const getGeolacation = createAsyncThunk(
+  "order/getGeolacation",
+  async ({ lat, lon }: IGetGeolocationUser) =>
+    await getGeolacationApi({ lat, lon })
 );
 
 const initialState: IStateOrderSlice = {
@@ -41,9 +51,23 @@ const initialState: IStateOrderSlice = {
   loadListGeoDataOffice: false,
   chooseOfficeAddress: null,
   chooseAddressCourier: null,
+  dataCourierAddress: null,
   loadingOfficeGeoData: false,
   isMapModalOpen: false,
   showCourierAddressData: false,
+  showCourierAddress: false,
+  loadingGeolacationData: false,
+
+  userOrderInfo: {
+    name: "",
+    lastname: "",
+    phone: "",
+    email: "",
+    orderComment: "",
+  },
+  isValidOrderInfo: true,
+
+  scrollToRequeredBlock: false,
 };
 
 export const orderSlice = createSlice({
@@ -106,6 +130,28 @@ export const orderSlice = createSlice({
     setShowCourierAddressData: (state, action: PayloadAction<boolean>) => {
       state.showCourierAddressData = action.payload;
     },
+
+    setIsValidOrderInfo: (state, action: PayloadAction<boolean>) => {
+      state.isValidOrderInfo = action.payload;
+    },
+
+    setUserOrderInfo: (state, action: PayloadAction<IUIInfoUserOrder>) => {
+      state.userOrderInfo = { ...state.userOrderInfo, ...action.payload };
+    },
+
+    setScrollToRequeredBlock: (state, action: PayloadAction<boolean>) => {
+      state.scrollToRequeredBlock = action.payload;
+    },
+
+    setDataCourier: (
+      state,
+      action: PayloadAction<IRostelecomOfficeByCityData>
+    ) => {
+      state.dataCourierAddress = action.payload;
+    },
+    setShowCourierAddress: (state, action: PayloadAction<boolean>) => {
+      state.showCourierAddress = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -119,6 +165,15 @@ export const orderSlice = createSlice({
       })
       .addCase(getOfficeByCity.pending, (state) => {
         state.loadingOfficeGeoData = true;
+      })
+      .addCase(getGeolacation.fulfilled, (state) => {
+        state.loadingGeolacationData = false;
+      })
+      .addCase(getGeolacation.rejected, (state) => {
+        state.loadingGeolacationData = false;
+      })
+      .addCase(getGeolacation.pending, (state) => {
+        state.loadingGeolacationData = true;
       });
   },
 });
@@ -148,6 +203,19 @@ export const selectShowCourierAddressData = (state: RootState) =>
 export const selectMapOrder = (state: RootState) => state.order.map;
 export const selectChooseOfficeAddress = (state: RootState) =>
   state.order.chooseOfficeAddress;
+export const selectDataAddressCourier = (state: RootState) =>
+  state.order.dataCourierAddress;
+export const selectLoadingGeolacationData = (state: RootState) =>
+  state.order.loadingGeolacationData;
+export const selectShowCourierAddress = (state: RootState) =>
+  state.order.showCourierAddress;
+export const selectUserOrderInfo = (state: RootState) =>
+  state.order.userOrderInfo;
+export const selectIsValidOrderInfo = (state: RootState) =>
+  state.order.isValidOrderInfo;
+
+export const selectScrollToRequeredBlock = (state: RootState) =>
+  state.order.scrollToRequeredBlock;
 
 export const {
   toggleStateTabs,
@@ -158,5 +226,11 @@ export const {
   setChooseAddressCourier,
   setIsMapModalOpen,
   setShowCourierAddressData,
+  setDataCourier,
+  setShowCourierAddress,
+  setUserOrderInfo,
+  setIsValidOrderInfo,
+
+  setScrollToRequeredBlock,
 } = orderSlice.actions;
 export default orderSlice.reducer;

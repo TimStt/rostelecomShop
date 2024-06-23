@@ -44,7 +44,10 @@ const EmptyPageContent = ({
           dangerouslySetInnerHTML={{ __html: subtitle }}
         ></p>
         {discription && (
-          <p className={style.root__discription}>{discription}</p>
+          <p
+            className={style.root__discription}
+            dangerouslySetInnerHTML={{ __html: discription }}
+          />
         )}
         <div className={style.root__buttons}>
           <Button

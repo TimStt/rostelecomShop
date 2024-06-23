@@ -9,14 +9,6 @@ export const getProductBasket = async (jwt: string) => {
       needsAuth: true,
     } as IConfigAxiosAuth);
 
-    // if (data?.error) {
-    //   const newData = (await handleJwtError({
-    //     errorName: data.error.name,
-    //     repeatRequestAfterRefreshData: { functionName: "getProductBasket" },
-    //   })) as unknown as IBasketGoods[];
-    //   return newData;
-    // }
-
     return data.goods;
   } catch (error) {
     toast.error(`${(error as Error).message}`);

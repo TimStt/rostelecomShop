@@ -4,6 +4,21 @@
   align-items: center;
 
   &__item {
+    a {
+      position: relative;
+      &.isNotEmpty {
+        &::after {
+          content: "";
+          position: absolute;
+          top: 9px;
+          right: 2px;
+          width: 8px;
+          height: 8px;
+          background-color: #ff0c0c;
+          border-radius: 50%;
+        }
+      }
+    }
     &.basket,
     &.profile {
       position: relative;

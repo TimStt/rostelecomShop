@@ -2,6 +2,7 @@ import {
   IGoods,
   INewSizeAccessories,
   INewSizeClothes,
+  IStoreName,
   TSize,
 } from "@/shared/config/types/goods";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -18,6 +19,7 @@ export interface ISizesTableState {
   productCategory: IGoods["category"] | "";
   sizes: INewSizeClothes[] | INewSizeAccessories[];
   selectedSize: string;
+  storeName?: IStoreName;
 }
 
 const initialState: ISizesTableState = {
@@ -25,6 +27,7 @@ const initialState: ISizesTableState = {
   productCategory: "",
   selectedSize: "",
   sizes: [],
+  storeName: "basket",
 };
 
 export const sizesTableModalSlice = createSlice({
@@ -33,6 +36,9 @@ export const sizesTableModalSlice = createSlice({
   reducers: {
     toggleSizesTable: (state, action: PayloadAction<boolean>) => {
       state.isOpen = action.payload;
+    },
+    setStoreName: (state, action: PayloadAction<IStoreName>) => {
+      state.storeName = action.payload;
     },
     setProduct: (state, action: PayloadAction<IGoods>) => {
       const { sizes, category } = action.payload;
@@ -59,7 +65,7 @@ export const sizesTableModalSlice = createSlice({
   },
 });
 
-export const { toggleSizesTable, setProduct, setSelectedSize } =
+export const { toggleSizesTable, setProduct, setSelectedSize, setStoreName } =
   sizesTableModalSlice.actions;
 
 export const selectSizesTableState = (state: RootState) =>
@@ -69,6 +75,9 @@ export const selectCategoryProductSizesTable = (state: RootState) =>
 
 export const selectSelectedSize = (state: RootState) =>
   state.sizesTableModal.selectedSize;
+
+export const selectStoreName = (state: RootState) =>
+  state.sizesTableModal.storeName;
 
 export const selectSizes = (state: RootState) => state.sizesTableModal.sizes;
 

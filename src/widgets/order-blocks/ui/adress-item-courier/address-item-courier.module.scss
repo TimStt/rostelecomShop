@@ -1,0 +1,35 @@
+@import "../../../../shared/other-style/mixins";
+@import "../../../../shared/other-style/mixins";
+
+.root {
+  @include flex-column;
+  gap: 7px;
+  align-items: start;
+  max-width: 350px;
+
+  &__warning {
+    font-size: 14px;
+    color: var(--color-light-violet) !important;
+    margin-bottom: 32px;
+  }
+  &__title {
+    font-size: 24px;
+    color: var(--color-white-1);
+    margin-bottom: 10px;
+  }
+
+  &__button {
+    border-radius: 32px;
+    padding: 12px 24px;
+    font-weight: 500;
+    color: var(--color-white);
+  }
+
+  span {
+    color: var(--color-gray-15);
+  }
+
+  strong {
+    color: var(--color-white-1);
+  }
+}

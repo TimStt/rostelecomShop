@@ -1,4 +1,5 @@
-import { Tcollections } from "@/shared/config/types/goods";
+import { IFilters } from "@/shared/config/types/filters";
+import { IGoods, Tcollections } from "@/shared/config/types/goods";
 import { IUser } from "@/shared/config/types/user/types";
 import { getAuthRouteData } from "@/shared/lib/auth/utils/getAuthRouteData";
 import { parseJwt } from "@/shared/lib/auth/utils/parseJwt";
@@ -9,6 +10,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 interface IGetDataFromDbByCollection {
   clientPromise: Promise<MongoClient>;
   collectionName: Tcollections;
+
   req: NextApiRequest;
   res: NextApiResponse;
 }
@@ -16,6 +18,7 @@ interface IGetDataFromDbByCollection {
 export const getDataFromDbByCollection = async ({
   clientPromise,
   collectionName,
+
   req,
   res,
 }: IGetDataFromDbByCollection) => {
@@ -25,10 +28,15 @@ export const getDataFromDbByCollection = async ({
     false
   );
 
+  const { category } = req.query;
   if (validationTokenResult.status !== 200) {
     res.status(401).json(validationTokenResult);
     return;
   }
+
+  let filter: {
+    [key: string]: any;
+  } = {};
 
   const user = (
     (await findOneOnCollection({
@@ -37,11 +45,12 @@ export const getDataFromDbByCollection = async ({
       filter: { email: parseJwt(token as string).email },
     })) as IUser[]
   )[0];
+  if (!!category?.length) filter.category = category;
 
   const goods = await findOneOnCollection({
     db: db,
     collectionName: collectionName,
-    filter: { userId: user._id },
+    filter: { userId: user._id, ...filter },
   });
 
   return res.status(200).json({ goods, user });

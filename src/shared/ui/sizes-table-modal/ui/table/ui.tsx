@@ -4,15 +4,18 @@ import { selectCategoryProductSizesTable } from "../../store";
 import style from "./table.module.scss";
 import { IBasketGoods, INewSizeClothes } from "@/shared/config/types/goods";
 import {
+  selectSelectedSize,
   selectSizes,
   selectSizesTableState,
+  selectStoreName,
   setSelectedSize,
 } from "../../store/slice";
 import cls from "classnames";
 import { de } from "@faker-js/faker";
-import { selectCurrentProductAddBusketState } from "@/shared/stores/current-product-add-busket";
+import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
 import Icon from "@/shared/ui/icon";
 import { TooltipCountBasketItem } from "@/shared/ui/tooltip-count-basket-item";
+import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
 
 const Table = ({ productBasket }: { productBasket?: IBasketGoods[] }) => {
   const sizes = useSelector(selectSizes);
@@ -24,13 +27,14 @@ const Table = ({ productBasket }: { productBasket?: IBasketGoods[] }) => {
   const [isActiveRow, setIsActiveRow] = useState<boolean[]>(
     Array(sizes?.length).fill(false)
   );
-
+  const { hasProductBySize } = useFavoriteAction();
   useEffect(() => {
     if (!isOpenModal) {
       dispatch(setSelectedSize(""));
       setIsActiveRow([]);
     }
   }, [dispatch, isOpenModal]);
+  const storeName = useSelector(selectStoreName);
 
   const saveSizes = (
     e: React.MouseEvent<HTMLTableRowElement>,
@@ -48,7 +52,6 @@ const Table = ({ productBasket }: { productBasket?: IBasketGoods[] }) => {
       return;
     }
     copy[indexRow] = true;
-
     setIsActiveRow(copy.map((_, index) => index === indexRow));
 
     dispatch(setSelectedSize(size));
@@ -68,7 +71,12 @@ const Table = ({ productBasket }: { productBasket?: IBasketGoods[] }) => {
               <tr
                 className={cls(style.root__body__row, {
                   [style.isActive]: isActiveRow[index],
+                  [style.isDisabled]: hasProductBySize(size.size),
                 })}
+                data-disabled={
+                  !size.isHas ||
+                  (storeName === "favorites" && hasProductBySize(size.size))
+                }
                 key={index}
                 onClick={(e) => saveSizes(e, size.size, index)}
               >
@@ -78,6 +86,12 @@ const Table = ({ productBasket }: { productBasket?: IBasketGoods[] }) => {
                     sizes={size.size}
                     productBasket={productBasket}
                   />
+                  {hasProductBySize(size.size) && (
+                    <Icon
+                      className={style.root__favoriteIcon}
+                      name="goods/heart2"
+                    />
+                  )}
                 </td>
               </tr>
             ))}
@@ -104,7 +118,10 @@ const Table = ({ productBasket }: { productBasket?: IBasketGoods[] }) => {
                     [style.isActive]: isActiveRow[index],
                   })}
                   key={index}
-                  data-disabled={!newSize.isHas}
+                  data-disabled={
+                    !newSize.isHas ||
+                    (storeName === "favorites" && hasProductBySize(size.size))
+                  }
                   //   onClick={s}
                   onClick={(e) => saveSizes(e, newSize.size, index)}
                 >
@@ -118,6 +135,12 @@ const Table = ({ productBasket }: { productBasket?: IBasketGoods[] }) => {
                       sizes={newSize.size}
                       productBasket={productBasket}
                     />
+                    {hasProductBySize(size.size) && (
+                      <Icon
+                        className={style.root__favoriteIcon}
+                        name="goods/heart2"
+                      />
+                    )}
                   </td>
                 </tr>
               );

@@ -25,9 +25,10 @@ import debounce from "@/shared/utils/debounce/debounce";
 import { PulseLoader } from "@/shared/ui/pulse-loader";
 import { CardProductFound } from "./ui/card-product-found";
 import { Hints } from "./ui/hints";
+import { ModalMotion } from "@/shared/ui/ModalMotion";
 
 export const FoundModal = () => {
-  const modalRef = React.createRef<HTMLDialogElement>();
+  const modalRef = React.useRef<HTMLDialogElement>(null);
   const modalInnerRef = React.createRef<HTMLDivElement>();
   const inputRef = React.createRef<HTMLInputElement>();
   const { isOpenModal, searchValue, foundedProducts, loading, type, category } =
@@ -35,13 +36,15 @@ export const FoundModal = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  useOpen(isOpenModal, modalRef);
+  const closeModal = useCallback(() => {
+    dispatch(toggleModalFound(false));
+    setTimeout(() => modalRef.current?.close(), 500);
+  }, [dispatch, modalRef]);
 
-  const closeModal = useCallback(
-    () => dispatch(toggleModalFound(false)),
-    [dispatch]
-  );
-
+  useEffect(() => {
+    !!isOpenModal ? modalRef.current?.showModal() : closeModal();
+  }, [closeModal, dispatch, isOpenModal, modalRef]);
+  useWatch(modalInnerRef, closeModal, isOpenModal);
   const clearSearch = () => {
     dispatch(setSearchValue(""));
     inputRef.current?.focus();
@@ -52,7 +55,7 @@ export const FoundModal = () => {
     dispatch(
       getFoundedProductsThunk({ value, type: type, category: category })
     );
-  }, 4000);
+  }, 3500);
 
   const changeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -63,11 +66,10 @@ export const FoundModal = () => {
     foundProducts(e.target.value);
   };
 
-  useWatch(modalInnerRef, closeModal);
   useScrollHidden(isOpenModal);
 
   return (
-    <Modal className={style.root} ref={modalRef}>
+    <ModalMotion className={style.root} ref={modalRef} state={isOpenModal}>
       <div className={cls("container", style.root__inner)} ref={modalInnerRef}>
         <header className={style.root__header}>
           <h2>Поиск товаров</h2>
@@ -126,6 +128,6 @@ export const FoundModal = () => {
           )}
         </div>
       </div>
-    </Modal>
+    </ModalMotion>
   );
 };

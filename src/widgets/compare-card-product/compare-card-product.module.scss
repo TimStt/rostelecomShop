@@ -1,0 +1,128 @@
+@import "../../shared/other-style/mixins";
+.root {
+  --bgImage: var(--gradient-circle);
+
+  border: 1px solid var(--color-gray-7);
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+
+  max-width: 300px;
+  text-align: center;
+
+  &__table {
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    height: 150px;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      /* плашка-бегунок */
+      width: 109px;
+      height: 10px;
+      border-radius: 10px;
+      transition-property: background;
+      transition-duration: var(--duration);
+      background-color: var(--color-light-violet);
+      &:hover {
+        background: var(--color-violet);
+      }
+    }
+    &::-webkit-scrollbar-track {
+      /* фон */
+
+      background-color: transparent; /* фон */
+    }
+
+    tr {
+      scroll-snap-align: start;
+    }
+  }
+
+  &__image {
+    display: block;
+
+    background: var(--bgImage);
+    padding: 10px;
+    margin-bottom: 12px;
+
+    img {
+      object-fit: contain;
+      margin: auto;
+    }
+  }
+
+  &__info {
+    &__name {
+      @include fluid-text(24, 18, font-size);
+      margin-bottom: 12px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    &__price {
+      font-size: 16px;
+    }
+
+    &__buttonGroup {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 15px;
+    }
+  }
+  &__addToCartButton,
+  &__removeButton {
+    background-color: var(--color-blue-dark);
+    color: var(--color-light-violet);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    flex: 1;
+    transition-property: background-color;
+    transition-duration: var(--duration);
+    @include flex-center-center;
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--color-white-1);
+    }
+
+    &:hover {
+      background-color: var(--color-black-2);
+    }
+  }
+
+  &__removeButton {
+    svg {
+      fill: var(--color-red);
+    }
+  }
+  &__addToCartButton {
+    &[disabled] {
+      pointer-events: none;
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: var(--color-green-dark);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .root {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .root__info__buttonGroup {
+    flex-direction: column;
+  }
+}

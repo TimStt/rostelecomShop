@@ -47,7 +47,7 @@ const CardProductList = ({
     color,
     count: countProduct,
   } = product;
-  const deleteProductById = () => deleteProduct(productId);
+  const deleteProductById = () => deleteProduct(product?.clientId as string);
   const key = useId();
 
   const valueTotalPrice = totalPriceSum(product?._id as string);

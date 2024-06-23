@@ -6,4 +6,6 @@ export {
   setProduct,
   setSelectedSize,
   selectSelectedSize,
+  setStoreName,
+  selectStoreName,
 } from "./slice";

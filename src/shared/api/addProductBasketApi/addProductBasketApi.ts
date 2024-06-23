@@ -26,17 +26,6 @@ export const addProductBasketApi = async ({
         needsAuth: true,
       } as IConfigAxiosAuth
     );
-
-    // if (data.error) {
-    //   const res = (await handleJwtError({
-    //     errorName: data.error.name,
-    //     repeatRequestAfterRefreshData: {
-    //       functionName: "addProductBasket",
-    //       payload: { setSpinner, ...otherFields },
-    //     },
-    //   })) as unknown as IBasketGoods[];
-    //   return res;
-    // }
     toast.success(`${(data as IBasketGoods).name} добавлен в корзину`);
     return data;
   } catch (error) {

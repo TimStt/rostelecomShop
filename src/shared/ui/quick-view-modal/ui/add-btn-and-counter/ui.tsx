@@ -9,6 +9,7 @@ import { IBasketGoods, IGoods } from "@/shared/config/types/goods";
 import style from "./add-btn-and-counter.module.scss";
 import { PulseLoader } from "@/shared/ui/pulse-loader";
 import { Counter } from "@/shared/ui/counter";
+import { productNotSizes } from "@/shared/config/constants/product-not-sizes";
 
 const AddBtnAndCounter = ({
   product,
@@ -28,7 +29,16 @@ const AddBtnAndCounter = ({
   } = useBasketAction();
   const selectedSize = useSelector(selectSelectedSize);
   const totalCount = oneCurrentCartItemCount();
+  const productNotesSize = productNotSizes.includes(product.type);
+  const stateDisabledBiSizes =
+    !product.inStock ||
+    !product.sizes?.length ||
+    !selectedSize.length ||
+    addToBasketSpinner ||
+    updateCountSpinner;
 
+  const stateDisabledNoteSize =
+    !product.inStock || addToBasketSpinner || updateCountSpinner;
   const addProductToBasket = useHandlerAddToBasket(count || 0);
   return (
     <div className={cls(style.root, classnname)}>
@@ -40,9 +50,7 @@ const AddBtnAndCounter = ({
         setCount={setCount}
         oneCurrentCartItemCount={totalCount}
         disabled={
-          !product.inStock ||
-          !product.sizes?.length ||
-          selectedSize.length === 0
+          !productNotesSize ? stateDisabledBiSizes : stateDisabledNoteSize
         }
       />
 
@@ -50,11 +58,7 @@ const AddBtnAndCounter = ({
         className={style.root__addToBasket}
         onClick={addProductToBasket}
         disabled={
-          !product.inStock ||
-          !product.sizes?.length ||
-          selectedSize.length === 0 ||
-          addToBasketSpinner ||
-          updateCountSpinner
+          !productNotesSize ? stateDisabledBiSizes : stateDisabledNoteSize
         }
       >
         {addToBasketSpinner || updateCountSpinner ? (

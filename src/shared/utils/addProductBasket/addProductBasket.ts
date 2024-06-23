@@ -1,7 +1,12 @@
 "use client";
-import { IBasketGoods, IGoods } from "@/shared/config/types/goods";
+import {
+  IBasketGoods,
+  ICompareGoods,
+  IFavoritesGoods,
+  IGoods,
+} from "@/shared/config/types/goods";
 import { useUserAuth } from "@/shared/lib/auth/utils/isUserAuth";
-import { addGoodsNoteAuth } from "@/shared/stores/basket";
+
 import { create } from "domain";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,10 +14,18 @@ import { addProductsThunk } from "@/shared/stores/basketAuth/slice";
 import { selectUser } from "@/shared/stores/user";
 import { useGetStateOnLocalStorage } from "../useGetStateOnLocalStorage";
 import { use, useCallback } from "react";
+import {
+  addGoodstoFavorites,
+  addProductsFavoritesThunk,
+  setIsEmptyFavorites,
+} from "@/shared/stores/favorites";
+import { addGoodsNoteAuth } from "@/shared/stores/basket";
+import { set } from "mongoose";
 
 interface IAddProductBasketAuth {
   product: IGoods;
   count: number;
+  storeName?: "basket" | "favorites" | "compare";
 
   setSpinner: (state: boolean) => void;
   selectedSizes?: string;
@@ -21,7 +34,7 @@ interface IAddProductBasketAuth {
 interface IBasketAddProduct {
   product: IGoods;
   selectedSizes: string;
-
+  storeName?: "basket" | "favorites" | "compare";
   count: number;
   isToast?: boolean;
 }
@@ -31,24 +44,25 @@ export const useAddProductBasket = ({
   selectedSizes,
   count,
   isToast = true,
+  storeName = "basket",
 }: IBasketAddProduct) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  let basket =
+  let store =
     typeof localStorage !== "undefined"
-      ? (JSON.parse(
-          localStorage?.getItem("basket") as string
-        ) as unknown as IBasketGoods[])
+      ? (JSON.parse(localStorage?.getItem(storeName) as string) as unknown as
+          | IBasketGoods[]
+          | IFavoritesGoods[])
       : [];
 
-  if (!basket) {
-    basket = [];
+  if (!store) {
+    store = [];
   }
   const isAuth = useUserAuth();
-  const isHasProduct = basket.find(
-    (basketProduct) =>
-      basketProduct?.productId === product?._id &&
-      basketProduct.size === selectedSizes
+  const isHasProduct = store.find(
+    (productItem) =>
+      productItem?.productId === product?._id &&
+      productItem.size === selectedSizes
   );
 
   let clientId = Math.random().toString(36).substring(2, 15);
@@ -58,7 +72,7 @@ export const useAddProductBasket = ({
       const countUpdated =
         isHasProduct.count !== count ? count : isHasProduct.count + 1;
 
-      const newBasket = basket.map((basketProduct) =>
+      const newBasket = store.map((basketProduct) =>
         isHasProduct === basketProduct
           ? {
               ...basketProduct,
@@ -67,11 +81,11 @@ export const useAddProductBasket = ({
           : basketProduct
       );
 
-      basket = newBasket;
+      store = newBasket;
       clientId = isHasProduct.clientId;
     } else {
-      basket = [
-        ...basket,
+      store = [
+        ...store,
         {
           name: product.name,
           price: product.price,
@@ -79,8 +93,8 @@ export const useAddProductBasket = ({
           size: selectedSizes,
           clientId: clientId,
           quantityStock: product.isCount || 0,
-          productId: product?._id,
-          image: product.images[0],
+          productId: product?._id as string,
+          image: product?.images[0],
           totalPrice: product.price,
           inStock: false,
           color: product.characteristics?.color ?? "",
@@ -88,13 +102,32 @@ export const useAddProductBasket = ({
         },
       ];
     }
-    localStorage.setItem("basket", JSON.stringify(basket));
-    console.log("trigger  handlernByNoteAuth");
+    localStorage.setItem(storeName, JSON.stringify(store));
+
     if (isToast) {
-      toast.success("Добавлено в корзину");
+      toast.success(
+        `${product.name} добавлен в ${
+          storeName === "basket"
+            ? "корзину"
+            : storeName === "compare"
+            ? "сравнение"
+            : "избранное"
+        }`
+      );
     }
 
-    !isAuth && dispatch(addGoodsNoteAuth(basket));
+    switch (storeName) {
+      case "basket":
+        !isAuth && dispatch(addGoodsNoteAuth(store));
+        break;
+      case "compare":
+        // dispatch(addGoodsNoteAuth(store));
+        break;
+      case "favorites":
+        !isAuth && dispatch(addGoodstoFavorites(store));
+        dispatch(setIsEmptyFavorites(false));
+        break;
+    }
 
     return clientId;
   };
@@ -105,15 +138,17 @@ export const useAddProductBasketAuth = ({
   count,
   setSpinner,
   selectedSizes = "",
+  storeName = "basket",
 }: IAddProductBasketAuth) => {
   const dispatch = useDispatch<AppDispatch>();
   const isAuth = useUserAuth();
-  const user = useSelector(selectUser);
+  const { user } = useSelector(selectUser);
   const handlerByNoteAuth = useAddProductBasket({
     product,
     selectedSizes,
     count,
     isToast: true,
+    storeName,
   });
 
   const handlerByAuth = useAddProductBasket({
@@ -121,6 +156,7 @@ export const useAddProductBasketAuth = ({
     selectedSizes,
     count,
     isToast: false,
+    storeName,
   });
 
   return useCallback(() => {
@@ -133,29 +169,38 @@ export const useAddProductBasketAuth = ({
       .accessToken as string;
 
     const clientId = handlerByAuth();
-
-    dispatch(
-      addProductsThunk({
-        jwt: accessToken,
-        setSpinner,
-        productId: product?._id,
-        count: count,
-        sizes: selectedSizes,
-        clientId: clientId,
-        userId: user?._id as string,
-        category: product.category,
-      })
-    );
+    const addProductInfo = {
+      jwt: accessToken,
+      setSpinner,
+      productId: product?._id,
+      count: count,
+      sizes: selectedSizes,
+      clientId: clientId,
+      userId: user?._id as string,
+      category: product.category,
+    };
+    switch (storeName) {
+      case "basket":
+        dispatch(addProductsThunk(addProductInfo));
+        break;
+      case "compare":
+        // dispatch(addProductsFavoritesThunk(addProductInfo));
+        break;
+      case "favorites":
+        dispatch(addProductsFavoritesThunk(addProductInfo));
+        break;
+    }
   }, [
     isAuth,
     handlerByAuth,
-    dispatch,
     setSpinner,
     product?._id,
     product?.category,
     count,
     selectedSizes,
     user?._id,
+    storeName,
     handlerByNoteAuth,
+    dispatch,
   ]);
 };

@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { useUrlParams } from "@/shared/utils/url";
 import cls from "classnames";
-import Select from "../select/ui";
+import Select from "../../../../../../shared/ui/select/ui";
 
 const SizesFilter = () => {
   const { push } = useRouter();

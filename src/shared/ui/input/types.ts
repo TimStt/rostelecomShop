@@ -11,4 +11,6 @@ export interface IInput<E extends ElementType = ElementType>
   onFocusInput?: () => void;
   hasIconFound?: boolean;
   as?: E | React.ComponentType<any>;
+  hasCounterSymbol?: boolean;
+  maxLength?: number;
 }

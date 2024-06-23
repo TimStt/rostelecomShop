@@ -21,7 +21,7 @@ import {
   IClothes,
   IGoods,
 } from "@/shared/config/types/goods";
-import { selectCurrentProductAddBusketState } from "@/shared/stores/current-product-add-busket";
+import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
 import { useBasketAction } from "@/shared/utils/useBasketAction";
 import ModalMotion from "../ModalMotion/ui";
 
@@ -29,6 +29,7 @@ import { SizesListCheckBox } from "../sizes-list-checkbox";
 import {
   selectSelectedSize,
   setSelectedSize,
+  setStoreName,
   toggleSizesTable,
 } from "../sizes-table-modal/store";
 import { Button } from "../button";
@@ -39,33 +40,39 @@ import { PulseLoader } from "../pulse-loader";
 import { Toaster } from "react-hot-toast";
 import { ArticleAndInstock } from "../card/ui/article-and-in";
 import AddBtnAndCounter from "./ui/add-btn-and-counter/ui";
+import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
+import useCompareAction from "@/shared/utils/use-compare-action/use-compare-action";
 
 const QuickViewModal = () => {
-  const product = useSelector(selectCurrentProductAddBusketState);
+  const product = useSelector(selectCurrentProductState);
   const isOpenModal = useSelector(selectModalQuickState);
   const { currentBasketItem } = useBasketAction();
   const refWrapper = useRef() as MutableRefObject<HTMLDivElement>;
   const dispatch = useDispatch();
+  const selectedSizes = useSelector(selectSelectedSize);
 
   const openSizesTable = () => {
     dispatch(toggleModalQuik(false));
     dispatch(toggleSizesTable(true));
+    dispatch(setStoreName("basket"));
   };
 
+  const { handlerCardAddToFavorites, hasProductNotSize, hasProductBySize } =
+    useFavoriteAction(product);
   const refModal = useRef<HTMLDialogElement>(null);
 
   const pathname = usePathname();
   const closeModal = useCallback(() => {
     dispatch(toggleModalQuik(false));
-    setTimeout(() => refModal.current?.close(), 1000);
+    setTimeout(() => refModal.current?.close(), 500);
   }, [dispatch]);
 
   useEffect(() => {
     !!isOpenModal
       ? refModal.current?.showModal()
-      : dispatch(setSelectedSize(""));
+      : dispatch(setSelectedSize("")) && closeModal();
   }, [closeModal, dispatch, isOpenModal, refModal]);
-
+  const { addInCompare, hasProductCompare } = useCompareAction(product);
   useWatch(refWrapper, closeModal, isOpenModal);
   useScrollHidden(isOpenModal);
 
@@ -108,10 +115,23 @@ const QuickViewModal = () => {
                 </span>
                 <div className={style.root__panel}>
                   <button
-                    className={cls(style.root__panel__button, "btn-reset")}
+                    className={cls(style.root__panel__button, "btn-reset", {
+                      [style.hasInFavorites]:
+                        hasProductNotSize || hasProductBySize(selectedSizes),
+                    })}
                     title="Добавить в избранное"
+                    onClick={handlerCardAddToFavorites}
+                    disabled={
+                      hasProductNotSize || hasProductBySize(selectedSizes)
+                    }
                   >
-                    <Icon name="goods/heart" />
+                    <Icon
+                      name={`goods/${
+                        hasProductNotSize || hasProductBySize(selectedSizes)
+                          ? "heart2"
+                          : "heart"
+                      }`}
+                    />
                     <span className="visually-hidden">
                       Добавить в избранное
                     </span>
@@ -119,6 +139,8 @@ const QuickViewModal = () => {
                   <button
                     className={cls(style.root__panel__button, "btn-reset")}
                     title="Добавить в сравнение"
+                    onClick={addInCompare}
+                    disabled={hasProductCompare}
                   >
                     <Icon name="goods/compare" />
                     <span className="visually-hidden">

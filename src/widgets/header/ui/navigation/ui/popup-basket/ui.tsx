@@ -66,10 +66,7 @@ const PopupBasket = ({ classname }: { classname: string }) => {
           >
             {currentProductsBasket.length ? (
               currentProductsBasket.map((product) => {
-                const { _id, size } = product;
-                const id = `basket-item-${
-                  (_id as string) + !!size.length ? size : ""
-                }`;
+                const id = product.clientId;
 
                 return (
                   <li key={id} className={style.list__item}>

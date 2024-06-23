@@ -3,7 +3,7 @@ import { TSize } from "../goods";
 
 export interface IFilters {
   category?: {
-    $in: string[];
+    $in: string[] | string;
   };
   price?: {
     $gte?: number;

@@ -145,6 +145,27 @@
       &:hover svg {
         fill: var(--color-emerald);
       }
+
+      &.hasInFavorites svg {
+        fill: var(--color-red);
+        width: 18px;
+        height: 18px;
+      }
+      svg {
+        display: block;
+
+        width: 24px;
+        height: 24px;
+        fill: var(--color-gray-light);
+
+        &:hover {
+          fill: var(--color-emerald);
+        }
+      }
+
+      &[disabled] {
+        pointer-events: none;
+      }
     }
   }
 }

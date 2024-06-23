@@ -159,16 +159,33 @@ export interface IBasketAdd {
   userId: string;
   productId: string;
 
-  jwt: string;
   setSpinner: (state: boolean) => void;
   count: string | number;
   sizes: string;
-  category: string;
+  category: "clothes" | "accessories" | "office" | "souvenirs";
 }
 
-export interface IBasketReplace {
-  basketProduct: IBasketGoods[];
-  jwt: string;
+export type ICompareAdd = Omit<IBasketAdd, "count"> & {
+  sizes?: TSize[];
+};
+
+export interface ICompareData {
+  _id: string;
+  clientId: string;
+  userId: string;
+  productId: string;
+  image: string;
+  sizes?: TSize[];
+  name: string;
+  characteristics: TCharacteristicsGoods;
+  price: number;
+  category: string;
+  inStock: boolean;
+}
+
+export interface IProductReplaceAuth {
+  productsReplace: IBasketGoods[] | IFavoritesGoods[] | ICompareData[];
+  collection: "favorite" | "basket" | "compare";
 }
 
 export interface IBasketUpdateCount {
@@ -178,24 +195,41 @@ export interface IBasketUpdateCount {
   jwt: string;
 }
 
-export interface IBasketDelete {
+export interface IProductDeleteOnBd {
   id: string;
-  jwt: string;
+
   setSpinner: (state: boolean) => void;
 }
 
-export type Tcollections = "clothes" | "accessories" | "basket" | "users";
+export interface IDeleteAllProductOnCollection {
+  collection: "favorite" | "basket" | "compare";
+}
+
+export type Tcollections =
+  | "clothes"
+  | "accessories"
+  | "basket"
+  | "users"
+  | "favorites"
+  | "compare";
 
 export interface IBasketState {
   goods: IBasketGoods[];
   loading: boolean;
   totalPrice: number;
 }
-
-export interface IFavoritesAndCompareState {
-  goods: IGoods[];
+export interface IFavoritesState {
+  goods: IFavoritesGoods[];
   loading: boolean;
+  isEmpty: boolean;
 }
+export type ICompareState = Omit<IFavoritesState & IFavoritesState, "goods"> & {
+  goods: ICompareData[] | null;
+};
+
+export type IStoreName = "basket" | "favorites" | "compare";
+export type IFavoritesGoods = IBasketGoods;
+export type ICompareGoods = IGoods;
 
 export interface INewSizeClothes {
   size: string;

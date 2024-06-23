@@ -12,12 +12,19 @@ import Navigation from "./ui/navigation/ui";
 import AuthModal from "../auth-modal/ui";
 import { toggleModalMenu } from "@/shared/stores/menu-catalog-modal";
 import { useGetStateOnLocalStorage } from "@/shared/utils/useGetStateOnLocalStorage";
-import { IBasketGoods } from "@/shared/config/types/goods";
+import {
+  IBasketGoods,
+  ICompareData,
+  IFavoritesGoods,
+  IGoods,
+} from "@/shared/config/types/goods";
 import { addGoodsNoteAuth } from "@/shared/stores/basket";
 import { useUserAuth } from "@/shared/lib/auth/utils/isUserAuth";
 import { replaceProductsThunk } from "@/shared/stores/basketAuth";
 import App from "next/app";
 import { selectIsAuth } from "@/shared/stores/auth";
+import { replaceProductsFavoritesThunk } from "@/shared/stores/favorites";
+import { replaceProductsCompareThunk } from "@/shared/stores/compare";
 
 const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,21 +32,33 @@ const Header = () => {
 
   const isAuth = useSelector(selectIsAuth);
 
-  useGetStateOnLocalStorage(
-    "basket",
-    (products: IBasketGoods[]) =>
-      !isAuth && dispatch(addGoodsNoteAuth(products))
+  useGetStateOnLocalStorage("basket", isAuth, (products: IBasketGoods[]) =>
+    dispatch(addGoodsNoteAuth(products))
   );
+
+  const checkStateLs = (state: any[]) => !!state && Array.isArray(state);
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("tokens") as string);
     if (isAuth && token) {
       const basket = JSON.parse(localStorage.getItem("basket") as string);
-      if (!basket || !Array.isArray(basket)) return;
+      const favorites = JSON.parse(
+        localStorage.getItem("favorites") as string
+      ) as IFavoritesGoods[];
+      const compare = JSON.parse(
+        localStorage.getItem("compare") as string
+      ) as ICompareData[];
 
-      dispatch(
-        replaceProductsThunk({ basketProduct: basket, jwt: token.accessToken })
-      );
+      checkStateLs(basket) &&
+        dispatch(replaceProductsThunk({ productsReplace: basket }));
+      checkStateLs(favorites) &&
+        dispatch(
+          replaceProductsFavoritesThunk({
+            productsReplace: favorites,
+          })
+        );
+      checkStateLs(compare) &&
+        dispatch(replaceProductsCompareThunk({ productsReplace: compare }));
     }
   }, [dispatch, isAuth]);
 

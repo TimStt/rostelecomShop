@@ -16,17 +16,21 @@ import {
 import { SizesListCheckBox } from "@/shared/ui/sizes-list-checkbox";
 import { useBasketAction } from "@/shared/utils/useBasketAction";
 import AddBtnAndCounter from "@/shared/ui/quick-view-modal/ui/add-btn-and-counter/ui";
-import { selectCurrentProductAddBusketState } from "@/shared/stores/current-product-add-busket";
+import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
 import { Accardions } from "./ui/accardions";
 import { toggleStatePopupShare } from "./ui/popup-/store";
 import { BreadCrumb } from "@/shared/ui/breadcrumbs";
+import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
+import useCompareAction from "@/shared/utils/use-compare-action/use-compare-action";
 
 const ProductCardPage = () => {
   const dispatch = useDispatch();
-  const product = useSelector(selectCurrentProductAddBusketState);
+  const product = useSelector(selectCurrentProductState);
   const hasType = product?.isBestseller || product?.isNew;
   const selectedSize = useSelector(selectSelectedSize);
   const { currentBasketItem } = useBasketAction();
+  const { handlerCardAddToFavorites, hasProductNotSize } =
+    useFavoriteAction(product);
 
   return (
     <section className={cls(style.root, "container")}>
@@ -63,10 +67,16 @@ const ProductCardPage = () => {
               </span>
               <div className={style.root__panel}>
                 <button
-                  className={cls(style.root__panel__button, "btn-reset")}
+                  className={cls(style.root__panel__button, "btn-reset", {
+                    [style.hasInFavorites]: hasProductNotSize,
+                  })}
                   title="Добавить в избранное"
+                  onClick={handlerCardAddToFavorites}
+                  disabled={hasProductNotSize}
                 >
-                  <Icon name="goods/heart" />
+                  <Icon
+                    name={`goods/${hasProductNotSize ? "heart2" : "heart"}`}
+                  />
                   <span className="visually-hidden">Добавить в избранное</span>
                 </button>
                 <button

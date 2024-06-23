@@ -1,3 +1,4 @@
+import { notFoundList } from "@/shared/config/constants/not-found-collection";
 import { IFoundAllGoods, IGoods } from "@/shared/config/types/goods";
 import { CollectionInfo } from "mongodb";
 
@@ -10,8 +11,6 @@ const foundAllProduct = async ({
   try {
     const collection = await db.listCollections().toArray();
     const collectionNames = collection.map((item: CollectionInfo) => item.name);
-
-    const notFoundList = ["changelog", "users", "basket", "accessories"];
 
     let result: Promise<IGoods[]>[] = [];
 
@@ -60,7 +59,7 @@ const foundAllProduct = async ({
 
     for (const name of collectionNames) {
       const stage = pipline(name);
-      if (!notFoundList.includes(name)) {
+      if (!notFoundList.includes(name) || name === "accessories") {
         result.push(
           db.collection(name).aggregate(stage).toArray() as Promise<IGoods[]>
         );

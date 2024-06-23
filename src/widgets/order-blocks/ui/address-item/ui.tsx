@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import {
   selectChooseOfficeAddress,
   setChooseAddressCourier,
-  setChooseOfficeAddress,
 } from "@/shared/stores/order";
 import { set } from "mongoose";
 import { IBbox } from "@/shared/config/types/geo";
@@ -21,6 +20,7 @@ const AddressItem = ({
   const selectAddress = () => {
     if (hasMehods) {
       dispatch(setChooseAddressCourier({}));
+
       handleChooseAddress(address);
       handleUpdateMap({
         position: { lat: address.lat as number, lon: address.lon as number },

@@ -47,7 +47,7 @@ const useItemAction = () => {
         : dispatch(
             deleteProductsThunk({
               id,
-              jwt: tokens.accessToken,
+
               setSpinner: setIsDeleteSpinner,
             })
           );

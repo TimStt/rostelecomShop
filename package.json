@@ -12,6 +12,7 @@
   "dependencies": {
     "@eartho/one-client-react": "^2.0.12",
     "@faker-js/faker": "^8.4.1",
+    "@maskito/react": "^2.4.0",
     "@netlify/plugin-nextjs": "^5.3.2",
     "@reduxjs/toolkit": "^2.2.1",
     "@tomtom-international/web-sdk-maps": "^6.25.0",

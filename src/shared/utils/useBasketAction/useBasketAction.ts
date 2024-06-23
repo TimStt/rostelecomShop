@@ -9,7 +9,7 @@ import {
   useAddProductBasket,
   useAddProductBasketAuth,
 } from "../addProductBasket/addProductBasket";
-import { selectCurrentProductAddBusketState } from "@/shared/stores/current-product-add-busket";
+import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
 import { IGoods } from "@/shared/config/types/goods";
 import { set } from "mongoose";
 import { useAddProductBySizeTable } from "../useAddProductBySizeTable/useAddProductBySizeTable";
@@ -19,7 +19,7 @@ import {
 } from "@/shared/stores/basketAuth/slice";
 
 const useBasketAction = (isSizeTable = false) => {
-  const productModal = useSelector(selectCurrentProductAddBusketState);
+  const productModal = useSelector(selectCurrentProductState);
   const selectedSizes = useSelector(selectSelectedSize);
   const { goods: currentProductsBasket } = useBasketByAuth();
 

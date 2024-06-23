@@ -14,13 +14,6 @@
   transition-property: transform;
   transition-duration: var(--duration);
 
-  transform: translateY(-200%);
-  overflow: hidden;
-
-  &[open] {
-    transform: translateY(0%);
-  }
-
   &__inner {
     position: relative;
     padding-block: 30px;

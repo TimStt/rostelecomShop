@@ -33,7 +33,7 @@ const BreadCrumbs = ({
   console.log(isPath);
 
   return (
-    <div className={cls(style.root, className)}>
+    <nav className={cls(style.root, className)} aria-label="breadcrumbs">
       <Link href={`/`}>Главная</Link>
       {isPath?.map((item, index) => (
         <Link
@@ -48,7 +48,7 @@ const BreadCrumbs = ({
             : translateWords.home}
         </Link>
       ))}
-    </div>
+    </nav>
   );
 };
 

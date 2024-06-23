@@ -10,7 +10,7 @@ import cls from "classnames";
 import { usePathname } from "next/navigation";
 import {
   currentProductAddBusketSlice,
-  selectCurrentProductAddBusketState,
+  selectCurrentProductState,
 } from "@/shared/stores/current-product-add-busket";
 
 const PopupShare = () => {
@@ -25,17 +25,18 @@ const PopupShare = () => {
 
   const isOpenModal = useSelector(selectPopupShareState);
   const dispatch = useDispatch();
-  const currentProduct = useSelector(selectCurrentProductAddBusketState);
-  const closeModal = useCallback(
-    () => dispatch(toggleStatePopupShare(false)),
-    [dispatch]
-  );
+  const currentProduct = useSelector(selectCurrentProductState);
+  const closeModal = useCallback(() => {
+    dispatch(toggleStatePopupShare(false));
+    setTimeout(() => refModal.current?.close(), 1000);
+  }, [dispatch]);
 
   const hrefUrl = encodeURIComponent(isShareUrl);
 
   useOpen(isOpenModal, refModal);
   useWatch(refWrapper, closeModal);
   useScrollHidden(isOpenModal);
+
   if (!currentProduct) return null;
   const handleCloseAlert = () => dispatch(toggleStatePopupShare(false));
   const urlVk = `http://vk.com/share.php?url=${hrefUrl}&title=${currentProduct?.name}&description=${currentProduct?.description}&image=${currentProduct?.images[0]}`;

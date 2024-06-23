@@ -1,7 +1,7 @@
 import React from "react";
 import { sortData } from "./data";
 import { useRouter } from "next/navigation";
-import { Select } from "../select";
+import { Select } from "../../../../../../shared/ui/select";
 
 import { useUrlParams } from "@/shared/utils/url";
 

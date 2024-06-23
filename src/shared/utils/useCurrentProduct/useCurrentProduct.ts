@@ -1,8 +1,8 @@
-import { selectCurrentProductAddBusketState } from "@/shared/stores/current-product-add-busket";
+import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
 import { useSelector } from "react-redux";
 
 export const useCurrentProduct = () => {
-  const currentProduct = useSelector(selectCurrentProductAddBusketState);
+  const currentProduct = useSelector(selectCurrentProductState);
 
   return currentProduct;
 };

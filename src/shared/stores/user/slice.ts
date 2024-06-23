@@ -10,12 +10,12 @@ import {
   IGetGeolocationUser,
   IUserGeolacation,
 } from "@/shared/config/types/geo";
-import { getUserGeolacationApi } from "@/shared/api/get-geolacation-user-api";
+import { getGeolacationApi } from "@/shared/api/get-geolacation-user-api";
 
 export const getUserGeolacation = createAsyncThunk(
   "user/getUserGeolacation",
   async ({ lat, lon }: IGetGeolocationUser) =>
-    await getUserGeolacationApi({ lat, lon })
+    await getGeolacationApi({ lat, lon })
 );
 
 interface IRootState {

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { CategoryData, typesCategories } from "./data";
 
-import { Select } from "../select";
+import { Select } from "../../../../../../shared/ui/select";
 import { translateWords } from "@/shared/routing/paths";
 import { IfilterState } from "@/shared/config/types/filters";
 import { translateToWord } from "@/shared/utils/translateToWord";

@@ -9,6 +9,14 @@ import CountUp from "react-countup";
 import useBasketAction from "@/shared/utils/useBasketAction/useBasketAction";
 import { useItemAction } from "@/shared/utils/useItemAction";
 import { IPayViewProps } from "@/shared/config/types/ui";
+import {
+  selectChooseOfficeAddress,
+  selectIsChooseCourierAddress,
+  selectIsStatesTabPayment,
+  selectScrollToRequeredBlock,
+  setScrollToRequeredBlock,
+} from "@/shared/stores/order/slice";
+import { useDispatch, useSelector } from "react-redux";
 
 const PayView = ({
   countPoducts,
@@ -19,8 +27,18 @@ const PayView = ({
 }: IPayViewProps) => {
   const [isAgreementChecked, setIsAgreementChecked] = React.useState(false);
   const { sumPrice, isOldSumPrice } = useItemAction();
-
+  const dispatch = useDispatch();
   const idAgreement = useId();
+  const choosenOffice = useSelector(selectChooseOfficeAddress);
+  const choosenCourier = useSelector(selectIsChooseCourierAddress);
+  const stateScrollToRequeredBlock = useSelector(selectScrollToRequeredBlock);
+
+  const handleMakePayment = async () => {
+    if (!choosenOffice?.address_line1 && !choosenCourier?.address_line1) {
+      dispatch(setScrollToRequeredBlock(!stateScrollToRequeredBlock));
+      return;
+    }
+  };
   return (
     <div className={style.root}>
       <div className={style.root__top}>
@@ -61,7 +79,7 @@ const PayView = ({
               <span className={style.root__top__value}> {nameDelivery}</span>
             </span>
             <span className={style.root__top__title}>
-              <span className={style.root__top__text}>Оплата::</span>
+              <span className={style.root__top__text}>Оплата:</span>
               <span className={style.root__top__value}> {typePay}</span>
             </span>
           </>
@@ -84,8 +102,9 @@ const PayView = ({
           type="submit"
           size="large"
           disabled={!isAgreementChecked}
-          href={isOrder ? "/basket/order" : "/basket/order"}
-          as={Link}
+          href={isOrder ? "" : "/basket/order"}
+          as={!isOrder ? Link : "button"}
+          onClick={isOrder ? handleMakePayment : undefined}
         >
           Оформить заказ
         </Button>

@@ -1,11 +1,11 @@
-import { selectCurrentProductAddBusketState } from "@/shared/stores/current-product-add-busket";
+import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
 import { ProductCardPage } from "@/widgets/product-card-page";
 import Head from "next/head";
 import React from "react";
 import { useSelector } from "react-redux";
 
 const ProductPage = () => {
-  const selectedProduct = useSelector(selectCurrentProductAddBusketState);
+  const selectedProduct = useSelector(selectCurrentProductState);
   return (
     <>
       <Head>

@@ -14,6 +14,7 @@ import {
   ModifierGoods,
   selectSelectedSize,
   selectSizes,
+  selectStoreName,
   setSelectedSize,
 } from "./store/slice";
 import { Button } from "../button";
@@ -23,6 +24,8 @@ import { useBasketAction } from "@/shared/utils/useBasketAction";
 import { PulseLoader } from "../pulse-loader";
 import { Toaster } from "react-hot-toast";
 import ModalMotion from "../ModalMotion/ui";
+import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
+import { toggleModalQuik } from "../quick-view-modal";
 
 const SizesTableModal = () => {
   const isOpenModal = useSelector(selectSizesTableState);
@@ -38,16 +41,25 @@ const SizesTableModal = () => {
 
   const refModal = useRef<HTMLDialogElement>(null);
   const addProductToBasket = useHandlerAddToBasket(productBySize?.count || 1);
-  // const addProductBasket = () => {
+  const addProductBasket = () => {
+    addProductToBasket();
+    dispatch(toggleSizesTable(false));
+    dispatch(toggleModalQuik(false));
+  };
 
-  // };
+  const { handlerCardAddToFavorites } = useFavoriteAction();
+
+  const handlerCardAddFavorites = () => {
+    handlerCardAddToFavorites();
+    dispatch(toggleSizesTable(false));
+    dispatch(toggleModalQuik(false));
+  };
   console.log("productBySize count", productBySize?.count);
-
-  const closeModal = useCallback(
-    () => refModal.current?.close(),
-
-    []
-  );
+  const storeName = useSelector(selectStoreName);
+  const closeModal = useCallback(() => {
+    dispatch(toggleSizesTable(false));
+    setTimeout(() => refModal.current?.close(), 1000);
+  }, [dispatch]);
   useEffect(() => {
     !!isOpenModal ? refModal.current?.showModal() : closeModal();
   }, [closeModal, isOpenModal, refModal]);
@@ -74,7 +86,9 @@ const SizesTableModal = () => {
       <Table productBasket={currentBasketItem} />
       <Button
         className={style.root__addToBasket}
-        onClick={addProductToBasket}
+        onClick={
+          storeName === "basket" ? addProductBasket : handlerCardAddFavorites
+        }
         variant="primary"
         size="medium"
         disabled={
@@ -83,8 +97,10 @@ const SizesTableModal = () => {
       >
         {addToBasketSpinner || updateCountSpinner ? (
           <PulseLoader size={12} color="#fff" />
-        ) : (
+        ) : storeName === "basket" ? (
           "В корзину"
+        ) : (
+          "В избранное"
         )}
       </Button>
     </ModalMotion>

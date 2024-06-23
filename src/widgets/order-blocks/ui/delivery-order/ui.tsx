@@ -7,8 +7,10 @@ import { motion } from "framer-motion";
 import {
   MutableRefObject,
   createRef,
+  forwardRef,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -18,7 +20,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { IStatesDeliveryTub } from "@/shared/config/types/ui";
 import {
   selectChooseOfficeAddress,
+  selectIsChooseCourierAddress,
   selectIsStatesDeliveryTub,
+  selectShowCourierAddress,
+  selectShowCourierAddressData,
   setChooseOfficeAddress,
   setIsMapModalOpen,
   setMapOrder,
@@ -46,18 +51,20 @@ import { useUpdateMap } from "@/features/order-logic/use-update-map";
 import { IBbox, IHandleLoadMap } from "@/shared/config/types/geo";
 import { tr } from "@faker-js/faker";
 import { mapOption } from "@/shared/config/constants/map-option";
+import { AddressItemCourier } from "../adress-item-courier";
 
-const DeliveryOrder = () => {
+const DeliveryOrder = forwardRef((ref) => {
   const dispatch = useDispatch<AppDispatch>();
   const statesTubs = useSelector(selectIsStatesDeliveryTub);
   const { userGeolacation } = useSelector(selectUser);
-  const refMap = useRef() as MutableRefObject<HTMLDivElement>;
-
+  const refMap = useRef(null) as unknown as MutableRefObject<HTMLDivElement>;
+  const chooseAddressCourier = useSelector(selectIsChooseCourierAddress);
   const refSpan = useRef() as MutableRefObject<HTMLSpanElement>;
   const handleSelectPickUpAddress = useHandleSelectPickUpAddress();
   const choosenPickUpAddress = useSelector(selectChooseOfficeAddress);
   const [isLoadingMap, setIsLoadingMap] = useState(true);
   const { handleUpdateMap } = useUpdateMap();
+  const showCourierAddress = useSelector(selectShowCourierAddress);
   const searchBoxHTML = useRef() as MutableRefObject<HTMLDivElement>;
   const toggletabClick = async (activeTab: "tabOne" | "tabTwo") => {
     dispatch(
@@ -68,7 +75,7 @@ const DeliveryOrder = () => {
     );
     if (activeTab === "tabOne") {
       if (choosenPickUpAddress?.address_line1) {
-        await handleLoadMap({
+        handleLoadMap({
           searchVelue: choosenPickUpAddress.city,
           initialPosition: {
             lat: choosenPickUpAddress.lat as number,
@@ -76,16 +83,17 @@ const DeliveryOrder = () => {
           },
           marker: true,
         });
-        console.log("choosenPickUpAddress trigger ", activeTab);
+        console.log("choosenPickUpAddress tab ", choosenPickUpAddress);
         return;
       }
       if (!!userGeolacation?.features[0].properties?.city?.length) {
-        handleLoadMap({
+        await handleLoadMap({
           searchVelue: userGeolacation.features[0].properties.city,
         });
         return;
       }
-      handleLoadMap({});
+      console.log("trigger toggletabClick ", activeTab);
+      await handleLoadMap({});
       return;
     }
   };
@@ -113,36 +121,27 @@ const DeliveryOrder = () => {
       initialPosition = { lat: 55.755819, lng: 37.617644 },
       marker,
     }: IHandleLoadMap) => {
-      const ttmaps = await import("@tomtom-international/web-sdk-maps");
-      initSearchMarker(ttmaps);
-      const apiKey = process.env.NEXT_PUBLIC_TOMTOM_API_KEY;
-      console.log("choosenPickUpAddress", choosenPickUpAddress);
-      const map = ttmaps.map({
-        key: `${apiKey}`,
-        container: refMap.current,
-        language: "ru",
-        center: initialPosition,
-        // zoom: 15,
-      });
-      console.log("marker", marker);
-      choosenPickUpAddress?.address_line1 &&
-        (await handleUpdateMap({
-          position: {
-            lat: choosenPickUpAddress?.lat as number,
-            lon: choosenPickUpAddress?.lon as number,
-          },
-          box: choosenPickUpAddress?.bbox as IBbox,
-          initialMapInstance: map,
-        }));
+      // if (!refMap.current) return;
+      try {
+        const ttmaps = await import("@tomtom-international/web-sdk-maps");
+        initSearchMarker(ttmaps);
+        const apiKey = process.env.NEXT_PUBLIC_TOMTOM_API_KEY;
+        // refMap.current.innerHTML = "";
+        console.log(" load map trigger ", choosenPickUpAddress);
+        const map = ttmaps.map({
+          key: `${apiKey}`,
+          container: refMap.current,
+          language: "ru",
+          center: initialPosition,
+          zoom: 10,
+        });
+        setIsLoadingMap(false);
 
-      console.log(refSpan.current.nextElementSibling);
+        if (searchBoxHTML.current) searchBoxHTML.current.innerHTML = "";
 
-      //@ts-ignore
+        //@ts-ignore
+        const cityUser = userGeolacation?.features[0]?.properties?.city;
 
-      if (
-        !searchBoxHTML.current ||
-        refSpan.current.nextElementSibling !== searchBoxHTML.current
-      ) {
         //@ts-ignore
         const ttSearchBox = new tt.plugins.SearchBox(
           //@ts-ignore
@@ -173,53 +172,75 @@ const DeliveryOrder = () => {
             handleSelectPickUpAddress
           )
         );
-        ttSearchBox.on("tomtom.searchbox.resultscleared", () => {
+        ttSearchBox.on("tomtom.searchbox.resultscleared", async () => {
           handleResultClearing(
             searchMarkersManager,
             map,
-            userGeolacation,
+            initialPosition,
             handleSelectPickUpAddress
           );
           dispatch(setChooseOfficeAddress({}));
+
+          map.setCenter(initialPosition).zoomTo(10);
         });
-      }
 
-      dispatch(setMapOrder(map));
-
-      if (!marker && !!userGeolacation?.features) {
-        await handleSelectPickUpAddress(
-          userGeolacation.features[0].properties.city
+        ttSearchBox.setValue(
+          cityUser || choosenPickUpAddress?.city || "Москва"
         );
-        map
-          .setCenter([
-            userGeolacation.features[0].properties.lon,
-            userGeolacation.features[0].properties.lat,
-          ])
-          .zoomTo(10);
+
+        if (choosenPickUpAddress?.address_line1) {
+          await handleUpdateMap({
+            position: {
+              lat: choosenPickUpAddress?.lat as number,
+              lon: choosenPickUpAddress?.lon as number,
+            },
+            box: choosenPickUpAddress?.bbox as IBbox,
+            initialMapInstance: map,
+          });
+          ttSearchBox.setValue(choosenPickUpAddress.city);
+        }
+
         dispatch(setMapOrder(map));
-        return;
+
+        if (!marker && !!cityUser) {
+          await handleSelectPickUpAddress(
+            userGeolacation.features[0].properties.city
+          );
+          map
+            .setCenter([
+              userGeolacation.features[0].properties.lon,
+              userGeolacation.features[0].properties.lat,
+            ])
+            .zoomTo(10);
+          dispatch(setMapOrder(map));
+          return;
+        }
+        if (!marker && !cityUser) {
+          await handleSelectPickUpAddress("Москва");
+          return;
+        }
+      } catch (error) {
+        console.log(error);
       }
     },
-    [dispatch, handleSelectPickUpAddress, userGeolacation]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [choosenPickUpAddress]
   );
 
-  useEffect(() => {
-    addScriptToHead(
-      "https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"
-    );
-    addScriptToHead(
-      "https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js"
-    );
+  console.log("choosenPickUpAddress", choosenPickUpAddress);
 
-    if (!!isLoadingMap && !refMap.current?.firstChild) {
+  useEffect(() => {
+    if (!!isLoadingMap && refMap.current !== null) {
+      console.log("map page trigger");
       handleLoadMap({});
-      setIsLoadingMap(false);
     }
-  }, [handleLoadMap, isLoadingMap]);
+  }, [handleLoadMap, isLoadingMap, statesTubs.selfDelivery]);
 
   useEffect(() => {
     getNavigateGeoByUser();
-  }, []);
+  }, [getNavigateGeoByUser, statesTubs.selfDelivery]);
+
+  console.log("statesTubs.courierDelivery", statesTubs.courierDelivery);
 
   return (
     <div className={style.root}>
@@ -257,21 +278,32 @@ const DeliveryOrder = () => {
             className={style.root__courierDelivery}
             {...motionSettingsVisibleNoScaleDisplay("courierDelivery")}
           >
-            <span>
-              <strong>Куда привезти заказ?</strong>
-            </span>
-            <span>Укажите адрес доставки на карте</span>
-            <Button
-              size="small"
-              onClick={() => dispatch(setIsMapModalOpen(true))}
-            >
-              Карта
-            </Button>
+            {showCourierAddress && chooseAddressCourier?.address_line1 ? (
+              <>
+                <span>Доставка будет осуществлена по этому адресу: </span>
+                <AddressItemCourier hasButton={false} />
+              </>
+            ) : (
+              <>
+                <span>
+                  <strong>Куда привезти заказ?</strong>
+                </span>
+                <span>Укажите адрес доставки на карте</span>
+                <Button
+                  size="small"
+                  onClick={() => dispatch(setIsMapModalOpen(true))}
+                >
+                  Карта
+                </Button>
+              </>
+            )}
           </motion.div>
         )}
       </div>
     </div>
   );
-};
+});
+
+DeliveryOrder.displayName = "DeliveryOrder";
 
 export default DeliveryOrder;

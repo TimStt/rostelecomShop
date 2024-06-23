@@ -4,6 +4,7 @@ import { CollectionInfo } from "mongodb";
 import { skip } from "node:test";
 import { Isettings } from "./types";
 import { summirizeArray } from "@/shared/utils/summirizeArray";
+import { notFoundList } from "@/shared/config/constants/not-found-collection";
 
 export const getAllGoods = async ({
   db,
@@ -20,11 +21,7 @@ export const getAllGoods = async ({
     let data: any[] = [];
 
     for (const collectionName of collectionNames) {
-      if (
-        collectionName !== "changelog" &&
-        collectionName !== "users" &&
-        collectionName !== "basket"
-      ) {
+      if (!notFoundList.includes(collectionName)) {
         data = [
           ...data,
           ...(await db

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IGoods } from "@/shared/config/types/goods";
 
-import { selectCurrentProductAddBusketState } from "@/shared/stores/current-product-add-busket";
+import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
 import { productInList } from "@/shared/utils/productInList";
 import { useGetStateOnLocalStorage } from "@/shared/utils/useGetStateOnLocalStorage/useGetStateOnLocalStorage";
 

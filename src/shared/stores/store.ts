@@ -35,12 +35,11 @@ import {
 import storage from "redux-persist/lib/storage";
 import { navigationSlice } from "@/widgets/header/ui/navigation/store/slice";
 import { quickViewModalSlice } from "@/shared/ui/quick-view-modal/store/slice";
-import { compareAuthSlice } from "@/shared/stores/compare-autth";
-import { favoritesAuthSlice } from "@/shared/stores/favorites-auth";
+
 import { favoritesSlice } from "@/shared/stores/favorites";
 import { compareSlice } from "@/shared/stores/compare";
 import { menuModalSlice } from "@/shared/stores/menu-catalog-modal";
-import { m } from "framer-motion";
+
 import { currentProductAddBusketSlice } from "./current-product-add-busket";
 import { popupShareSlice } from "@/widgets/product-card-page/ui/popup-/store";
 import { orderSlice } from "./order";
@@ -68,8 +67,7 @@ const reducer = combineReducers({
   basketAuth: basketAuthSlice.reducer,
   quickViewModal: quickViewModalSlice.reducer,
   sizesTableModal: sizesTableModalSlice.reducer,
-  compareAuth: compareAuthSlice.reducer,
-  favoritesAuth: favoritesAuthSlice.reducer,
+
   favorites: favoritesSlice.reducer,
   compare: compareSlice.reducer,
   menuModal: menuModalSlice.reducer,
