@@ -150,7 +150,7 @@ export interface IBasketGoods {
   totalPrice: number;
   inStock: boolean;
   color: string;
-  category: string;
+  category: "clothes" | "accessories" | "office" | "souvenirs";
   quantityStock: number;
 }
 

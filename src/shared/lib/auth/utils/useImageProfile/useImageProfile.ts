@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 const useImageProfile = () => {
-  const user = useSelector(selectUser);
+  const { user } = useSelector(selectUser);
   const [isSrc, setSrc] = useState<string | null>();
 
   const isOAuth = useSelector(selectIsAuth);

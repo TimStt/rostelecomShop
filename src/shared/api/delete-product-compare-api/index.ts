@@ -1,1 +1,1 @@
-export { deleteProductFavoritesApi } from "./delete-product-compare-api";
+export { deleteProductCompareApi } from "./delete-product-compare-api";

@@ -2,8 +2,8 @@ import React, { useLayoutEffect } from "react";
 
 export const useGetStateOnLocalStorage = <T>(
   key: string,
-  isAuth?: boolean,
-  handler?: (value: T) => void
+  handler?: (value: T) => void,
+  isAuth?: boolean
 ) => {
   useLayoutEffect(() => {
     if (isAuth) return;

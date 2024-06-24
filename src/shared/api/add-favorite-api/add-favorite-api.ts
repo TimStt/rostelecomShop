@@ -1,18 +1,13 @@
 import { apiInstance } from "@/shared/config/api/apiinstance";
 import { IConfigAxiosAuth } from "@/shared/config/api/apiinstance/ui";
-import {
-  IBasketAdd,
-  IBasketGoods,
-  IFavoritesAdd,
-} from "@/shared/config/types/goods";
+import { IBasketAdd, IBasketGoods } from "@/shared/config/types/goods";
 // import { handleJwtError } from "@/shared/lib/auth/utils/handleJwtError/error";
 import toast from "react-hot-toast";
 
 export const addProductToFavoritesApi = async ({
-  jwt,
   setSpinner,
   ...otherFields
-}: IFavoritesAdd) => {
+}: IBasketAdd) => {
   try {
     setSpinner(true);
     const { data } = await apiInstance.post(

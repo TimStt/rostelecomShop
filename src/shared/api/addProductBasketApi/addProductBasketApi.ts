@@ -5,7 +5,6 @@ import { IBasketAdd, IBasketGoods } from "@/shared/config/types/goods";
 import toast from "react-hot-toast";
 
 export const addProductBasketApi = async ({
-  jwt,
   setSpinner,
   ...otherFields
 }: IBasketAdd) => {

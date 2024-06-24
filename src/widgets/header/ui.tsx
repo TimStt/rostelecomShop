@@ -32,8 +32,8 @@ const Header = () => {
 
   const isAuth = useSelector(selectIsAuth);
 
-  useGetStateOnLocalStorage("basket", isAuth, (products: IBasketGoods[]) =>
-    dispatch(addGoodsNoteAuth(products))
+  useGetStateOnLocalStorage("basket", (products: IBasketGoods[]) =>
+    dispatch(addGoodsNoteAuth(products), isAuth)
   );
 
   const checkStateLs = (state: any[]) => !!state && Array.isArray(state);

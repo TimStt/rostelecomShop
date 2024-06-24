@@ -5,13 +5,14 @@ import { paths } from "@/shared/routing";
 import cls from "classnames";
 import { useBasketByAuth } from "@/shared/lib/auth/utils/useBasketByAuth";
 import Icon from "@/shared/ui/icon";
-import { useFavoritesByAuth } from "@/shared/lib/auth/utils/useFavoritesByAuth";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import { toggleModalMenu } from "@/shared/stores/menu-catalog-modal";
+import { selectIsEmptyFavorites } from "@/shared/stores/favorites";
 
 const MobileMenu = () => {
   const { goods: basketProduct } = useBasketByAuth();
-  const { goods: favouritesProduct } = useFavoritesByAuth();
+  const isEmptyFavorites = useSelector(selectIsEmptyFavorites);
   const dispatch = useDispatch();
 
   const handleOpenCatalogMenu = () => dispatch(toggleModalMenu(true));
@@ -29,10 +30,10 @@ const MobileMenu = () => {
         <Icon name="common/catalog" />
         <span>Каталог</span>
       </button>
-      <Link className={style.root__button} href={paths.favourites}>
+      <Link className={style.root__button} href={paths.favorites}>
         <Icon
           className={cls(style.root__icon, {
-            [style.isNotEmpty]: !!favouritesProduct.length,
+            [style.isNotEmpty]: !isEmptyFavorites,
           })}
           name="goods/heart"
         />

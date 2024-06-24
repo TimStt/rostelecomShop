@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import { panelItems } from "../../panel-items.data";
-import Link from "next/link";
-import Popup from "@/shared/ui/popup";
+
 import cls from "classnames";
 import style from "./type-product.module.scss";
-import { motion } from "framer-motion";
+
 import { IGoods } from "@/shared/config/types/goods";
-import { QuickViewModal, toggleModalQuik } from "@/shared/ui/quick-view-modal";
-import { useDispatch } from "react-redux";
-import { setCurrentProduct } from "@/shared/stores/current-product-add-busket";
 
 const TypeProduct = ({
   product,

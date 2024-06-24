@@ -67,7 +67,6 @@ const FavoritesCard = ({ product }: { product: IFavoritesGoods }) => {
     }
 
     const addProductInfoAuth = {
-      jwt: accessToken,
       setSpinner: setLoadingAddToBasket,
       productId: product?.productId as string,
       count: product.count,

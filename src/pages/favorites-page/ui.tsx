@@ -33,7 +33,7 @@ const FavoritePage = () => {
     },
     [dispatch]
   );
-  useGetStateOnLocalStorage("favorites", userAuth, updateProducts);
+  useGetStateOnLocalStorage("favorites", updateProducts, userAuth);
 
   useEffect(() => {
     if (!userAuth) return;
