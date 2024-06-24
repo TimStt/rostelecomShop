@@ -55,7 +55,7 @@ const CategoryFilters = () => {
 
   return (
     <Select
-      classname={style.select}
+      classname={style.root__select}
       onChange={(category: string) => handleSelectChange(category)}
       dataList={dataList}
       value={translateToWord({

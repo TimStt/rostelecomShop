@@ -189,6 +189,7 @@ const DeliveryOrder = forwardRef((ref) => {
         );
 
         if (choosenPickUpAddress?.address_line1) {
+          console.log("тиггер карта от окна");
           await handleUpdateMap({
             position: {
               lat: choosenPickUpAddress?.lat as number,
@@ -215,7 +216,7 @@ const DeliveryOrder = forwardRef((ref) => {
           dispatch(setMapOrder(map));
           return;
         }
-        if (!marker && !cityUser) {
+        if (!marker && !cityUser && !choosenPickUpAddress) {
           await handleSelectPickUpAddress("Москва");
           return;
         }
@@ -230,11 +231,16 @@ const DeliveryOrder = forwardRef((ref) => {
   console.log("choosenPickUpAddress", choosenPickUpAddress);
 
   useEffect(() => {
-    if (!!isLoadingMap && refMap.current !== null) {
+    if ((!!isLoadingMap && refMap.current !== null) || !!choosenPickUpAddress) {
       console.log("map page trigger");
       handleLoadMap({});
     }
-  }, [handleLoadMap, isLoadingMap, statesTubs.selfDelivery]);
+  }, [
+    choosenPickUpAddress,
+    handleLoadMap,
+    isLoadingMap,
+    statesTubs.selfDelivery,
+  ]);
 
   useEffect(() => {
     getNavigateGeoByUser();

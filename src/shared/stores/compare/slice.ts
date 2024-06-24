@@ -103,7 +103,7 @@ export const compareSlice = createSlice({
         if (!action.payload) return;
         const newState = deleteProductByLS(action.payload, "compare");
         state.goods = newState;
-
+        state.loading = false;
         if (!newState.length) state.isEmpty = true;
       })
       .addCase(deleteOneProductCompareThunk.pending, (state) => {

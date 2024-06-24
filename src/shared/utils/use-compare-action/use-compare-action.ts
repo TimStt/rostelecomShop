@@ -30,7 +30,10 @@ import { productNotSizes } from "@/shared/config/constants/product-not-sizes";
 import { useGetStateOnLocalStorage } from "../useGetStateOnLocalStorage";
 import { selectIsAuth } from "@/shared/stores/auth";
 import { selectUser } from "@/shared/stores/user";
-import { addProductsCompareThunk } from "@/shared/stores/compare";
+import {
+  addProductsCompareThunk,
+  setIsEmptyCompare,
+} from "@/shared/stores/compare";
 import { addProductByLS } from "../add-product-by-LS";
 
 const useCompareAction = (currentProductCard: IGoods | null = null) => {
@@ -70,6 +73,7 @@ const useCompareAction = (currentProductCard: IGoods | null = null) => {
       sizes: productCurrent?.sizes,
       category: productCurrent?.category,
     };
+    dispatch(setIsEmptyCompare(false));
 
     if (!isAuth) {
       const newCompareItem: ICompareData = {

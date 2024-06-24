@@ -77,8 +77,9 @@ const AddressList = ({
             )}
           </>
         ) : (
-          !!chooseAddressCourier?.address_line1 &&
-          !loadAddressData && <AddressItem address={chooseAddressCourier} />
+          !!chooseAddressCourier?.address_line1 && (
+            <AddressItem address={chooseAddressCourier} />
+          )
         )}
       </>
     </>

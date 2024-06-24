@@ -36,8 +36,6 @@ const ComparePage = () => {
   };
 
   useEffect(() => {
-    console.log("trigger effect");
-
     if (!router.query.category) {
       dispatch(getProductsCompareThunk());
 
@@ -64,7 +62,8 @@ const ComparePage = () => {
               </div>
 
               <h1 className={styles.root__title}>
-                Сравнение Товаров<span> {dataCompareProducts?.length}</span>
+                Сравнение Товаров
+                <span> Товаров: {dataCompareProducts?.length}</span>
               </h1>
               {!router.query.category && (
                 <Select
@@ -80,7 +79,7 @@ const ComparePage = () => {
                       : ""
                   }
                   title="Выберите категорию по которой вы хотите сравнить товары"
-                  placeholder="Сравнение товаров по категории..."
+                  placeholder="Сравнение товаров по категории"
                   type="single"
                 />
               )}

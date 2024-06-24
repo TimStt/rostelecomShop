@@ -185,6 +185,7 @@ const MapModal = () => {
 
           //@ts-ignore
           ttSearchBox.on("tomtom.searchbox.resultselected", async (e) => {
+            removeMapMarkers();
             const data = await handleSelectPickUpAddress(e.data.text);
 
             handleResultSelection(
@@ -374,7 +375,7 @@ const MapModal = () => {
       box: { lon1, lat1, lon2, lat2 },
       initialMapInstance: isMapInstance,
     });
-    dispatch(setShowCourierAddressData(false));
+    dispatch(setLoadListGeoDataOffice(false));
     dispatch(setChooseAddressCourier({}));
     closeModal();
   };

@@ -2,6 +2,7 @@ import React from "react";
 import { sortData } from "./data";
 import { useRouter } from "next/navigation";
 import { Select } from "../../../../../../shared/ui/select";
+import style from "./sort.module.scss";
 
 import { useUrlParams } from "@/shared/utils/url";
 
@@ -30,6 +31,7 @@ const Sort = () => {
 
   return (
     <Select
+      classname={style.root__select}
       onChange={(value) => handleChange(value)}
       value={sort ? value : ""}
       dataList={dataList}

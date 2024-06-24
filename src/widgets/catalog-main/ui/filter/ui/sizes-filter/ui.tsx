@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { sizesList } from "./data";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import style from "./sizes.module.scss";
 
 import { useUrlParams } from "@/shared/utils/url";
 import cls from "classnames";
@@ -36,6 +37,7 @@ const SizesFilter = () => {
 
   return (
     <Select
+      classname={style.root__select}
       dataList={sizesList}
       type={"multiple"}
       onChange={(size: string) => changeMultiple(size)}

@@ -9,33 +9,39 @@ import cls from "classnames";
 const Accardions = ({
   discription,
   characteristics,
+  classname,
 }: {
-  discription: string;
+  classname?: string;
+  discription?: string;
   characteristics: TCharacteristicsGoods;
 }) => {
   return (
-    <>
+    <div className={classname}>
       {" "}
-      <details className={style.root}>
-        <summary
-          className={style.root__summary}
-          role="term"
-          aria-details="content-discription"
-          title="Открыть описание товара"
-        >
-          <span>Описание:</span>
-          <Icon name={"common/plus"} />
-        </summary>
-      </details>
-      <div
-        className={style.root__content}
-        id="content-discription"
-        role="definition"
-      >
-        <div className={style.root__wrapper}>
-          <p className={style.root__discription}>{discription}</p>
-        </div>
-      </div>
+      {discription && (
+        <>
+          <details className={style.root}>
+            <summary
+              className={style.root__summary}
+              role="term"
+              aria-details="content-discription"
+              title="Открыть описание товара"
+            >
+              <span>Описание:</span>
+              <Icon name={"common/plus"} />
+            </summary>
+          </details>
+          <div
+            className={style.root__content}
+            id="content-discription"
+            role="definition"
+          >
+            <div className={style.root__wrapper}>
+              <p className={style.root__discription}>{discription}</p>
+            </div>
+          </div>
+        </>
+      )}
       <details className={style.root}>
         <summary
           className={style.root__summary}
@@ -62,7 +68,7 @@ const Accardions = ({
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 

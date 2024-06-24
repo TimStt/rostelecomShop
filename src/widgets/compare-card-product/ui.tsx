@@ -25,6 +25,11 @@ import {
 } from "@/shared/stores/favorites";
 import { deleteProductByLS } from "@/shared/utils/deleteProductByLS/deleteProductByLS";
 import { selectIsAuth } from "@/shared/stores/auth";
+import { Accardions } from "../product-card-page/ui/accardions";
+import {
+  deleteOneProductCompareThunk,
+  setIsEmptyCompare,
+} from "@/shared/stores/compare";
 
 const CompereCard = ({ product }: { product: ICompareData }) => {
   const [isLoadingAddToBasket, setLoadingAddToBasket] = React.useState(false);
@@ -35,13 +40,13 @@ const CompereCard = ({ product }: { product: ICompareData }) => {
 
   const handleRemove = () => {
     if (!userAuth) {
-      const newProducts = deleteProductByLS(product.clientId, "favorites");
+      const newProducts = deleteProductByLS(product.clientId, "compare");
       dispatch(addGoodstoFavorites(newProducts));
-      !newProducts.length && dispatch(setIsEmptyFavorites(true));
+      !newProducts.length && dispatch(setIsEmptyCompare(true));
       return;
     }
     dispatch(
-      removeProductsFavoritesThunk({
+      deleteOneProductCompareThunk({
         id: product.clientId as string,
         setSpinner: setLoadingRemove,
       })
@@ -86,7 +91,7 @@ const CompereCard = ({ product }: { product: ICompareData }) => {
     <article key={product._id} className={styles.root}>
       <Link
         className={styles.root__image}
-        href={`catalog/${product.category}/${product._id}`}
+        href={`catalog/${product.category}/${product.productId}`}
       >
         <Image
           src={product.image}
@@ -98,25 +103,17 @@ const CompereCard = ({ product }: { product: ICompareData }) => {
       </Link>
       <div className={styles.productInfo}>
         <h2 className={styles.root__info__name}>{product.name}</h2>
-        <span className={styles.root__info__price}>{product.price} ₽</span>
+        <span className={styles.root__info__price}>
+          Цена: {product.price} ₽
+        </span>
+        <br />
         <span>Размеры: {product.sizes ? "Есть" : "Отсутствуют"}</span>
 
-        <table className={styles.root__table}>
-          <thead>
-            <tr>
-              <th>Характеристика</th>
-              <th>Значение</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(product.characteristics).map(([key, value]) => (
-              <tr key={key}>
-                <td>{key}</td>
-                <td>{value}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Accardions
+          classname={styles.root__accardions}
+          characteristics={product.characteristics}
+        />
+
         <div className={styles.root__info__buttonGroup}>
           <button
             // onClick={handleAddToCart}
