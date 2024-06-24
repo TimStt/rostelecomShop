@@ -75,6 +75,8 @@ export const authSlice = createSlice({
       .addCase(signUpThunk.fulfilled, (state) => {
         state.isLoading = false;
         state.isOAuth = true;
+        state.activeForm.isLogin = true;
+        state.activeForm.isRegister = false;
       })
       .addCase(signUpThunk.rejected, (state) => {
         state.isLoading = false;

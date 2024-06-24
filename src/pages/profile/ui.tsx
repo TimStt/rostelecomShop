@@ -11,12 +11,13 @@ import cls from "classnames";
 import { Button } from "@/shared/ui";
 import { useLogout } from "@/shared/utils/useLogout";
 import { setAuth } from "@/shared/stores/auth";
+import { useImageProfile } from "@/shared/lib/auth/utils/useImageProfile";
 
 const Profile = () => {
   const { user } = useSelector(selectUser);
   const handleLogout = useLogout();
   const dispatch = useDispatch();
-
+  const { src, alt } = useImageProfile();
   const handleLogoutClick = () => {
     handleLogout();
     dispatch(setAuth(false));
@@ -31,8 +32,8 @@ const Profile = () => {
         <div className={style.root__info}>
           <Image
             className={style.root__image}
-            src={user?.image || "/profile/empty.webp"}
-            alt={user?.name || "Аватарка"}
+            src={src || "/profile/empty.webp"}
+            alt={alt || "Аватарка"}
             width={100}
             height={100}
           />
