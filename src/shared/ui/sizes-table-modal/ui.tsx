@@ -12,6 +12,7 @@ import { selectSizesTableState, toggleSizesTable } from "./store";
 import { INewSizeClothes } from "@/shared/config/types/goods";
 import {
   ModifierGoods,
+  selectIsCompareAdd,
   selectSelectedSize,
   selectSizes,
   selectStoreName,
@@ -26,6 +27,7 @@ import { Toaster } from "react-hot-toast";
 import ModalMotion from "../ModalMotion/ui";
 import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
 import { toggleModalQuik } from "../quick-view-modal";
+import useCompareAction from "@/shared/utils/use-compare-action/use-compare-action";
 
 const SizesTableModal = () => {
   const isOpenModal = useSelector(selectSizesTableState);
@@ -47,6 +49,10 @@ const SizesTableModal = () => {
     dispatch(toggleModalQuik(false));
   };
 
+  const addBasketByCompare = () => {
+    dispatch(toggleSizesTable(false));
+  };
+
   const { handlerCardAddToFavorites } = useFavoriteAction();
 
   const handlerCardAddFavorites = () => {
@@ -66,6 +72,8 @@ const SizesTableModal = () => {
 
   useWatch(refModal, closeModal);
   useScrollHidden(isOpenModal);
+
+  const isAddCompare = useSelector(selectIsCompareAdd);
   return (
     <ModalMotion className={style.root} ref={refModal} state={isOpenModal}>
       <header className={style.root__header}>
@@ -87,7 +95,11 @@ const SizesTableModal = () => {
       <Button
         className={style.root__addToBasket}
         onClick={
-          storeName === "basket" ? addProductBasket : handlerCardAddFavorites
+          isAddCompare
+            ? addBasketByCompare
+            : storeName === "basket"
+            ? addProductBasket
+            : handlerCardAddFavorites
         }
         variant="primary"
         size="medium"

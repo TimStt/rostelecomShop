@@ -165,23 +165,14 @@ export interface IBasketAdd {
   category: "clothes" | "accessories" | "office" | "souvenirs";
 }
 
-export type ICompareAdd = Omit<IBasketAdd, "count"> & {
+export type ICompareAdd = Omit<IBasketAdd, "count" | "sizes"> & {
   sizes?: TSize[];
 };
 
-export interface ICompareData {
-  _id: string;
-  clientId: string;
-  userId: string;
-  productId: string;
-  image: string;
+export type ICompareData = Omit<IBasketGoods, "sizes"> & {
   sizes?: TSize[];
-  name: string;
   characteristics: TCharacteristicsGoods;
-  price: number;
-  category: string;
-  inStock: boolean;
-}
+};
 
 export interface IProductReplaceAuth {
   productsReplace: IBasketGoods[] | IFavoritesGoods[] | ICompareData[];

@@ -30,14 +30,22 @@ import {
   deleteOneProductCompareThunk,
   setIsEmptyCompare,
 } from "@/shared/stores/compare";
+import toast from "react-hot-toast";
+import {
+  setIsCompareAdd,
+  setStoreName,
+  toggleSizesTable,
+} from "@/shared/ui/sizes-table-modal/store";
+import { setCurrentProduct } from "@/shared/stores/current-product-add-busket";
+import useCompareAction from "@/shared/utils/use-compare-action/use-compare-action";
+import { selectIsCompareAdd } from "@/shared/ui/sizes-table-modal/store/slice";
 
 const CompereCard = ({ product }: { product: ICompareData }) => {
-  const [isLoadingAddToBasket, setLoadingAddToBasket] = React.useState(false);
   const [isLoadingRemove, setLoadingRemove] = React.useState(false);
   const dispatch = useDispatch<AppDispatch>();
-  const { currentProductsBasket } = useBasketAction();
-  const userAuth = useSelector(selectIsAuth);
 
+  const userAuth = useSelector(selectIsAuth);
+  const { loadingAddToBasket } = useCompareAction();
   const handleRemove = () => {
     if (!userAuth) {
       const newProducts = deleteProductByLS(product.clientId, "compare");
@@ -52,41 +60,17 @@ const CompereCard = ({ product }: { product: ICompareData }) => {
       })
     );
   };
-  // const hasProductInBasket = currentProductsBasket.find(
-  //   (item) =>
-  //     item?.productId === product?.productId && product.size === item.size
-  // );
 
-  // const handleAddToCart = () => {
-  //   const accessToken =
-  //     (JSON.parse(localStorage.getItem("tokens") as string)
-  //       ?.accessToken as string) ?? "";
-  //   if (!accessToken) {
-  //     addProductByLS;
-  //   }
+  const { currentProductsBasket } = useBasketAction();
 
-  //   const { _id, ...otherProduct } = product;
+  const hasProductInBasket = currentProductsBasket.find(
+    (item) =>
+      item?.productId === product?.productId && product.size === item.size
+  );
 
-  //   addProductByLS(otherProduct, "basket");
-
-  //   if (!accessToken) {
-  //     toast.success(`Товар ${product.name} добавлен в корзину`);
-  //     return;
-  //   }
-
-  //   const addProductInfoAuth = {
-  //     jwt: accessToken,
-  //     setSpinner: setLoadingAddToBasket,
-  //     productId: product?.productId as string,
-  //     count: product.count,
-  //     sizes: product.size,
-  //     clientId: product.clientId,
-  //     userId: product.userId as string,
-  //     category: product.category,
-  //   };
-
-  //   dispatch(addProductsThunk(addProductInfoAuth));
-  // };
+  const handleAddToCart = () => {
+    dispatch(setIsCompareAdd(true));
+  };
   return (
     <article key={product._id} className={styles.root}>
       <Link
@@ -115,23 +99,6 @@ const CompereCard = ({ product }: { product: ICompareData }) => {
         />
 
         <div className={styles.root__info__buttonGroup}>
-          <button
-            // onClick={handleAddToCart}
-            className={cls(styles.root__addToCartButton, "btn-reset")}
-            title="Добавить в корзину"
-            // disabled={isLoadingAddToBasket || !!hasProductInBasket}
-          >
-            {!isLoadingAddToBasket ? (
-              <>
-                <Icon name="goods/basket" />
-                <span className="visually-hidden">
-                  Добавить {product.name} в корзину
-                </span>
-              </>
-            ) : (
-              <PulseLoader size={6} color="#fff" gap={2} />
-            )}
-          </button>
           <button
             className={cls(styles.root__removeButton, "btn-reset")}
             onClick={handleRemove}

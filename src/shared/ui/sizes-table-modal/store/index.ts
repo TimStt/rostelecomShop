@@ -8,4 +8,5 @@ export {
   selectSelectedSize,
   setStoreName,
   selectStoreName,
+  setIsCompareAdd,
 } from "./slice";

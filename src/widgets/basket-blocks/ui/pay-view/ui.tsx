@@ -17,6 +17,8 @@ import {
   setScrollToRequeredBlock,
 } from "@/shared/stores/order/slice";
 import { useDispatch, useSelector } from "react-redux";
+import { selectIsAuth } from "@/shared/stores/auth";
+import { toggleStateModal } from "@/shared/stores/auth-modal";
 
 const PayView = ({
   countPoducts,
@@ -32,6 +34,8 @@ const PayView = ({
   const choosenOffice = useSelector(selectChooseOfficeAddress);
   const choosenCourier = useSelector(selectIsChooseCourierAddress);
   const stateScrollToRequeredBlock = useSelector(selectScrollToRequeredBlock);
+
+  const isAuth = useSelector(selectIsAuth);
 
   const handleMakePayment = async () => {
     if (!choosenOffice?.address_line1 && !choosenCourier?.address_line1) {
@@ -102,11 +106,17 @@ const PayView = ({
           type="submit"
           size="large"
           disabled={!isAgreementChecked}
-          href={isOrder ? "" : "/basket/order"}
-          as={!isOrder ? Link : "button"}
-          onClick={isOrder ? handleMakePayment : undefined}
+          href={isOrder || !isAuth ? "" : "/basket/order"}
+          as={!isOrder && isAuth ? Link : "button"}
+          onClick={
+            isOrder
+              ? handleMakePayment
+              : !isAuth
+              ? () => dispatch(toggleStateModal(true))
+              : undefined
+          }
         >
-          Оформить заказ
+          {isAuth ? "Оформить заказ" : "Войти"}
         </Button>
         <label
           className={cls(style.root__agreement, {

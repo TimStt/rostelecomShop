@@ -20,6 +20,7 @@ export interface ISizesTableState {
   sizes: INewSizeClothes[] | INewSizeAccessories[];
   selectedSize: string;
   storeName?: IStoreName;
+  isCompareAdd?: boolean;
 }
 
 const initialState: ISizesTableState = {
@@ -28,6 +29,7 @@ const initialState: ISizesTableState = {
   selectedSize: "",
   sizes: [],
   storeName: "basket",
+  isCompareAdd: false,
 };
 
 export const sizesTableModalSlice = createSlice({
@@ -62,11 +64,20 @@ export const sizesTableModalSlice = createSlice({
       // }
       state.selectedSize = action.payload;
     },
+
+    setIsCompareAdd: (state, action: PayloadAction<boolean>) => {
+      state.isCompareAdd = action.payload;
+    },
   },
 });
 
-export const { toggleSizesTable, setProduct, setSelectedSize, setStoreName } =
-  sizesTableModalSlice.actions;
+export const {
+  toggleSizesTable,
+  setProduct,
+  setSelectedSize,
+  setStoreName,
+  setIsCompareAdd,
+} = sizesTableModalSlice.actions;
 
 export const selectSizesTableState = (state: RootState) =>
   state.sizesTableModal.isOpen;
@@ -78,6 +89,9 @@ export const selectSelectedSize = (state: RootState) =>
 
 export const selectStoreName = (state: RootState) =>
   state.sizesTableModal.storeName;
+
+export const selectIsCompareAdd = (state: RootState) =>
+  state.sizesTableModal.isCompareAdd;
 
 export const selectSizes = (state: RootState) => state.sizesTableModal.sizes;
 

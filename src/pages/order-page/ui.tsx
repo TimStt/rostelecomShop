@@ -1,5 +1,11 @@
+import { ProtectedRoute } from "@/shared/ui/protected-route";
 import { OrderBlocks } from "@/widgets/order-blocks";
 
-const OrderPage = () => <OrderBlocks />;
-
+const OrderPage = () => {
+  return (
+    <ProtectedRoute>
+      <OrderBlocks />
+    </ProtectedRoute>
+  );
+};
 export default OrderPage;

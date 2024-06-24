@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IGoods } from "@/shared/config/types/goods";
+import { ICompareData, IGoods } from "@/shared/config/types/goods";
 import { HYDRATE } from "next-redux-wrapper";
 
 export interface ICurrentProductAddBusketState {

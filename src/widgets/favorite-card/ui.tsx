@@ -53,9 +53,6 @@ const FavoritesCard = ({ product }: { product: IFavoritesGoods }) => {
     const accessToken =
       (JSON.parse(localStorage.getItem("tokens") as string)
         ?.accessToken as string) ?? "";
-    if (!accessToken) {
-      addProductByLS;
-    }
 
     const { _id, ...otherProduct } = product;
 

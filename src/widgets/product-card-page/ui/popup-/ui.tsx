@@ -39,7 +39,7 @@ const PopupShare = () => {
 
   if (!currentProduct) return null;
   const handleCloseAlert = () => dispatch(toggleStatePopupShare(false));
-  const urlVk = `http://vk.com/share.php?url=${hrefUrl}&title=${currentProduct?.name}&description=${currentProduct?.description}&image=${currentProduct?.images[0]}`;
+  const urlVk = `http://vk.com/share.php?url=${hrefUrl}&title=${currentProduct?.name}&description=${currentProduct?.description}&image=${currentProduct?.images?.[0]}`;
   const urlTelegram = `https://t.me/share/url?url=${hrefUrl}`;
 
   return (

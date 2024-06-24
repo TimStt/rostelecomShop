@@ -44,7 +44,7 @@ import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
 import useCompareAction from "@/shared/utils/use-compare-action/use-compare-action";
 
 const QuickViewModal = () => {
-  const product = useSelector(selectCurrentProductState);
+  const product = useSelector(selectCurrentProductState) as IGoods;
   const isOpenModal = useSelector(selectModalQuickState);
   const { currentBasketItem } = useBasketAction();
   const refWrapper = useRef() as MutableRefObject<HTMLDivElement>;
@@ -80,7 +80,7 @@ const QuickViewModal = () => {
     return (
       <ModalMotion className={style.root} ref={refModal} state={isOpenModal}>
         <div className={style.root__wrapper} ref={refWrapper}>
-          {product?.images.length > 1 ? (
+          {product?.images?.length > 1 ? (
             <SliderQuickModal
               images={product.images}
               productName={product.name}
@@ -88,7 +88,7 @@ const QuickViewModal = () => {
           ) : (
             <Image
               className={style.root__image}
-              src={product.images[0]}
+              src={product?.images?.[0]}
               alt={product.name}
               width={258}
               height={302}

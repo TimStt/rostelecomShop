@@ -1,3 +1,5 @@
+import { profile } from "console";
+
 export const paths = {
   home: "/",
   catalog: "/catalog?page=1",
@@ -34,6 +36,7 @@ export const catalogPathsTypes = {
 export const translateWords = {
   home: "Главная",
   catalog: "Каталог",
+  profile: "Профиль",
   personal_data_policy: "Политика обработки персональных данных",
   clothes: "Одежда",
   accessories: "Аксессуары",
