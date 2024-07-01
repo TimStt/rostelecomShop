@@ -65,9 +65,11 @@ export const authSlice = createSlice({
       .addCase(signInThunk.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(signInThunk.fulfilled, (state) => {
+      .addCase(signInThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isOAuth = true;
+        !action.payload?.warningMessage
+          ? (state.isOAuth = true)
+          : (state.isOAuth = false);
       })
       .addCase(signUpThunk.pending, (state) => {
         state.isLoading = true;

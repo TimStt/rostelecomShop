@@ -25,6 +25,7 @@ import App from "next/app";
 import { selectIsAuth } from "@/shared/stores/auth";
 import { replaceProductsFavoritesThunk } from "@/shared/stores/favorites";
 import { replaceProductsCompareThunk } from "@/shared/stores/compare";
+import { useTriggerLoginCheck } from "@/shared/lib/auth/utils/useTriggerLoginCheck/useTriggerLoginCheck";
 
 const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -37,7 +38,7 @@ const Header = () => {
   );
 
   const checkStateLs = (state: any[]) => !!state && Array.isArray(state);
-
+  useTriggerLoginCheck();
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("tokens") as string);
     if (isAuth && token) {
@@ -78,7 +79,6 @@ const Header = () => {
 
         <Logo className={style.inner__logo} />
         <Navigation />
-        <AuthModal />
       </div>
     </header>
   );

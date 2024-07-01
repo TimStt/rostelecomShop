@@ -42,7 +42,7 @@ const Table = ({ productBasket }: { productBasket?: IBasketGoods[] }) => {
     indexRow: number
   ) => {
     e.stopPropagation();
-    console.log(isActiveRow[indexRow]);
+
     let copy = [...isActiveRow];
 
     if (isActiveRow[indexRow]) {

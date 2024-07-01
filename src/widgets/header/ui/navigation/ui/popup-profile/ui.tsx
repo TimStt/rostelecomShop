@@ -42,11 +42,7 @@ const PopupProfile = ({ classname }: { classname: string }) => {
     [dispatch]
   );
 
-  console.log(user);
-
   const isLoadingCheck = useSelector(selectLoginCheckLoading);
-
-  useTriggerLoginCheck();
 
   const logout = () => {
     handleLogout();

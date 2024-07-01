@@ -14,10 +14,10 @@ export const login = async ({ email, password, isOAuth = false }: IAuth) => {
 
     if (data.warningMessage) {
       toast.error(data.warningMessage);
-      return;
+      return data;
     }
 
-    onAuthSuccess("Вы успешно авторизовались!", data);
+    onAuthSuccess("Вы успешно авторизовались!", data.tokens);
 
     return data;
   } catch (error: any) {

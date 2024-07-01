@@ -56,8 +56,6 @@ const Navigation = () => {
     isEmptyCompere,
   ]);
 
-  console.log(isEmptyFavorites);
-
   return (
     <nav>
       <ul className={style.list}>

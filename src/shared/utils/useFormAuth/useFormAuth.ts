@@ -28,7 +28,7 @@ const useFormAuth = (dispatchEmailSendData?: (data: IAuth) => void) => {
   const setData = useCallback(
     (data: IAuth) => {
       if (!dispatchEmailSendData) return;
-      console.log("user isConnected", data);
+
       dispatchEmailSendData(data);
     },
     [dispatchEmailSendData]

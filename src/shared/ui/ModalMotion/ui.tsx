@@ -6,8 +6,11 @@ import cls from "classnames";
 import { motionSettingsVisibleDisplay } from "./motion-settings";
 
 const ModalMotion = forwardRef<HTMLDialogElement, IModel>(
-  ({ className, children, state, ...props }, ref) => {
-    const styleAnimation = motionSettingsVisibleDisplay(state as boolean);
+  ({ className, children, state, isOpenFlex }, ref) => {
+    const styleAnimation = motionSettingsVisibleDisplay(
+      state as boolean,
+      isOpenFlex
+    );
     return (
       <motion.dialog
         className={cls(style.root, className)}

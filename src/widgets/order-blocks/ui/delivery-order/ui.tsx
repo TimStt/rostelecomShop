@@ -83,7 +83,7 @@ const DeliveryOrder = forwardRef((ref) => {
           },
           marker: true,
         });
-        console.log("choosenPickUpAddress tab ", choosenPickUpAddress);
+
         return;
       }
       if (!!userGeolacation?.features[0].properties?.city?.length) {
@@ -92,7 +92,7 @@ const DeliveryOrder = forwardRef((ref) => {
         });
         return;
       }
-      console.log("trigger toggletabClick ", activeTab);
+
       await handleLoadMap({});
       return;
     }
@@ -126,8 +126,7 @@ const DeliveryOrder = forwardRef((ref) => {
         const ttmaps = await import("@tomtom-international/web-sdk-maps");
         initSearchMarker(ttmaps);
         const apiKey = process.env.NEXT_PUBLIC_TOMTOM_API_KEY;
-        // refMap.current.innerHTML = "";
-        console.log(" load map trigger ", choosenPickUpAddress);
+
         const map = ttmaps.map({
           key: `${apiKey}`,
           container: refMap.current,
@@ -189,7 +188,6 @@ const DeliveryOrder = forwardRef((ref) => {
         );
 
         if (choosenPickUpAddress?.address_line1) {
-          console.log("тиггер карта от окна");
           await handleUpdateMap({
             position: {
               lat: choosenPickUpAddress?.lat as number,
@@ -228,11 +226,8 @@ const DeliveryOrder = forwardRef((ref) => {
     [choosenPickUpAddress]
   );
 
-  console.log("choosenPickUpAddress", choosenPickUpAddress);
-
   useEffect(() => {
     if ((!!isLoadingMap && refMap.current !== null) || !!choosenPickUpAddress) {
-      console.log("map page trigger");
       handleLoadMap({});
     }
   }, [
@@ -245,8 +240,6 @@ const DeliveryOrder = forwardRef((ref) => {
   useEffect(() => {
     getNavigateGeoByUser();
   }, [getNavigateGeoByUser, statesTubs.selfDelivery]);
-
-  console.log("statesTubs.courierDelivery", statesTubs.courierDelivery);
 
   return (
     <div className={style.root}>

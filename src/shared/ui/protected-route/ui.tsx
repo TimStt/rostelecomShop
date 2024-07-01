@@ -17,8 +17,11 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     if (!isAuth && refFirstRender.current) {
       refFirstRender.current = false;
       toast.error("Вы не авторизованы");
+
+      dispatch(toggleFormIsActive({ isLogin: true }));
       router.push("/");
-      dispatch(toggleStateModal(true));
+    } else {
+      dispatch(toggleFormIsActive({ isLogin: false }));
     }
   }, [isAuth, router, dispatch]);
   return isAuth ? children : <Spinner size={50} />;

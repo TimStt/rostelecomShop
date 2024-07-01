@@ -30,8 +30,6 @@ const BreadCrumbs = ({
 
   if (!pathName) return null;
 
-  console.log(isPath);
-
   return (
     <nav className={cls(style.root, className)} aria-label="breadcrumbs">
       <Link href={`/`}>Главная</Link>

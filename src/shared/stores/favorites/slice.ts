@@ -111,7 +111,7 @@ export const favoritesSlice = createSlice({
       })
 
       .addCase(replaceProductsFavoritesThunk.fulfilled, (state, action) => {
-        if (!action.payload.length) return;
+        if (!action.payload?.length) return;
         state.goods = action.payload;
 
         state.loading = false;

@@ -40,6 +40,7 @@ const SizesTableModal = () => {
   } = useBasketAction(true);
   const selectedSize = useSelector(selectSelectedSize);
   const dispatch = useDispatch();
+  const modalInnerRef = React.createRef<HTMLDivElement>();
 
   const refModal = useRef<HTMLDialogElement>(null);
   const addProductToBasket = useHandlerAddToBasket(productBySize?.count || 1);
@@ -60,7 +61,7 @@ const SizesTableModal = () => {
     dispatch(toggleSizesTable(false));
     dispatch(toggleModalQuik(false));
   };
-  console.log("productBySize count", productBySize?.count);
+
   const storeName = useSelector(selectStoreName);
   const closeModal = useCallback(() => {
     dispatch(toggleSizesTable(false));
@@ -70,51 +71,53 @@ const SizesTableModal = () => {
     !!isOpenModal ? refModal.current?.showModal() : closeModal();
   }, [closeModal, isOpenModal, refModal]);
 
-  useWatch(refModal, closeModal);
+  useWatch(modalInnerRef, closeModal, isOpenModal);
   useScrollHidden(isOpenModal);
 
   const isAddCompare = useSelector(selectIsCompareAdd);
   return (
     <ModalMotion className={style.root} ref={refModal} state={isOpenModal}>
-      <header className={style.root__header}>
-        <h2>Таблица размеров</h2>
-
-        <button
-          className={cls("btn-reset", style.root__close)}
-          onClick={() => dispatch(toggleSizesTable(false))}
+      <div className={style.root__wrapper} ref={modalInnerRef}>
+        <header className={style.root__header}>
+          <h2>Таблица размеров</h2>
+          <button
+            className={cls("btn-reset", style.root__close)}
+            onClick={() => dispatch(toggleSizesTable(false))}
+          >
+            <Icon name="common/close" />
+            <span className="visually-hidden">
+              Закрыть окно быстрого просмотра
+            </span>
+          </button>
+          <span className="visually-hidden">Закрыть</span>
+        </header>
+        <Table productBasket={currentBasketItem} />
+        <Button
+          className={style.root__addToBasket}
+          onClick={
+            isAddCompare
+              ? addBasketByCompare
+              : storeName === "basket"
+              ? addProductBasket
+              : handlerCardAddFavorites
+          }
+          variant="primary"
+          size="medium"
+          disabled={
+            selectedSize.length === 0 ||
+            addToBasketSpinner ||
+            updateCountSpinner
+          }
         >
-          <Icon name="common/close" />
-          <span className="visually-hidden">
-            Закрыть окно быстрого просмотра
-          </span>
-        </button>
-        <span className="visually-hidden">Закрыть</span>
-      </header>
-
-      <Table productBasket={currentBasketItem} />
-      <Button
-        className={style.root__addToBasket}
-        onClick={
-          isAddCompare
-            ? addBasketByCompare
-            : storeName === "basket"
-            ? addProductBasket
-            : handlerCardAddFavorites
-        }
-        variant="primary"
-        size="medium"
-        disabled={
-          selectedSize.length === 0 || addToBasketSpinner || updateCountSpinner
-        }
-      >
-        {addToBasketSpinner || updateCountSpinner ? (
-          <PulseLoader size={12} color="#fff" />
-        ) : storeName === "basket" ? (
-          "В корзину"
-        ) : (
-          "В избранное"
-        )}
-      </Button>
+          {addToBasketSpinner || updateCountSpinner ? (
+            <PulseLoader size={12} color="#fff" />
+          ) : storeName === "basket" ? (
+            "В корзину"
+          ) : (
+            "В избранное"
+          )}
+        </Button>
+      </div>
     </ModalMotion>
   );
 };

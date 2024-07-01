@@ -39,7 +39,6 @@ const MenusCard = ({
     handlerCardAddToFavorites();
   };
   const { addInCompare, hasProductCompare } = useCompareAction(product);
-  console.log(`hasProductNotSize ${product.name}`, hasProductNotSize);
 
   return (
     <div className={cls(style.root, classname)}>

@@ -12,6 +12,7 @@ import { useWatchByCookie } from "@/shared/utils/useWatchByCookie";
 import { PopupShare } from "@/widgets/product-card-page/ui/popup-";
 import { MapModal } from "@/widgets/order-blocks/ui/map-modal";
 import FoundModal from "@/entities/found-modal";
+import { AuthModal } from "@/widgets/auth-modal";
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isClient, setClient] = useState(false);
@@ -43,6 +44,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             />
             <PopupShare />
             <FoundModal />
+            <AuthModal />
           </EarthoOneProvider>
         </>
       ) : (

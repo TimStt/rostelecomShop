@@ -3,8 +3,9 @@ import { HTMLAttributes } from "react";
 
 export interface IAuthLayout extends HTMLAttributes<HTMLDialogElement> {
   children: React.ReactNode;
-  modalRef: React.RefObject<HTMLDialogElement>;
-
+  modalRef?: React.Ref<HTMLDialogElement>;
+  modalInnerRef?: React.Ref<HTMLDivElement>;
+  closeModal: () => void;
   type?: TActiveForm;
   classname?: string;
 }

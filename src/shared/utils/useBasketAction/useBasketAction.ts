@@ -78,7 +78,7 @@ const useBasketAction = (isSizeTable = false) => {
       countProps || 1,
       selectedSizes
     );
-    console.log("countProps", countProps);
+
     return useCallback(() => {
       if (!!productModal) {
         if (!!productBySize) {

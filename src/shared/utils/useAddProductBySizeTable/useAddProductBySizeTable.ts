@@ -41,7 +41,7 @@ export const useAddProductBySizeTable = (
     }
     if (selectedSize) {
       addProductBasketSizesAuth();
-      console.log("trigger  sizetable selected size");
+
       return;
     }
     showSizesTable();

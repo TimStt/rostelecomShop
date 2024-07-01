@@ -29,7 +29,7 @@ const FavoritesCard = ({ product }: { product: IFavoritesGoods }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { currentProductsBasket } = useBasketAction();
   const userAuth = useSelector(selectIsAuth);
-  console.log("currentProductsBasket", currentProductsBasket);
+
   const handleRemove = () => {
     if (!userAuth) {
       const newProducts = deleteProductByLS(product.clientId, "favorites");

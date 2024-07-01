@@ -25,7 +25,6 @@ const useUpdateMap = () => {
 
     const elementMarker = document.createElement("div");
     elementMarker.classList.add("map-marker");
-    console.log("elementMarker", elementMarker);
 
     currentMap.fitBounds(bounds, {
       padding: 130,

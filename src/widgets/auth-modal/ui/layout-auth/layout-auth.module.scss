@@ -5,7 +5,7 @@
   --duration: 0.6s;
   width: 100dvw;
   height: 100dvh;
-  transform: translateY(-200%);
+
   transition-property: transform;
   transition-duration: var(--duration);
   background: transparent;
@@ -208,10 +208,6 @@
     margin: auto;
     max-width: 470px;
     width: 100%;
-  }
-
-  &[open] {
-    transform: translateY(0%);
   }
 
   &__inner {

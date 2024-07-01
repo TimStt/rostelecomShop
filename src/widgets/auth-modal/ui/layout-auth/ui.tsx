@@ -14,39 +14,39 @@ import cls from "classnames";
 import toast, { Toaster } from "react-hot-toast";
 import { selectOpenModal } from "@/shared/stores/auth-modal/slice";
 import { useFormAuth } from "@/shared/utils/useFormAuth";
+import { ModalMotion } from "@/shared/ui/ModalMotion";
 
 const LayoutAuth: React.FC<IAuthLayout> = ({
   children,
   modalRef,
   type,
   classname,
+  modalInnerRef,
+  closeModal,
 
   ...props
 }) => {
-  const modalInnerRef = React.createRef<HTMLDivElement>();
   const DEDAULT_TYPE = {
     isLogin: true,
   };
   const dispatch = useDispatch();
   const isOpenModal = useSelector(selectOpenModal);
 
-  const closeModal = useCallback(() => {
-    dispatch(toggleStateModal(false));
-  }, [dispatch]);
-
   const { handleSignUpWithAuth, earthoError } = useFormAuth();
 
-  useEffect(() => {
-    if (earthoError) {
-      toast.error(`${earthoError}`);
-    }
-  }, [earthoError]);
-
-  useWatch(modalInnerRef, closeModal, isOpenModal);
+  // useEffect(() => {
+  //   if (earthoError) toast.error(`${earthoError}`);
+  // }, [earthoError]);
 
   type = type || DEDAULT_TYPE;
   return (
-    <Modal className={cls(style.root)} ref={modalRef} {...props}>
+    <ModalMotion
+      className={cls(style.root)}
+      ref={modalRef}
+      {...props}
+      state={isOpenModal}
+      isOpenFlex={true}
+    >
       <div>
         <div className={style.root__starsec}></div>
         <div className={style.root__starthird}></div>
@@ -92,7 +92,7 @@ const LayoutAuth: React.FC<IAuthLayout> = ({
           </ul>
         </div>
       </div>
-    </Modal>
+    </ModalMotion>
   );
 };
 

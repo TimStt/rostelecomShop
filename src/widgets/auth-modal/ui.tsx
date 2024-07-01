@@ -9,21 +9,36 @@ import { selectActiveForm } from "../../shared/stores/auth/slice";
 import LoginAuth from "./ui/login-auth/ui";
 import RegisterAuth from "./ui/register-auth/ui";
 import { toggleStateModal } from "@/shared/stores/auth-modal";
-import { useOpen } from "@/shared/lib/modal";
+import { useOpen, useWatch } from "@/shared/lib/modal";
 import { selectOpenModal } from "@/shared/stores/auth-modal/slice";
 import { useScrollHidden } from "@/shared/lib/modal/useScrollHidden";
 import TransitionWrapper from "@/shared/ui/transition-wrapper/ui";
 
 const AuthModal = () => {
-  const refModal = React.createRef<HTMLDialogElement>();
+  const refModal = React.useRef<HTMLDialogElement>(null);
   const activeForm = useSelector(selectActiveForm);
   const isOpenModal = useSelector(selectOpenModal);
+  const modalInnerRef = React.createRef<HTMLDivElement>();
 
-  useOpen(isOpenModal, refModal);
-  useScrollHidden(isOpenModal);
+  const dispatch = useDispatch();
+
+  const closeModal = useCallback(() => {
+    dispatch(toggleStateModal(false));
+    setTimeout(() => refModal.current?.close(), 500);
+  }, [dispatch]);
+
+  useEffect(() => {
+    !!isOpenModal ? refModal.current?.showModal() : closeModal();
+  }, [closeModal, dispatch, isOpenModal]);
+  useWatch(modalInnerRef, closeModal, isOpenModal);
 
   return (
-    <LayoutAuth modalRef={refModal} type={activeForm}>
+    <LayoutAuth
+      modalRef={refModal}
+      type={activeForm}
+      modalInnerRef={modalInnerRef}
+      closeModal={closeModal}
+    >
       {activeForm.isRegister ? <RegisterAuth /> : <LoginAuth />}
     </LayoutAuth>
   );

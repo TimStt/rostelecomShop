@@ -25,8 +25,6 @@ const useImageProfile = () => {
     srcAuth && setSrc(srcAuth);
   }, [user?.image, isOAuth, user]);
 
-  console.log(isSrc);
-
   return {
     src: isSrc,
     alt: user?.name || "фото профиля",

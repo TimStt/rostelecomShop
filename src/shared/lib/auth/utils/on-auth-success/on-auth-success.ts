@@ -8,7 +8,7 @@ export const onAuthSuccess = (
     refreshToken: string;
   }
 ) => {
-  console.log("onAuthSuccess", data);
+  console.log("create tokens", data);
   localStorage.setItem("tokens", JSON.stringify(data));
 
   toast.success(message);

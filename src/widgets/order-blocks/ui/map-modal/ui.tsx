@@ -115,8 +115,6 @@ const MapModal = () => {
     async (initialContainerMap = refMapPickUp) => {
       if (!isStateModal) return;
       try {
-        const positionMoscow = { lat: 55.755819, lng: 37.617644 };
-        console.log("loadMap");
         if (initialContainerMap.current)
           initialContainerMap.current.innerHTML = "";
         const ttmap = await import("@tomtom-international/web-sdk-maps");
@@ -218,7 +216,7 @@ const MapModal = () => {
               handleSelectPickUpAddress
             );
           });
-          console.log("choosenPickUpAddress modal ", choosenPickUpAddress);
+
           //@ts-ignore
           ttSearchBox.on("tomtom.searchbox.resultsfound", (e) => {});
           setIsMapInstance(map);
@@ -322,7 +320,7 @@ const MapModal = () => {
 
     if ((isStateModal && isShouldLoadMap.current) || !isMapInstance) {
       statesTubs.selfDelivery ? openMapPickUp() : openMapCourier();
-      console.log("map modal trigger");
+
       isShouldLoadMap.current = false;
     }
   }, [

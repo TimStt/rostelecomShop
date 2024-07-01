@@ -2968,3 +2968,152 @@
 {"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-24T22:53:42.647Z"}
 {"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-24T22:53:43.021Z"}
 {"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-24T22:53:43.409Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-24T23:28:43.319Z"}
+{"items":[{"_id":"6679f13079a4204e00ef457e","category":"clothes","characteristics":{"clasp":false,"collar":"shirt-rack","color":"white","composition":"synthetics","decor":true,"fabricType":"non-woven","features":"hood, pockets","print":"chocolate, print, melange","season":"demi-season","silhouette":"straight","sleeve":"short","type":"hoodie"},"clientId":"qm3yjgvg2er","image":"/clothes/hoodie.png","inStock":true,"name":"Bespoke Granite Bike","price":6929,"productId":"66648317085d1bd479a0102a","size":[{"s":true},{"m":false},{"l":true},{"xl":true},{"xxl":false}],"totalPrice":6929,"userId":"664f6e40dbe6e9814cb6dcea"}],"level":"error","message":"reqBody","timestamp":"2024-06-24T23:28:43.323Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-24T23:28:43.326Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-24T23:28:43.620Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-24T23:28:43.887Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:11:43.047Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:11:43.052Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:11:43.054Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T18:11:43.672Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-29T18:11:43.965Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:11:44.060Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:11:44.065Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:11:44.072Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T18:11:44.293Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:12:32.815Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:12:32.818Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:12:32.819Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T18:12:33.492Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:12:55.901Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:12:55.906Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:12:55.906Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T18:12:56.626Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:13:15.135Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:13:15.181Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:13:15.188Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T18:13:15.434Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:15:37.766Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:15:37.774Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:15:37.781Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T18:15:37.974Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:16:17.124Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:16:17.126Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:16:17.126Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T18:16:17.864Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:20:40.113Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:20:40.114Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:20:40.115Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T18:20:40.644Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:28:18.756Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T18:28:18.758Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-29T18:28:19.577Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:07:25.792Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:07:25.794Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T19:07:26.355Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:08:58.716Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:08:58.722Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-29T19:08:59.574Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:10:38.995Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:10:38.996Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T19:10:39.525Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:11:51.536Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:11:51.556Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T19:11:51.723Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:12:18.103Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:12:18.107Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-06-29T19:12:18.294Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:18:02.971Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:18:02.973Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-29T19:18:04.151Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-29T19:20:48.135Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:20:49.350Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-29T19:20:49.509Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:20:49.510Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-29T19:20:49.542Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:21:07.798Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:21:07.799Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-29T19:21:07.829Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:21:46.802Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-06-29T19:21:46.808Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-06-29T19:21:46.848Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:06:53.534Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:06:53.538Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T15:06:54.339Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:10:51.585Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:10:51.589Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T15:10:52.405Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:10:52.928Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:10:52.931Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T15:10:52.945Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:47:20.551Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:47:20.555Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T15:47:21.504Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:52:52.713Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:52:52.719Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T15:52:52.802Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:53:37.783Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T15:53:37.787Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T15:53:37.818Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:00:24.114Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:00:24.117Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-07-01T16:00:24.699Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:01:47.472Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:01:47.474Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T16:01:48.279Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:06:13.229Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:06:13.231Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T16:06:14.103Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:09:06.264Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:09:06.265Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-07-01T16:09:06.817Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T16:12:14.357Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:12:14.359Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:12:14.360Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T16:12:14.445Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:14:52.493Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:14:52.498Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T16:14:52.532Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:44:05.217Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:44:05.218Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-07-01T16:44:05.786Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:45:15.712Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:45:15.714Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-07-01T16:45:16.265Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:48:51.331Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:48:51.333Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T16:48:52.462Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:50:21.710Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T16:50:21.718Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T16:50:21.741Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:00:42.380Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:00:42.381Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T17:00:43.199Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:04:51.783Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:04:51.785Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T17:04:53.012Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:05:40.601Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:05:40.609Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T17:05:40.664Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:06:27.901Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:06:27.903Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-07-01T17:06:28.533Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:10:25.770Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:10:25.776Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T17:10:25.811Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:10:55.026Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:10:55.027Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T17:10:55.041Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:11:07.097Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:11:07.104Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T17:11:07.140Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:11:55.568Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:11:55.570Z"}
+{"level":"info","message":"Refresh token request","timestamp":"2024-07-01T17:11:55.585Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:12:13.166Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:12:13.167Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-07-01T17:12:13.774Z"}
+{"items":[],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:32:56.613Z"}
+{"items":[{"category":"accessories","clientId":"q98cdepa27","color":"purpure","count":1,"image":"/accessories/city_backpack_bags.png","inStock":false,"name":"Awesome Bronze Computer","price":6318,"productId":"66648317085d1bd479a0105f","quantityStock":39,"size":"l","totalPrice":6318}],"level":"error","message":"reqBody","timestamp":"2024-07-01T17:32:56.614Z"}
+{"level":"info","message":"replaceProductBasket ","timestamp":"2024-07-01T17:32:57.232Z"}

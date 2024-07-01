@@ -42,7 +42,8 @@ const LoginAuth = () => {
     if (isSubmitted) trigger();
   }, [isSubmitted, trigger]);
 
-  const onSubmit: SubmitHandler<IAuth> = (data) => dispatch(signInThunk(data));
+  const onSubmit: SubmitHandler<IAuth> = async (data) =>
+    await dispatch(signInThunk(data));
 
   return (
     <form className={style.root} onSubmit={handleSubmit(onSubmit)}>

@@ -12,7 +12,6 @@ const Sort = () => {
   const sort = params.get("sort");
 
   const dataList = Object.values(sortData).map((item) => item.ru);
-  console.log(sortData);
 
   const value = Object.entries(sortData).find(
     ([_, value]) => value.nameBySort === sort
@@ -26,8 +25,6 @@ const Sort = () => {
 
     push(`${pathname}?${params}`);
   };
-  console.log("Sort", sort);
-  console.log("value", value);
 
   return (
     <Select
