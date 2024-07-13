@@ -9,6 +9,7 @@ const useLogout = () => {
   const router = useRouter();
 
   return () => {
+    localStorage.clear();
     logout();
     localStorage.removeItem("tokens");
     router.push("/");

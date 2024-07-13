@@ -6,36 +6,21 @@ import {
 import React from "react";
 import Image from "next/image";
 import styles from "./compare-card-product.module.scss";
-import { useAddProductBySizeTable } from "@/shared/utils/useAddProductBySizeTable/useAddProductBySizeTable";
 import Icon from "@/shared/ui/icon";
 import { PulseLoader } from "@/shared/ui/pulse-loader";
 import cls from "classnames";
 import Link from "next/link";
-import { addProductsThunk } from "@/shared/stores/basketAuth/slice";
 import { useDispatch, useSelector } from "react-redux";
-import { set } from "mongoose";
-import { useCardLogic } from "@/shared/utils/useCardLogic/useCardLogic";
-import { productInList } from "@/shared/utils/productInList";
-import { useBasketAction } from "@/shared/utils/useBasketAction";
-import { addProductByLS } from "@/shared/utils/add-product-by-LS/add-product-by-LS";
-import {
-  addGoodstoFavorites,
-  removeProductsFavoritesThunk,
-  setIsEmptyFavorites,
-} from "@/shared/stores/favorites";
-import { deleteProductByLS } from "@/shared/utils/deleteProductByLS/deleteProductByLS";
+import { useBasketAction } from "@/shared/utils/use-basket-action";
+import { addGoodstoFavorites } from "@/shared/stores/favorites";
+import { deleteProductByLS } from "@/shared/utils/delete-product-by-LS";
 import { selectIsAuth } from "@/shared/stores/auth";
 import { Accardions } from "../product-card-page/ui/accardions";
 import {
   deleteOneProductCompareThunk,
   setIsEmptyCompare,
 } from "@/shared/stores/compare";
-import toast from "react-hot-toast";
-import {
-  setIsCompareAdd,
-  setStoreName,
-  toggleSizesTable,
-} from "@/shared/ui/sizes-table-modal/store";
+import { setIsCompareAdd } from "@/shared/ui/sizes-table-modal/store";
 import { setCurrentProduct } from "@/shared/stores/current-product-add-busket";
 import useCompareAction from "@/shared/utils/use-compare-action/use-compare-action";
 import { selectIsCompareAdd } from "@/shared/ui/sizes-table-modal/store/slice";

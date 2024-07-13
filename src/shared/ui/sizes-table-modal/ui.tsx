@@ -21,11 +21,11 @@ import {
 import { Button } from "../button";
 import { motion } from "framer-motion";
 import { Table } from "./ui/table";
-import { useBasketAction } from "@/shared/utils/useBasketAction";
+import { useBasketAction } from "@/shared/utils/use-basket-action";
 import { PulseLoader } from "../pulse-loader";
 import { Toaster } from "react-hot-toast";
 import ModalMotion from "../ModalMotion/ui";
-import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
+import { useFavoriteAction } from "@/shared/hooks/use-favorite-action";
 import { toggleModalQuik } from "../quick-view-modal";
 import useCompareAction from "@/shared/utils/use-compare-action/use-compare-action";
 

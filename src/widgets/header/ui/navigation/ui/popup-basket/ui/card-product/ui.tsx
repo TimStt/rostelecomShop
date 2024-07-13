@@ -1,5 +1,5 @@
 import { IBasketGoods } from "@/shared/config/types/goods";
-import { useItemAction } from "@/shared/utils/useItemAction";
+import { useItemAction } from "@/shared/hooks/use-item-action";
 import Link from "next/link";
 import React, { useId } from "react";
 import style from "./card-product.module.scss";

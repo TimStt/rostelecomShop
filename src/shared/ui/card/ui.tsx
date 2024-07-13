@@ -14,7 +14,7 @@ import { productNotSizes } from "@/shared/config/constants/product-not-sizes";
 
 import { PulseLoader } from "../pulse-loader";
 
-import { useCardLogic } from "@/shared/utils/useCardLogic/useCardLogic";
+import { useCardLogic } from "@/shared/hooks/use-card-logic/hook";
 import { TypeProduct } from "./ui/type-product";
 import { motion } from "framer-motion";
 import { motionSettingsVisibleOpacity } from "../ModalMotion";

@@ -9,7 +9,7 @@ import { Button } from "@/shared/ui";
 import { selectStatesPopups, togglePopups } from "../../store";
 import { paths } from "@/shared/routing";
 import CountUp from "react-countup";
-import { useItemAction } from "@/shared/utils/useItemAction";
+import { useItemAction } from "@/shared/hooks/use-item-action";
 import CardProduct from "./ui/card-product/ui";
 
 const PopupBasket = ({ classname }: { classname: string }) => {

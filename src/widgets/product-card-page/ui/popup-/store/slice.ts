@@ -3,7 +3,7 @@ import { IGoods } from "@/shared/config/types/goods";
 
 import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
 import { productInList } from "@/shared/utils/productInList";
-import { useGetStateOnLocalStorage } from "@/shared/utils/useGetStateOnLocalStorage/useGetStateOnLocalStorage";
+import { useGetStateOnLocalStorage } from "@/shared/utils/use-get-state-LS/useGetStateOnLocalStorage";
 
 interface IoPopupShareSlice {
   isOpen: boolean;

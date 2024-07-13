@@ -4,7 +4,7 @@ import NextNProgress from "nextjs-progressbar";
 import React, { useEffect } from "react";
 import { Provider, useStore } from "react-redux";
 import { persistStore } from "redux-persist";
-import { wrapper } from "../shared/stores/store";
+import { wrapper } from "./store/store";
 import { Toaster } from "react-hot-toast";
 import { PersistGate } from "redux-persist/integration/react";
 import { useRouter } from "next/router";

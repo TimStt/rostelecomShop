@@ -9,9 +9,12 @@ export const deleteProductFavoritesApi = async ({
 }: IProductDeleteOnBd) => {
   try {
     setSpinner(true);
-    const { data } = await apiInstance.delete(`/api/favorite/delete?id=${id}`, {
-      needsAuth: true,
-    } as IConfigAxiosAuth);
+    const { data } = await apiInstance.delete(
+      `/api/favorites/delete?id=${id}`,
+      {
+        needsAuth: true,
+      } as IConfigAxiosAuth
+    );
     return data.id;
   } catch (error) {
     return { status: 500, message: (error as Error).message };

@@ -2,6 +2,8 @@ import { Db } from "mongodb";
 import { ObjectId } from "mongoose";
 import { Interface } from "readline";
 
+export type TCategoryGoods = "clothes" | "accessories" | "office" | "souvenirs";
+
 export interface IGoods {
   _id: string;
   name: string;
@@ -11,7 +13,7 @@ export interface IGoods {
   vendorCode: string;
   type: string;
   article: number;
-  category: "clothes" | "accessories" | "office" | "souvenirs";
+  category: TCategoryGoods;
   inStock: boolean;
   sizes?: TSize[];
   popularity: number;
@@ -150,7 +152,7 @@ export interface IBasketGoods {
   totalPrice: number;
   inStock: boolean;
   color: string;
-  category: "clothes" | "accessories" | "office" | "souvenirs";
+  category: TCategoryGoods;
   quantityStock: number;
 }
 
@@ -162,7 +164,7 @@ export interface IBasketAdd {
   setSpinner: (state: boolean) => void;
   count: string | number;
   sizes: string;
-  category: "clothes" | "accessories" | "office" | "souvenirs";
+  category: TCategoryGoods;
 }
 
 export type ICompareAdd = Omit<IBasketAdd, "count" | "sizes"> & {
@@ -176,7 +178,10 @@ export type ICompareData = Omit<IBasketGoods, "sizes"> & {
 
 export interface IProductReplaceAuth {
   productsReplace: IBasketGoods[] | IFavoritesGoods[] | ICompareData[];
-  collection: "favorite" | "basket" | "compare";
+  collection: TMainStoreClient;
+}
+export interface ICheckEmptyByAuth {
+  collection: TMainStoreClient;
 }
 
 export interface IBasketUpdateCount {
@@ -193,7 +198,7 @@ export interface IProductDeleteOnBd {
 }
 
 export interface IDeleteAllProductOnCollection {
-  collection: "favorite" | "basket" | "compare";
+  collection: TMainStoreClient;
 }
 
 export type Tcollections =
@@ -213,12 +218,21 @@ export interface IFavoritesState {
   goods: IFavoritesGoods[];
   loading: boolean;
   isEmpty: boolean;
+  loadingCheckEmpty: boolean;
 }
 export type ICompareState = Omit<IFavoritesState & IFavoritesState, "goods"> & {
   goods: ICompareData[] | null;
 };
 
-export type IStoreName = "basket" | "favorites" | "compare";
+export interface IStateViewSlice {
+  goods: IGoods[];
+}
+
+export type TMainStoreClient = Omit<
+  Tcollections,
+  "users" | "accessories" | "clothes"
+>;
+
 export type IFavoritesGoods = IBasketGoods;
 export type ICompareGoods = IGoods;
 
@@ -262,4 +276,21 @@ export interface IGoodsFoundModal {
   price: IGoods["price"];
   category: IGoods["category"];
   image: IGoods["images"][0];
+}
+
+export interface IAddProductBasketAuth {
+  product: IGoods;
+  count: number;
+  storeName?: TMainStoreClient;
+
+  setSpinner: (state: boolean) => void;
+  selectedSizes?: string;
+}
+
+export interface IBasketAddProduct {
+  product: IGoods;
+  selectedSizes: string;
+  storeName?: TMainStoreClient;
+  count: number;
+  isToast?: boolean;
 }

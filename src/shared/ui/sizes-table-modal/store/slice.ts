@@ -2,8 +2,7 @@ import {
   IGoods,
   INewSizeAccessories,
   INewSizeClothes,
-  IStoreName,
-  TSize,
+  TMainStoreClient,
 } from "@/shared/config/types/goods";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { sizesInfo } from "../sizes.data";
@@ -19,7 +18,7 @@ export interface ISizesTableState {
   productCategory: IGoods["category"] | "";
   sizes: INewSizeClothes[] | INewSizeAccessories[];
   selectedSize: string;
-  storeName?: IStoreName;
+  storeName?: TMainStoreClient;
   isCompareAdd?: boolean;
 }
 
@@ -39,7 +38,7 @@ export const sizesTableModalSlice = createSlice({
     toggleSizesTable: (state, action: PayloadAction<boolean>) => {
       state.isOpen = action.payload;
     },
-    setStoreName: (state, action: PayloadAction<IStoreName>) => {
+    setStoreName: (state, action: PayloadAction<TMainStoreClient>) => {
       state.storeName = action.payload;
     },
     setProduct: (state, action: PayloadAction<IGoods>) => {

@@ -16,7 +16,7 @@ import { updateCountBasket } from "@/shared/api/updateCountBasket";
 // import { handleJwtError } from "@/shared/lib/auth/utils/handleJwtError/error";
 import { deleteProductApi } from "@/shared/api/deleteProductApi/deleteProductApi";
 
-import { deleteProductByLS } from "@/shared/utils/deleteProductByLS/deleteProductByLS";
+import { deleteProductByLS } from "@/shared/utils/delete-product-by-LS/deleteProductByLS";
 
 import { replaceProductsAuth } from "@/shared/api/replace-product-auth";
 

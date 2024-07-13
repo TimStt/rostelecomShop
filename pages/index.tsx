@@ -1,7 +1,7 @@
 // import { reduxWrapper } from "@/app/store";
 import { Main } from "@/pages/main";
 import { apiInstance } from "@/shared/config/api/apiinstance";
-import { wrapper } from "@/shared/stores/store";
+import { wrapper } from "@/app/store/store";
 import { getGoodsSave } from "@/widgets/new-and-hits-goods/store/slice";
 import { GetServerSideProps, GetStaticProps } from "next/types";
 

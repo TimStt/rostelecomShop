@@ -1,5 +1,5 @@
 // import { reduxWrapper } from "@/app/store";
-import { wrapper } from "@/shared/stores/store";
+import { wrapper } from "@/app/store/store";
 import { CatalogPage } from "@/pages/catalog-page";
 import { apiInstance } from "@/shared/config/api/apiinstance";
 import {

@@ -3,7 +3,7 @@ import style from "./_footer.module.scss";
 
 import { Logo } from "@/shared/ui/logo";
 import Link from "next/link";
-import { useMediaQuery } from "@/shared/utils/useMediaQuery";
+import { useMediaQuery } from "@/shared/hooks/use-media-query";
 import cls from "classnames";
 import Icon from "@/shared/ui/icon";
 

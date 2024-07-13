@@ -12,7 +12,7 @@ import { getProductBasket } from "@/shared/api/getProductBasket";
 import { deleteAllProductApi } from "@/shared/api/delete-all-product-by-collection-api";
 import { deleteProductApi } from "@/shared/api/deleteProductApi/deleteProductApi";
 import { deleteProductCompareApi } from "@/shared/api/delete-product-compare-api/delete-product-compare-api";
-import { deleteProductByLS } from "@/shared/utils/deleteProductByLS/deleteProductByLS";
+import { deleteProductByLS } from "@/shared/utils/delete-product-by-LS/deleteProductByLS";
 import { replaceProductsAuth } from "@/shared/api/replace-product-auth";
 import { addProductToCompareApi } from "@/shared/api/add-product-compare-api";
 import { addProductByLS } from "@/shared/utils/add-product-by-LS";

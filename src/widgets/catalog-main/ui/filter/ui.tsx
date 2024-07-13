@@ -9,7 +9,7 @@ import { PriceFilter } from "./ui/price-filter";
 import { SizesFilter } from "./ui/sizes-filter";
 import Sort from "./ui/sort/ui";
 import SizesView from "./ui/sizes-view/ui";
-import { useGetStateOnLocalStorage } from "@/shared/utils/useGetStateOnLocalStorage";
+import { useGetStateOnLocalStorage } from "@/shared/hooks/use-get-state-LS";
 import { useDispatch } from "react-redux";
 import { IfilterState } from "@/shared/config/types/filters";
 

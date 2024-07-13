@@ -21,7 +21,7 @@ import { Input } from "@/shared/ui/input";
 import { useWatch, useOpen } from "@/shared/lib/modal";
 import { useScrollHidden } from "@/shared/lib/modal/useScrollHidden";
 import { IGoods } from "@/shared/config/types/goods";
-import debounce from "@/shared/utils/debounce/debounce";
+import debounce from "@/shared/utils/debounce/util";
 import { PulseLoader } from "@/shared/ui/pulse-loader";
 import { CardProductFound } from "./ui/card-product-found";
 import { Hints } from "./ui/hints";

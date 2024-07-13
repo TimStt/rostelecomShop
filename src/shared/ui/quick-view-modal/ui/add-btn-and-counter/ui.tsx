@@ -2,7 +2,7 @@
 import cls from "classnames";
 
 import { Button } from "@/shared/ui/button";
-import { useBasketAction } from "@/shared/utils/useBasketAction";
+import { useBasketAction } from "@/shared/utils/use-basket-action";
 import { useSelector } from "react-redux";
 import { selectSelectedSize } from "@/shared/ui/sizes-table-modal/store";
 import { IBasketGoods, IGoods } from "@/shared/config/types/goods";

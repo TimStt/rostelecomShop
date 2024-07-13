@@ -1,10 +1,6 @@
 import { apiInstance } from "@/shared/config/api/apiinstance";
 import { IConfigAxiosAuth } from "@/shared/config/api/apiinstance/ui";
-import {
-  IBasketAdd,
-  IBasketGoods,
-  IProductReplaceAuth,
-} from "@/shared/config/types/goods";
+import { IProductReplaceAuth } from "@/shared/config/types/goods";
 // import { handleJwtError } from "@/shared/lib/auth/utils/handleJwtError/error";
 import toast from "react-hot-toast";
 

@@ -1,5 +1,5 @@
 import "@/app/styles/index.scss";
-import { wrapper } from "@/shared/stores/store";
+import { wrapper } from "@/app/store/store";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Provider } from "react-redux";

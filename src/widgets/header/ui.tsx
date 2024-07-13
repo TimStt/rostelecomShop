@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Navigation from "./ui/navigation/ui";
 import AuthModal from "../auth-modal/ui";
 import { toggleModalMenu } from "@/shared/stores/menu-catalog-modal";
-import { useGetStateOnLocalStorage } from "@/shared/utils/useGetStateOnLocalStorage";
+import { useGetStateOnLocalStorage } from "@/shared/hooks/use-get-state-LS";
 import {
   IBasketGoods,
   ICompareData,
@@ -23,7 +23,10 @@ import { useUserAuth } from "@/shared/lib/auth/utils/isUserAuth";
 import { replaceProductsThunk } from "@/shared/stores/basketAuth";
 import App from "next/app";
 import { selectIsAuth } from "@/shared/stores/auth";
-import { replaceProductsFavoritesThunk } from "@/shared/stores/favorites";
+import {
+  checkEmptyFavoritesThunk,
+  replaceProductsFavoritesThunk,
+} from "@/shared/stores/favorites";
 import { replaceProductsCompareThunk } from "@/shared/stores/compare";
 import { useTriggerLoginCheck } from "@/shared/lib/auth/utils/useTriggerLoginCheck/useTriggerLoginCheck";
 
@@ -52,12 +55,13 @@ const Header = () => {
 
       checkStateLs(basket) &&
         dispatch(replaceProductsThunk({ productsReplace: basket }));
-      checkStateLs(favorites) &&
-        dispatch(
-          replaceProductsFavoritesThunk({
-            productsReplace: favorites,
-          })
-        );
+      checkStateLs(favorites)
+        ? dispatch(
+            replaceProductsFavoritesThunk({
+              productsReplace: favorites,
+            })
+          )
+        : dispatch(checkEmptyFavoritesThunk());
       checkStateLs(compare) &&
         dispatch(replaceProductsCompareThunk({ productsReplace: compare }));
     }

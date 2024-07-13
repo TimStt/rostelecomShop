@@ -11,7 +11,7 @@ export const addProductToFavoritesApi = async ({
   try {
     setSpinner(true);
     const { data } = await apiInstance.post(
-      "/api/favorite/add",
+      "/api/favorites/add",
       {
         product: {
           category: otherFields.category,

@@ -15,7 +15,7 @@ import { de } from "@faker-js/faker";
 import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
 import Icon from "@/shared/ui/icon";
 import { TooltipCountBasketItem } from "@/shared/ui/tooltip-count-basket-item";
-import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
+import { useFavoriteAction } from "@/shared/hooks/use-favorite-action";
 
 const Table = ({ productBasket }: { productBasket?: IBasketGoods[] }) => {
   const sizes = useSelector(selectSizes);

@@ -22,7 +22,7 @@ import {
   IGoods,
 } from "@/shared/config/types/goods";
 import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
-import { useBasketAction } from "@/shared/utils/useBasketAction";
+import { useBasketAction } from "@/shared/utils/use-basket-action";
 import ModalMotion from "../ModalMotion/ui";
 
 import { SizesListCheckBox } from "../sizes-list-checkbox";
@@ -40,7 +40,7 @@ import { PulseLoader } from "../pulse-loader";
 import { Toaster } from "react-hot-toast";
 import { ArticleAndInstock } from "../card/ui/article-and-in";
 import AddBtnAndCounter from "./ui/add-btn-and-counter/ui";
-import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
+import { useFavoriteAction } from "@/shared/hooks/use-favorite-action";
 import useCompareAction from "@/shared/utils/use-compare-action/use-compare-action";
 
 const QuickViewModal = () => {

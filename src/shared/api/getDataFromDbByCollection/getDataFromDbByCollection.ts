@@ -18,10 +18,9 @@ interface IGetDataFromDbByCollection {
 export const getDataFromDbByCollection = async ({
   clientPromise,
   collectionName,
-
   req,
   res,
-}: IGetDataFromDbByCollection) => {
+}: IGetDataFromDbByCollection): Promise<any> => {
   const { db, token, validationTokenResult } = await getAuthRouteData(
     clientPromise,
     req,
@@ -53,5 +52,6 @@ export const getDataFromDbByCollection = async ({
     filter: { userId: user._id, ...filter },
   });
 
-  return res.status(200).json({ goods, user });
+  res.status(200).json({ goods, user });
+  return;
 };

@@ -11,15 +11,21 @@ import { getProductBasket } from "@/shared/api/getProductBasket";
 import { addProductToFavoritesApi } from "@/shared/api/add-favorite-api";
 import { getProductFavorites } from "@/shared/api/get-product-favorites";
 import { deleteProductFavoritesApi } from "@/shared/api/delete-product-favorite-api/delete-product-favorite-api";
-import { deleteProductByLS } from "@/shared/utils/deleteProductByLS/deleteProductByLS";
+import { deleteProductByLS } from "@/shared/utils/delete-product-by-LS/deleteProductByLS";
 
 import { deleteAllProductByLS } from "@/shared/utils/delete-all-product-by-LS";
 import { deleteAllProductApi } from "@/shared/api/delete-all-product-by-collection-api";
 import { replaceProductsAuth } from "@/shared/api/replace-product-auth";
 
+import { checkEmptyByAuthApi } from "@/shared/api/check-empty-by-auth-api/check-empty-by-auth-api";
+
 export const getProductsFavoritesThunk = createAsyncThunk(
   "favorites/getProducts",
   async () => await getProductFavorites()
+);
+export const checkEmptyFavoritesThunk = createAsyncThunk(
+  "favorites/checkEmpty",
+  async () => await checkEmptyByAuthApi({ collection: "favorites" })
 );
 
 export const addProductsFavoritesThunk = createAsyncThunk(
@@ -61,6 +67,7 @@ const initialState: IFavoritesState = {
   goods: [],
   loading: false,
   isEmpty: true,
+  loadingCheckEmpty: false,
 };
 
 export const favoritesSlice = createSlice({
@@ -121,15 +128,34 @@ export const favoritesSlice = createSlice({
       })
       .addCase(replaceProductsFavoritesThunk.rejected, (state) => {
         state.loading = false;
+      })
+      .addCase(
+        checkEmptyFavoritesThunk.fulfilled,
+        (state, action: PayloadAction<boolean>) => {
+          state.isEmpty = action.payload;
+          state.loadingCheckEmpty = false;
+        }
+      )
+      .addCase(checkEmptyFavoritesThunk.pending, (state) => {
+        state.loadingCheckEmpty = true;
+      })
+      .addCase(checkEmptyFavoritesThunk.rejected, (state) => {
+        state.loadingCheckEmpty = false;
+      })
+      .addCase(addProductsFavoritesThunk.fulfilled, (state) => {
+        state.isEmpty = false;
       });
   },
 });
 export const selectFavorites = (state: RootState) => state.favorites.goods;
 export const selectLoadingFavorites = (state: RootState) =>
   state.favorites.loading;
+export const selectLoadingCheckEmpty = (state: RootState) =>
+  state.favorites.loadingCheckEmpty;
 
 export const selectIsEmptyFavorites = (state: RootState) =>
   state.favorites.isEmpty;
+
 export const { addGoodstoFavorites, setIsEmptyFavorites } =
   favoritesSlice.actions;
 

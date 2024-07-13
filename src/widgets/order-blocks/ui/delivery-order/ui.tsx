@@ -15,7 +15,7 @@ import {
   useState,
 } from "react";
 import { setItemLocalStorage } from "@/shared/utils/setItemLocalStorage";
-import { useGetStateOnLocalStorage } from "@/shared/utils/useGetStateOnLocalStorage";
+import { useGetStateOnLocalStorage } from "@/shared/hooks/use-get-state-LS";
 import { useDispatch, useSelector } from "react-redux";
 import { IStatesDeliveryTub } from "@/shared/config/types/ui";
 import {
@@ -27,17 +27,14 @@ import {
   setChooseOfficeAddress,
   setIsMapModalOpen,
   setMapOrder,
-  setStateTabs,
   toggleStateTabs,
 } from "@/shared/stores/order";
-import cls from "classnames";
-import { Input } from "@/shared/ui/input";
 import { TabsButtons } from "../tabs-buttons";
 import { Button } from "@/shared/ui";
 import { motionSettingsVisibleNoScaleDisplay } from "@/shared/ui/ModalMotion/motion-settings";
 import { getUserGeolacation, selectUser } from "@/shared/stores/user";
 import toast from "react-hot-toast";
-import { addScriptToHead } from "@/shared/utils/add-script-to-head";
+
 import {
   handleResultClearing,
   handleResultSelection,

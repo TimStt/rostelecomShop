@@ -58,5 +58,9 @@
     "eslint-config-next": "14.1.0",
     "sass": "^1.71.1",
     "typescript": "^5"
-  }
+  },
+  "description": "",
+  "main": "migrate-mongo-config.js",
+  "author": "",
+  "license": "ISC"
 }

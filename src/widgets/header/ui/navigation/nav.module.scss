@@ -1,24 +1,9 @@
 @import "../../../shared/other-style/mixins";
-.list {
+.root {
   @include flex-gap(14px);
   align-items: center;
 
   &__item {
-    a {
-      position: relative;
-      &.isNotEmpty {
-        &::after {
-          content: "";
-          position: absolute;
-          top: 9px;
-          right: 2px;
-          width: 8px;
-          height: 8px;
-          background-color: #ff0c0c;
-          border-radius: 50%;
-        }
-      }
-    }
     &.basket,
     &.profile {
       position: relative;
@@ -32,6 +17,26 @@
       &:not(:is(.profile), :is(.search)) {
         display: none;
       }
+    }
+  }
+
+  &__link {
+    position: relative;
+    &.isNotEmpty {
+      &::after {
+        content: "";
+        position: absolute;
+        top: 9px;
+        right: 2px;
+        width: 8px;
+        height: 8px;
+        background-color: #ff0c0c;
+        border-radius: 50%;
+      }
+    }
+    &.isDisable {
+      cursor: none;
+      pointer-events: none;
     }
   }
 }

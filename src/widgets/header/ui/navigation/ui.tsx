@@ -16,6 +16,8 @@ import { useBasketByAuth } from "@/shared/lib/auth/utils/useBasketByAuth";
 import {
   selectFavorites,
   selectIsEmptyFavorites,
+  selectLoadingCheckEmpty,
+  selectLoadingFavorites,
   setIsEmptyFavorites,
 } from "@/shared/stores/favorites";
 import { use, useEffect, useState } from "react";
@@ -24,13 +26,17 @@ import {
   selectIsEmptyCompare,
   setIsEmptyCompare,
 } from "@/shared/stores/compare";
+import { PulseLoader } from "@/shared/ui/pulse-loader";
+import { selectIsAuth } from "@/shared/stores/auth";
 
 const Navigation = () => {
   const dispatch = useDispatch();
-
+  const isAuth = useSelector(selectIsAuth);
   const openModalFound = () => dispatch(toggleModalFound(true));
 
   const isEmptyFavorites = useSelector(selectIsEmptyFavorites);
+  const loadingFavorites = useSelector(selectLoadingCheckEmpty);
+  const favoriteProducts = useSelector(selectFavorites);
   const favorites = JSON.parse(
     localStorage.getItem("favorites") as string
   ) as IFavoritesGoods[];
@@ -41,25 +47,18 @@ const Navigation = () => {
   const isEmptyCompere = useSelector(selectIsEmptyCompare);
 
   useEffect(() => {
-    if (!!favorites?.length) {
+    if (!isAuth && !!favorites?.length) {
       dispatch(setIsEmptyFavorites(false));
     }
     if (!!compare?.length) {
       dispatch(setIsEmptyCompare(false));
     }
-  }, [
-    isEmptyFavorites,
-    favorites,
-    dispatch,
-    compare?.length,
-    compare,
-    isEmptyCompere,
-  ]);
+  }, [isEmptyFavorites, favorites, dispatch, compare, isEmptyCompere, isAuth]);
 
   return (
     <nav>
-      <ul className={style.list}>
-        <li className={cls(style.list__item, style.search)}>
+      <ul className={style.root}>
+        <li className={cls(style.root__item, style.search)}>
           <button
             className={cls("btn-reset", style["icon-block"])}
             onClick={openModalFound}
@@ -69,22 +68,30 @@ const Navigation = () => {
           </button>
         </li>
 
-        <li className={style.list__item}>
-          <Link
-            className={cls(style.list__link, style["icon-block"], {
-              [style.isNotEmpty]: !isEmptyFavorites,
-            })}
-            href={paths.favorites}
-          >
-            <Icon name="goods/heart" />
-            <span className="visually-hidden">
-              Открыть страницу избранных товаров
-            </span>
-          </Link>
+        <li className={style.root__item}>
+          {!loadingFavorites ? (
+            <>
+              <Link
+                className={cls(style.root__link, style["icon-block"], {
+                  [style.isNotEmpty]:
+                    !isEmptyFavorites || !!favoriteProducts.length,
+                  [style.isDisable]: loadingFavorites,
+                })}
+                href={paths.favorites}
+              >
+                <Icon name="goods/heart" />
+                <span className="visually-hidden">
+                  Открыть страницу избранных товаров
+                </span>
+              </Link>
+            </>
+          ) : (
+            <PulseLoader size={5} gap={2} color="#fff" />
+          )}
         </li>
-        <li className={style.list__item}>
+        <li className={style.root__item}>
           <Link
-            className={cls(style.list__link, style["icon-block"], {
+            className={cls(style.root__link, style["icon-block"], {
               [style.isNotEmpty]: !isEmptyCompere,
             })}
             href={paths.compare}
@@ -93,10 +100,10 @@ const Navigation = () => {
             <span className="visually-hidden">Открыть страницу сравнения</span>
           </Link>
         </li>
-        <li className={cls(style.list__item, style.basket)}>
+        <li className={cls(style.root__item, style.basket)}>
           <PopupBasket classname={style["icon-block"]} />
         </li>
-        <li className={cls(style.list__item, style.profile)}>
+        <li className={cls(style.root__item, style.profile)}>
           {" "}
           <PopupProfile classname={style["icon-block"]} />
         </li>

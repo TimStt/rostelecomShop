@@ -2,8 +2,10 @@ import { translateToWord } from "@/shared/utils/translateToWord";
 import { useUrlParams } from "@/shared/utils/url";
 import wordDeclension from "@/shared/utils/word-declension/word-declension";
 import { CatalogMain } from "@/widgets/catalog-main";
+import { ViewGoods } from "@/widgets/view-goods";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import style from "./catalog.module.scss";
 
 const CatalogPage = () => {
   const route = useRouter();
@@ -26,7 +28,10 @@ const CatalogPage = () => {
           } магазина Rostelecom Shop. Купить качественную одежду, аксессуары, канцелярию и сувениры по низким ценам от личного бренда Rostelecom. Купить хиты и новинки от личного бренда Rostelecom`}
         />
       </Head>
-      <CatalogMain />
+      <div className={style.root}>
+        <CatalogMain />
+        <ViewGoods />
+      </div>
     </>
   );
 };

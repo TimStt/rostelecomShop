@@ -1,6 +1,6 @@
 "use client";
 import Icon from "@/shared/ui/icon";
-import React, { useRef } from "react";
+import React, { use, useEffect, useRef } from "react";
 import cls from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,14 +14,17 @@ import {
   toggleSizesTable,
 } from "@/shared/ui/sizes-table-modal/store";
 import { SizesListCheckBox } from "@/shared/ui/sizes-list-checkbox";
-import { useBasketAction } from "@/shared/utils/useBasketAction";
+import { useBasketAction } from "@/shared/utils/use-basket-action";
 import AddBtnAndCounter from "@/shared/ui/quick-view-modal/ui/add-btn-and-counter/ui";
 import { selectCurrentProductState } from "@/shared/stores/current-product-add-busket";
 import { Accardions } from "./ui/accardions";
 import { toggleStatePopupShare } from "./ui/popup-/store";
 import { BreadCrumb } from "@/shared/ui/breadcrumbs";
-import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
+import { useFavoriteAction } from "@/shared/hooks/use-favorite-action";
 import useCompareAction from "@/shared/utils/use-compare-action/use-compare-action";
+import { addViewProduct } from "@/shared/stores/store";
+import { selectViewProducts } from "@/shared/stores/store";
+import { productInList } from "@/shared/utils/productInList";
 
 const ProductCardPage = () => {
   const dispatch = useDispatch();
@@ -31,6 +34,13 @@ const ProductCardPage = () => {
   const { currentBasketItem } = useBasketAction();
   const { handlerCardAddToFavorites, hasProductNotSize } =
     useFavoriteAction(product);
+  const { goods: viewGoods } = useSelector(selectViewProducts);
+
+  useEffect(() => {
+    console.log("trigger view page product");
+    if (!!product && !productInList(viewGoods, product?._id))
+      dispatch(addViewProduct(product));
+  }, [dispatch, product, viewGoods]);
 
   return (
     <section className={cls(style.root, "container")}>

@@ -1,0 +1,6 @@
+{
+    "editor.formatOnSave": true,
+    "files.autoSave": "off",
+    "editor.formatOnSaveMode": "file",
+    "notebook.defaultFormatter": "esbenp.prettier-vscode"
+}

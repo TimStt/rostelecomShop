@@ -20,7 +20,7 @@ import {
 import { motion } from "framer-motion";
 import { selectIsStatesTabPayment } from "@/shared/stores/order/slice";
 import CheckboxOrder from "../checkbox-order/ui";
-import { useGetStateOnLocalStorage } from "@/shared/utils/useGetStateOnLocalStorage";
+import { useGetStateOnLocalStorage } from "@/shared/hooks/use-get-state-LS";
 import { motionSettingsVisibleNoScaleDisplay } from "@/shared/ui/ModalMotion/motion-settings";
 import Link from "next/link";
 

@@ -1,50 +1,5 @@
 @import "../../shared/other-style/mixins";
 
-@mixin active-item-menu {
-  &::after {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 100%;
-    top: calc(100% + 18px);
-    color: var(--orange-01);
-    height: 2.871px;
-    background: var(--linear-gradient-btn-01);
-
-    animation-name: border-active;
-    animation-timing-function: linear;
-    animation-duration: 0.7s;
-    animation-iteration-count: 1;
-  }
-  a {
-    color: var(--orange-01);
-  }
-}
-
-.list {
-  @include flex-gap(64);
-
-  &__link {
-    transition: all 0.3s;
-    padding-inline: 3px;
-  }
-  &__item {
-    position: relative;
-    &:is(.isActive) {
-      @include active-item-menu;
-    }
-
-    @include hover {
-      @include active-item-menu;
-    }
-  }
-}
-
-@keyframes border-active {
-  @for $i from 0 through 10 {
-    $width: $i * 10%;
-    #{$width} {
-      width: #{$width};
-    }
-  }
+.root {
+  @include flex-column;
 }

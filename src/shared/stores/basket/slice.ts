@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IBasketGoods, IBasketState } from "@/shared/config/types/goods/types";
 import { replaceProductsThunk } from "../basketAuth";
-import { deleteProductByLS } from "@/shared/utils/deleteProductByLS/deleteProductByLS";
+import { deleteProductByLS } from "@/shared/utils/delete-product-by-LS/deleteProductByLS";
 
 const initialState: IBasketState = {
   goods: [],

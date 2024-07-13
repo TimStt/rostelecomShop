@@ -6,8 +6,8 @@ import Icon from "@/shared/ui/icon";
 import cls from "classnames";
 import Link from "next/link";
 import CountUp from "react-countup";
-import useBasketAction from "@/shared/utils/useBasketAction/useBasketAction";
-import { useItemAction } from "@/shared/utils/useItemAction";
+import useBasketAction from "@/shared/utils/use-basket-action/hook";
+import { useItemAction } from "@/shared/hooks/use-item-action";
 import { IPayViewProps } from "@/shared/config/types/ui";
 import {
   selectChooseOfficeAddress,

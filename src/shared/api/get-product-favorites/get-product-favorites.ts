@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 export const getProductFavorites = async () => {
   try {
-    const { data } = await apiInstance.get(`/api/favorite/all`, {
+    const { data } = await apiInstance.get(`/api/favorites/all`, {
       needsAuth: true,
     } as IConfigAxiosAuth);
 

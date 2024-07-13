@@ -14,7 +14,7 @@ import Filter from "@/widgets/catalog-main/ui/filter";
 
 import { GetServerSideProps, GetStaticProps, NextPage } from "next/types";
 
-import { wrapper } from "@/shared/stores/store";
+import { wrapper } from "@/app/store/store";
 
 import { CatalogMain } from "@/widgets/catalog-main";
 import { IfilterState } from "@/shared/config/types/filters";

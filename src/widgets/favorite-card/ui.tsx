@@ -2,24 +2,20 @@ import { IFavoritesGoods, IGoods } from "@/shared/config/types/goods";
 import React from "react";
 import Image from "next/image";
 import styles from "./favorite-card.module.scss";
-import { useAddProductBySizeTable } from "@/shared/utils/useAddProductBySizeTable/useAddProductBySizeTable";
 import Icon from "@/shared/ui/icon";
 import { PulseLoader } from "@/shared/ui/pulse-loader";
 import cls from "classnames";
 import Link from "next/link";
 import { addProductsThunk } from "@/shared/stores/basketAuth/slice";
 import { useDispatch, useSelector } from "react-redux";
-import { set } from "mongoose";
-import { useCardLogic } from "@/shared/utils/useCardLogic/useCardLogic";
-import { productInList } from "@/shared/utils/productInList";
-import { useBasketAction } from "@/shared/utils/useBasketAction";
-import { addProductByLS } from "@/shared/utils/add-product-by-LS/add-product-by-LS";
+import { useBasketAction } from "@/shared/utils/use-basket-action";
+import { addProductByLS } from "@/shared/utils/add-product-by-LS/util";
 import {
   addGoodstoFavorites,
   removeProductsFavoritesThunk,
   setIsEmptyFavorites,
 } from "@/shared/stores/favorites";
-import { deleteProductByLS } from "@/shared/utils/deleteProductByLS/deleteProductByLS";
+import { deleteProductByLS } from "@/shared/utils/delete-product-by-LS";
 import { selectIsAuth } from "@/shared/stores/auth";
 import toast from "react-hot-toast";
 

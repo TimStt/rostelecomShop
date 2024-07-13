@@ -1,5 +1,5 @@
 import { IFoundAllGoodsApi } from "@/shared/config/types/goods";
-import debounce from "@/shared/utils/debounce/debounce";
+import debounce from "@/shared/utils/debounce/util";
 import { translateToWord } from "@/shared/utils/translateToWord";
 import { typesCategories } from "@/widgets/catalog-main/ui/filter/ui/category-filter/data";
 import React from "react";

@@ -12,7 +12,7 @@ import {
   selectCurrentProductState,
   setCurrentProduct,
 } from "@/shared/stores/current-product-add-busket";
-import { useFavoriteAction } from "@/shared/utils/use-favorite-action";
+import { useFavoriteAction } from "@/shared/hooks/use-favorite-action";
 import Icon from "@/shared/ui/icon";
 import { addProductsCompareThunk } from "@/shared/stores/compare";
 import useCompareAction from "@/shared/utils/use-compare-action/use-compare-action";

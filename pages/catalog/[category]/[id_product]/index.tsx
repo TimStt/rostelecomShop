@@ -2,7 +2,7 @@ import { ProductPage } from "@/pages/product-page";
 import { apiInstance } from "@/shared/config/api/apiinstance";
 import { IParamsToGetProduct } from "@/shared/config/types/goods";
 import { setCurrentProduct } from "@/shared/stores/current-product-add-busket";
-import { wrapper } from "@/shared/stores/store";
+import { wrapper } from "@/app/store/store";
 
 import { GetServerSideProps } from "next";
 

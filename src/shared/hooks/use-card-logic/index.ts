@@ -1,0 +1,1 @@
+export { useCardLogic } from "./hook";

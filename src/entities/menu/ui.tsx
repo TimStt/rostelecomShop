@@ -17,7 +17,7 @@ import {
   selectIsModal,
   toggleModalMenu,
 } from "@/shared/stores/menu-catalog-modal";
-import { useGetStateOnLocalStorage } from "@/shared/utils/useGetStateOnLocalStorage";
+import { useGetStateOnLocalStorage } from "@/shared/hooks/use-get-state-LS";
 
 export const Menu = () => {
   const modalRef = React.createRef<HTMLDialogElement>();

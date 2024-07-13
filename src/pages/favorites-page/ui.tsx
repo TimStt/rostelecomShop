@@ -6,12 +6,12 @@ import {
   selectFavorites,
   selectLoadingFavorites,
 } from "@/shared/stores/favorites";
-import { useGetStateOnLocalStorage } from "@/shared/utils/useGetStateOnLocalStorage";
+import { useGetStateOnLocalStorage } from "@/shared/hooks/use-get-state-LS";
 import Image from "next/image";
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./favorite-page.module.scss";
-import { useAddProductBySizeTable } from "@/shared/utils/useAddProductBySizeTable/useAddProductBySizeTable";
+
 import EmptyPageContent from "@/shared/ui/empty-page-content/ui";
 import { FavoriteCard } from "@/widgets/favorite-card";
 import { useUserAuth } from "@/shared/lib/auth/utils/isUserAuth";

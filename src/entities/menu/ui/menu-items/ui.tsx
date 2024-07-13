@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsMenu, toggleStateMenus } from "../../store/slice";
 import { numberOfDropDown } from "../../item-menu.data";
-import { useGetStateOnLocalStorage } from "@/shared/utils/useGetStateOnLocalStorage/useGetStateOnLocalStorage";
+import { useGetStateOnLocalStorage } from "@/shared/utils/use-get-state-LS/useGetStateOnLocalStorage";
 
 interface MenuItemsProps {
   closeModal: () => void;
