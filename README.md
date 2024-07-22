@@ -9,3 +9,5 @@
 Макет: https://www.figma.com/file/iT1xfXq3NqBNVEF0dSPfW6?node-id=401:8130&locale=en&type=design
 
 Данная работа еще не закончена и в дальнейшем код будешь еще оптимизирован и декомпозирован.
+
+Сайт: https://rostelecom-shop.netlify.app
